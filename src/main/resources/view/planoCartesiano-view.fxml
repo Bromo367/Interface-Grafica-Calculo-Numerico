@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlanoCartesianoController">
+   <children>
+      <Line fx:id="lnEixoX" endX="434.0" endY="-1.52587890625E-5" layoutX="166.0" layoutY="200.0" startX="-166.0" startY="-1.52587890625E-5" stroke="#4e4e4e" strokeWidth="3.0" />
+      <Line fx:id="lnEixoY" endX="100.0" endY="-52.19999313354492" layoutX="199.0" layoutY="53.0" startX="101.0" startY="347.0" stroke="#4e4e4e" strokeWidth="3.0" />
+      <Polygon fx:id="setaX" fill="#4e4e4e" layoutX="461.0" layoutY="196.0" points="107.0999755859375, -10.121307373046875, 107.0999755859375, 15.47869873046875, 140.5, 2.5" stroke="#4e4e4e" strokeType="INSIDE" />
+      <Polygon fx:id="setaY" fill="#4e4e4e" layoutX="173.0" layoutY="24.0" points="113.50003051757812, -3.721303939819336, 139.89999389648438, -3.721303939819336, 126.50003051757812, -25.32131004333496" stroke="#4e4e4e" strokeType="INSIDE" />
+      <Label fx:id="lblX" alignment="CENTER" layoutX="550.0" layoutY="158.0" text="X">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblY" layoutX="313.0" layoutY="20.0" text="Y">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
