@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlanoCartesianoController">
+<AnchorPane fx:id="anc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlanoCartesianoController">
    <children>
       <Line fx:id="lnEixoX" endX="434.0" endY="-1.52587890625E-5" layoutX="166.0" layoutY="200.0" startX="-166.0" startY="-1.52587890625E-5" stroke="#4e4e4e" strokeWidth="3.0" />
       <Line fx:id="lnEixoY" endX="100.0" endY="-52.19999313354492" layoutX="199.0" layoutY="53.0" startX="101.0" startY="347.0" stroke="#4e4e4e" strokeWidth="3.0" />
