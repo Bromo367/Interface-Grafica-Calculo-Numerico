@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="telaPrincipal" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuPrincipalController">
+   <top>
+      <MenuBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Geral">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Plano Cartesiano" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Métodos Raízes">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Bissecção" />
+                  <MenuItem mnemonicParsing="false" text="MIL" />
+                  <MenuItem mnemonicParsing="false" text="Newton" />
+                  <MenuItem mnemonicParsing="false" text="Secante" />
+                  <MenuItem mnemonicParsing="false" text="Regula Falsi" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Sistemas Lineares">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Eliminação de Gauss" />
+                  <MenuItem mnemonicParsing="false" text="Fatoração LU" />
+                  <MenuItem mnemonicParsing="false" text="Gauss-Seidel" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Interpolação">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Lagrange" />
+                  <MenuItem mnemonicParsing="false" text="Newton" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Integração">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Trapézio Repetido" />
+                  <MenuItem mnemonicParsing="false" text="1/3 de Simpson Repetido" />
+                  <MenuItem mnemonicParsing="false" text="Caso Discreto" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

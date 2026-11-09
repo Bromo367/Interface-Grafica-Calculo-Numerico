@@ -34,7 +34,7 @@ public class FuncoesController {
         FXMLLoader fxmlPlano = new FXMLLoader(getClass().getResource("/view/planoCartesiano-view.fxml"));
         Region noPlano=null;
         try{
-            Rectangle retangulo = new Rectangle(600,400);
+            Rectangle retangulo = new Rectangle(400,400);
             noPlano = fxmlPlano.load();
             retangulo.heightProperty().bind(noPlano.heightProperty());
             retangulo.widthProperty().bind(noPlano.widthProperty());
