@@ -16,7 +16,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Métodos Raízes">
             <items>
-              <MenuItem mnemonicParsing="false" text="Bissecção" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirBisseccao" text="Bissecção" />
                   <MenuItem mnemonicParsing="false" text="MIL" />
                   <MenuItem mnemonicParsing="false" text="Newton" />
                   <MenuItem mnemonicParsing="false" text="Secante" />

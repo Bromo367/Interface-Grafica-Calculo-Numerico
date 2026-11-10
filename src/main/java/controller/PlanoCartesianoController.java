@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.ScrollEvent;
 
 public class PlanoCartesianoController {
+    
 
     private double h;
     private double w;

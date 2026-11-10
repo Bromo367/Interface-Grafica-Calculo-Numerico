@@ -9,7 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/menuPrincipal-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/geral/menuPrincipal-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Plano Cartesiano");
         stage.setMinHeight(120);
