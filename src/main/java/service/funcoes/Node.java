@@ -1,5 +1,5 @@
-package service.uncoes;
-import service.eral.Conversor;
+package service.funcoes;
+import service.geral.Conversor;
 
 public class Node {
     private String token;

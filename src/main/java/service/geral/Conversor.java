@@ -1,4 +1,4 @@
-package service.eral;
+package service.geral;
 public class Conversor{
     public double StringParaDouble(String str){
         boolean negativo=false;

@@ -1,8 +1,8 @@
-package service.eral;
+package service.geral;
 
 import java.util.Scanner;
 
-import service.uncoes.Funcao;
+import service.funcoes.Funcao;
 
 public class EntradaDados {
     private Scanner scanner;
