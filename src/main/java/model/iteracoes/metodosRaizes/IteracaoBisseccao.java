@@ -1,4 +1,4 @@
-package model.iteracoes;
+package model.iteracoes.metodosRaizes;
 
 public class IteracaoBisseccao {
     

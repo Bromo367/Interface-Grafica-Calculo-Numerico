@@ -33,8 +33,12 @@ public class MenuPrincipalController {
     }
 
     @FXML
+    void abrirPlanoCartesiano(ActionEvent event) {
+        telaPrincipal.setCenter(noFuncoes);
+    }
+
+    @FXML
     void abrirBisseccao(ActionEvent event) {
         telaPrincipal.setCenter(noBisseccao);
-
     }
 }
