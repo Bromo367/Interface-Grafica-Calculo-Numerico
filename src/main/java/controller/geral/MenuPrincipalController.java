@@ -1,4 +1,4 @@
-package controller;
+package controller.geral;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class MenuPrincipalController {
             noBisseccao.autosize();
         }
         catch(IOException e){
-            System.out.println("Não foi possível carregar o arquivo fxml das funções");
+            System.out.println("Não foi possível carregar o arquivo fxml");
         }
         telaPrincipal.setCenter(noFuncoes);
         
@@ -35,5 +35,6 @@ public class MenuPrincipalController {
     @FXML
     void abrirBisseccao(ActionEvent event) {
         telaPrincipal.setCenter(noBisseccao);
+
     }
 }

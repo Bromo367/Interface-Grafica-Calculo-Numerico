@@ -1,6 +1,7 @@
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\FuncoesController.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\MenuPrincipalController.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\PlanoCartesianoController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\FuncoesController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\MenuPrincipalController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\PlanoCartesianoController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\main\Main.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\Funcoes\Derivador.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\Funcoes\Funcao.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\Funcoes\MontadorArvore.java
@@ -16,5 +17,4 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\Escala.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\EscalaEixoX.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\EscalaEixoY.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\FuncaoGrafica.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\Main.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\QuantidadeDivisores.java
