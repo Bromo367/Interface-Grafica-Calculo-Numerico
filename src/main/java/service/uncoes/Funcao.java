@@ -1,4 +1,4 @@
-package service.funcoes;
+package service.uncoes;
 import java.util.ArrayList;
 
 public class Funcao {

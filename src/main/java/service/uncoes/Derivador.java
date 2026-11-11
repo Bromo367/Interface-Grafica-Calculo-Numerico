@@ -1,4 +1,4 @@
-package service.funcoes;
+package service.uncoes;
 
 
 public class Derivador{

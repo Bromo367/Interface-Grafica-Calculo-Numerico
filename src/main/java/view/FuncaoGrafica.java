@@ -1,7 +1,7 @@
 package view;
 
 import javafx.scene.shape.Path;
-import service.funcoes.Funcao;
+import service.uncoes.Funcao;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.paint.Paint;

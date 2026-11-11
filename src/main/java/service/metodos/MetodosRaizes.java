@@ -1,5 +1,5 @@
 package service.metodos;
-import service.funcoes.Funcao;
+import service.uncoes.Funcao;
 
 public class MetodosRaizes {
     private CriteriosParadaRaizes parada = new CriteriosParadaRaizes();
