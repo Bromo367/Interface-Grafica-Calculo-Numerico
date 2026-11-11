@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class bisseccaoController {
+public class BisseccaoController {
     @FXML
     private Text lblFeedback;
     @FXML
