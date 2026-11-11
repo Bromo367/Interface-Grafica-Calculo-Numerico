@@ -9,9 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <javafx.version>17</javafx.version>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <javafx.version>25</javafx.version>
     </properties>
 
     <dependencies>
@@ -25,7 +25,7 @@
         <dependency>
         <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17</version>
+            <version>25</version>
         </dependency>
 
     </dependencies>
@@ -45,7 +45,7 @@
                 <version>0.0.8</version>
 
                 <configuration>
-                    <mainClass>view.Main</mainClass>
+                    <mainClass>main.Main</mainClass>
                 </configuration>
 
             </plugin>

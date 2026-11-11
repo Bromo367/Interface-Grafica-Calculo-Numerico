@@ -1,4 +1,4 @@
-package service.Funcoes;
+package service.funcoes;
 
 
 public class Derivador{

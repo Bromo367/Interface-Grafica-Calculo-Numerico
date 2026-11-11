@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="telaPrincipal" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuPrincipalController">
+<BorderPane fx:id="telaPrincipal" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.geral.MenuPrincipalController">
    <top>
       <MenuBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
         <menus>
@@ -16,7 +16,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Métodos Raízes">
             <items>
-              <MenuItem mnemonicParsing="false" text="Bissecção" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirBisseccao" text="Bissecção" />
                   <MenuItem mnemonicParsing="false" text="MIL" />
                   <MenuItem mnemonicParsing="false" text="Newton" />
                   <MenuItem mnemonicParsing="false" text="Secante" />

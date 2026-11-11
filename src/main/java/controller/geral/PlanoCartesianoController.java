@@ -1,4 +1,4 @@
-package controller;
+package controller.geral;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.ScrollEvent;
 
 public class PlanoCartesianoController {
+    
 
     private double h;
     private double w;

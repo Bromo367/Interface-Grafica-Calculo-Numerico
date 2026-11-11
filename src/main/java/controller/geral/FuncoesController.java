@@ -1,4 +1,4 @@
-package controller;
+package controller.geral;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class FuncoesController {
     @FXML
     void initialize() {
         
-        FXMLLoader fxmlPlano = new FXMLLoader(getClass().getResource("/view/planoCartesiano-view.fxml"));
+        FXMLLoader fxmlPlano = new FXMLLoader(getClass().getResource("/view/geral/planoCartesiano-view.fxml"));
         Region noPlano=null;
         try{
             Rectangle retangulo = new Rectangle(400,400);

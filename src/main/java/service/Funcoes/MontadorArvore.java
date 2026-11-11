@@ -1,4 +1,4 @@
-package service.Funcoes;
+package service.funcoes;
 import java.util.ArrayList;
 import java.util.Collections;
 
