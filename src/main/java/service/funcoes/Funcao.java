@@ -14,24 +14,25 @@ public class Funcao {
         this.raizArvore=raizArvore;
     }
 
-    private void imprimeNo(Node no){
+    private String imprimeNo(Node no){
+        String retorno="";
         if(no==null){
-            return;
+            return "";
         }
         if(no.getEsquerda()!=null||no.getDireita()!=null){
-            System.out.print("(");
+            retorno+="(";
         }
-        imprimeNo(no.getEsquerda());
-        System.out.print(no.getToken());
-        imprimeNo(no.getDireita());
+        retorno+=imprimeNo(no.getEsquerda());
+        retorno+=no.getToken();
+        retorno+=imprimeNo(no.getDireita());
         if(no.getEsquerda()!=null||no.getDireita()!=null){
-            System.out.print(")");
+            retorno+=")";
         }
+        return retorno;
     }
 
-    public void arvoreEmOrdem(){
-        imprimeNo(raizArvore);
-        System.out.println();
+    public String arvoreEmOrdem(){
+        return imprimeNo(raizArvore);
     }
 
     public double aplicar(double x){

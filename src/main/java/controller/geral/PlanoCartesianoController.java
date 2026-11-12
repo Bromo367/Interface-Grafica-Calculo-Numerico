@@ -16,6 +16,8 @@ import view.FuncaoGrafica;
 import view.QuantidadeDivisores;
 import javafx.scene.control.Label;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Color;
+
 
 public class PlanoCartesianoController {
     
@@ -170,8 +172,13 @@ public class PlanoCartesianoController {
         funcao.criar(diferencaEixoNumerico, diferencaEixoInterface, w, h);
     }
 
-    public void derivarFuncao(){
+    public String derivarFuncao(){
         funcao.derivar();
         funcao.criar(diferencaEixoNumerico, diferencaEixoInterface, w, h);
+        return funcao.arvoreEmOrdem();
+    }
+
+    public void mudarCor(Color cor){
+        funcao.setCor(cor);
     }
 }

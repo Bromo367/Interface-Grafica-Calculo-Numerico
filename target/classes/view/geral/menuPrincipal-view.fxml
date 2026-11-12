@@ -11,7 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Geral">
             <items>
-              <MenuItem mnemonicParsing="false" text="Plano Cartesiano" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirPlanoCartesiano" text="Plano Cartesiano" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Métodos Raízes">
