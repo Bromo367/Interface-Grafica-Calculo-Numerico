@@ -4,6 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class VerificadorStrings {
+    public boolean ehInt(String entrada){
+        int i=0;
+        while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
+            i++;
+        }
+        if(i==entrada.length()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public boolean ehDouble(String entrada){
         int i=0;
         while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
