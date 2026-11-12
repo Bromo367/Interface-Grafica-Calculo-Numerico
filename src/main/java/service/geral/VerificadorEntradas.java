@@ -2,47 +2,61 @@ package service.geral;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import service.funcoes.Funcao;
 
-public class VerificadorStrings {
-    public boolean ehInt(String entrada){
+public class VerificadorEntradas {
+    private Conversor conversor = new Conversor();
+    public int avaliarInt(String entrada, String nome) throws EntradaException{
+        if(entrada.length()==0){
+            throw new EntradaException(nome + " deve ser um valor inteiro!");
+        }
         int i=0;
         while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
             i++;
         }
-        if(i==entrada.length()){
-            return true;
+        if(i!=entrada.length()){
+            throw new EntradaException(nome + " deve ser um valor inteiro!");
         }
-        else{
-            return false;
-        }
+        return conversor.StringParaInt(entrada);
     }
-    public boolean ehDouble(String entrada){
+    public double avaliarDouble(String entrada, String nome) throws EntradaException{
+        if(entrada.length()==0){
+            throw new EntradaException(nome + " deve ser um valor racional!");
+        }
         int i=0;
+        boolean sucesso;
         while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
             i++;
         }
         if(i==entrada.length()){
-            return true;
+            sucesso=true;
         }
-        if(entrada.charAt(i)==','||entrada.charAt(i)=='.'){
+        else if(entrada.charAt(i)==','||entrada.charAt(i)=='.'){
             i++;
             while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
                 i++;
             }
             if(i==entrada.length()){
-                return true;
+                sucesso=true;
             }
             else{
-                return false;
+                sucesso=false;
             }
         }
         else{
-            return false;
+            sucesso=false;
         }
-        
+
+        if(!sucesso){
+            throw new EntradaException(nome + " deve ser um valor racional!");
+        }
+        return conversor.StringParaDouble(entrada);
     }
 
-    public boolean ehFuncao(String entrada){
+    public Funcao avaliarFuncao(String entrada, String nome) throws EntradaException{
+        if(entrada.length()==0){
+            throw new EntradaException(nome + " deve ser uma função válida");
+        }
         boolean valido=true;
 
         int i=0;
@@ -138,6 +152,12 @@ public class VerificadorStrings {
                 } 
             }
         }
-        return valido&&esperandoOperador;
+        if(!esperandoOperador){
+            valido=false;
+        }
+        if(!valido){
+            throw new EntradaException(nome + " deve ser uma função válida");
+        }
+        return conversor.StringParaFuncao(entrada);
     }
 }

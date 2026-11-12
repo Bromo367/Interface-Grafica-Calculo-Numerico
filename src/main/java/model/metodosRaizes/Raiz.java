@@ -28,4 +28,12 @@ public class Raiz {
     public double getValorNaFuncao() {
         return valorNaFuncao;
     }
+
+    @Override 
+    public String toString(){
+        return "Número total de iterações: "+numIteracoes
+                +"\nCritério de parada: "+criterioParada
+                +"\nRaiz: "+valor
+                +"\nf(Raiz): "+valorNaFuncao;
+    }
 }

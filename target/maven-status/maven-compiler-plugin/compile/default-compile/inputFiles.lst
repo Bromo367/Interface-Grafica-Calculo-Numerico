@@ -11,8 +11,9 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\funcoes\Funcao.ja
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\funcoes\MontadorArvore.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\funcoes\Node.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\Conversor.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\EntradaDados.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\VerificadorStrings.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\EntradaException.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\TiposTexto.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\VerificadorEntradas.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\metodos\CriteriosParadaRaizes.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\metodos\MetodosRaizes.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\Divisores.java

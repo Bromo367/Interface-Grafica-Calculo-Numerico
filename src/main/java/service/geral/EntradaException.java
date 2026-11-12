@@ -1,7 +1,7 @@
 package service.geral;
 
 public class EntradaException extends RuntimeException{
-    public EntradaException(String message){
-        super(message);
+    public EntradaException(String msg){
+        super(msg);
     }
 }
