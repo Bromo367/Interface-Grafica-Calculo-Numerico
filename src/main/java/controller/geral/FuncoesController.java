@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +27,9 @@ public class FuncoesController {
 
     @FXML
     private Button btnEnviar;
+    
+    @FXML
+    private ColorPicker colorPickerFuncao;
 
     PlanoCartesianoController planoController=null;
 
@@ -50,17 +55,25 @@ public class FuncoesController {
         
         planoController = (PlanoCartesianoController) fxmlPlano.getController();
 
+        colorPickerFuncao.setValue(Color.RED);
 
+        colorPickerFuncao.valueProperty().addListener((observable, antigo, novo)->{
+            mudarCor();
+        });
+    }
+
+    void mudarCor() {
+        planoController.mudarCor(colorPickerFuncao.getValue());
     }
 
     @FXML
     void enviarFuncao(ActionEvent event) {
-        System.out.println(inputFuncao.getText().trim());
+        mudarCor();
         planoController.adicionarFuncao(inputFuncao.getText().trim());
     }
 
     @FXML
     void derivarFuncao(ActionEvent event) {
-        planoController.derivarFuncao();
+        inputFuncao.setText(planoController.derivarFuncao());
     }
 }

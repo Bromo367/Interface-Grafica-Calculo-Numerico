@@ -16,7 +16,7 @@ public class EscalaEixoY extends Escala{
         for(int i=0;i<quantidadeDivisoes;i++){
             Label lbl = new Label();
             lbl.setTextFill(Paint.valueOf("4e4e4e"));
-            lbl.setText(""+(i-quantidadeDivisoes/2)*diferencaNumerica);
+            lbl.setText(""+(quantidadeDivisoes/2-i)*diferencaNumerica);
             lbl.setLayoutX(w/2+5);
             lbl.setLayoutY(h/2+((i-quantidadeDivisoes/2)*diferencaEixoInterface));
             labels.add(lbl);

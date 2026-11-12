@@ -13,17 +13,27 @@ public class MenuPrincipalController {
     private BorderPane telaPrincipal;
     private Region noFuncoes = null;
     private Region noBisseccao = null;
+    private Region noMIL = null;
+    private Region noNewton = null;
+    private Region noSecante = null;
+    private Region noRegulaFalsi = null;
 
     @FXML
     void initialize() {
 
         FXMLLoader fxmlFuncoes = new FXMLLoader(getClass().getResource("/view/geral/funcoes-view.fxml"));
         FXMLLoader fxmlBisseccao = new FXMLLoader(getClass().getResource("/view/metodosRaizes/bisseccao-view.fxml"));
+        FXMLLoader fxmlMIL = new FXMLLoader(getClass().getResource("/view/metodosRaizes/mil-view.fxml"));
+        FXMLLoader fxmlNewton = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newton-view.fxml"));
+        FXMLLoader fxmlSecante = new FXMLLoader(getClass().getResource("/view/metodosRaizes/secante-view.fxml"));
+        FXMLLoader fxmlRegulaFalsi = new FXMLLoader(getClass().getResource("/view/metodosRaizes/regulaFalsi-view.fxml"));
         try{
             noFuncoes = fxmlFuncoes.load();
-            noFuncoes.autosize();
             noBisseccao = fxmlBisseccao.load();
-            noBisseccao.autosize();
+            noMIL = fxmlMIL.load();
+            noNewton = fxmlNewton.load();
+            noSecante = fxmlSecante.load();
+            noRegulaFalsi = fxmlRegulaFalsi.load();
         }
         catch(IOException e){
             System.out.println("Não foi possível carregar o arquivo fxml");
@@ -40,5 +50,25 @@ public class MenuPrincipalController {
     @FXML
     void abrirBisseccao(ActionEvent event) {
         telaPrincipal.setCenter(noBisseccao);
+    }
+
+    @FXML
+    void abrirMIL(ActionEvent event) {
+        telaPrincipal.setCenter(noMIL);
+    }
+
+    @FXML
+    void abrirNewton(ActionEvent event) {
+        telaPrincipal.setCenter(noNewton);
+    }
+
+    @FXML
+    void abrirSecante(ActionEvent event) {
+        telaPrincipal.setCenter(noSecante);
+    }
+
+    @FXML
+    void abrirRegulaFalsi(ActionEvent event) {
+        telaPrincipal.setCenter(noRegulaFalsi);
     }
 }

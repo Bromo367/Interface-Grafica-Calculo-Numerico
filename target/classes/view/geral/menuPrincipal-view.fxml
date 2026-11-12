@@ -11,16 +11,16 @@
         <menus>
           <Menu mnemonicParsing="false" text="Geral">
             <items>
-              <MenuItem mnemonicParsing="false" text="Plano Cartesiano" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirPlanoCartesiano" text="Plano Cartesiano" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Métodos Raízes">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirBisseccao" text="Bissecção" />
-                  <MenuItem mnemonicParsing="false" text="MIL" />
-                  <MenuItem mnemonicParsing="false" text="Newton" />
-                  <MenuItem mnemonicParsing="false" text="Secante" />
-                  <MenuItem mnemonicParsing="false" text="Regula Falsi" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirMIL" text="MIL" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirNewton" text="Newton" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirSecante" text="Secante" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirRegulaFalsi" text="Regula Falsi" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Sistemas Lineares">
