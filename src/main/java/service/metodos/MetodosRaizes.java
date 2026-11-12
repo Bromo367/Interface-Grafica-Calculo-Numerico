@@ -99,7 +99,9 @@ public class MetodosRaizes {
         return retorno;
     }
 
-    public void newton(double x0, double precisao, int it, Funcao f){
+    public RetornoNewton newton(double x0, double precisao, int it, Funcao f){
+        ArrayList<IteracaoNewton> iteracoes = new ArrayList<>();
+
         double xAtual=x0;
         double xAnterior=xAtual;
 
@@ -115,11 +117,28 @@ public class MetodosRaizes {
             xAtual=xAtual-(fAtual/fDerivada.aplicar(xAtual));
             fAtual=f.aplicar(xAtual);
 
-            parou=parou||parada.erroFuncao(fAtual, k, precisao);
-            parou=parou||parada.erroAbsoluto(xAtual, xAnterior, k, precisao);
+            iteracoes.add(new IteracaoNewton(k, xAtual, fAtual , fDerivada.aplicar(xAtual), precisao, xAnterior));
+            System.out.println("Derivas "+iteracoes.getLast().getDerivadaXn());
+
+            parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
+            parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();       
 
             k++;
         }
+        String criterioParada;
+        IteracaoNewton ultimaIteracao=iteracoes.get(iteracoes.size()-1);
+        if(ultimaIteracao.criterioParadaFuncao()){
+            criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxn())+" < "+precisao;
+        }
+        else if(ultimaIteracao.criterioParadaDiferenca()){
+            criterioParada="|"+xAtual+"-"+xAnterior+"| = "+(Math.abs(ultimaIteracao.getDiferenca()))+" < "+precisao;
+        }
+        else{
+            criterioParada="Ultrapassou o limite de iterações";
+        }
+        Raiz raiz = new Raiz(k-1,ultimaIteracao.getXAtual(),ultimaIteracao.getFxn(),criterioParada);
+        RetornoNewton retorno = new RetornoNewton(iteracoes, raiz);
+        return retorno;
     }
 
     public void secante(double x0, double x1, double precisao, int it, Funcao f){

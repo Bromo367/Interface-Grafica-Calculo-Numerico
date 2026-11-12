@@ -101,10 +101,13 @@ public class MILController {
             x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
+            
             RetornoMIL resultado = metodosRaizes.mil(x0,precisao,it,funcao,fi);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
+
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);
+            
             tableIteracoes.setItems(iteracoes);
             tableIteracoes.setPrefHeight((iteracoes.size()+1)*tamanhoCelula);
             lblRaiz.setText(raiz.toString());

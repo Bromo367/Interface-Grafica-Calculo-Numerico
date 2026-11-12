@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
@@ -24,26 +23,25 @@ import model.metodosRaizes.iteracoes.IteracaoNewton;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoNewton;
 
-import java.util.List;
 
 public class NewtonController {
 
     
     @FXML private TableView<IteracaoNewton> tableIteracoes;
     @FXML
-    private TableColumn<IteracaoNewton, Double> colunaXn;
-
-    @FXML
-    private TableColumn<IteracaoNewton, Double> colunaA;
-
-    @FXML
-    private TableColumn<IteracaoNewton, Double> colunaB;
-
-    @FXML
-    private TableColumn<IteracaoNewton, Double> colunaDiferencaIntervalo;
+    private TableColumn<IteracaoNewton, Double> colunaXAtual;
 
     @FXML
     private TableColumn<IteracaoNewton, Double> colunaFxn;
+
+    @FXML
+    private TableColumn<IteracaoNewton, Double> colunaDerivadaXn;
+
+    @FXML
+    private TableColumn<IteracaoNewton, Double> colunaDiferenca;
+
+    @FXML
+    private TableColumn<IteracaoNewton, Double> colunaXAnterior;
 
     @FXML
     private TableColumn<IteracaoNewton, Integer> colunaK;
@@ -52,11 +50,18 @@ public class NewtonController {
     @FXML private Label lblFeedback;
     @FXML private Label lblRaiz;
     @FXML private ScrollPane scrollLayout;
-    @FXML private TextField txtFieldFuncao;
-    @FXML private TextField txtFieldIteracoes;
-    @FXML private TextField txtFieldLimiteInferior;
-    @FXML private TextField txtFieldLimiteSuperior;
-    @FXML private TextField txtFieldPrecisao;
+    @FXML
+    private TextField txtFieldFuncao;
+
+    @FXML
+    private TextField txtFieldIteracoes;
+
+    @FXML
+    private TextField txtFieldPrecisao;
+
+    @FXML
+    private TextField txtFieldXInicial;
+
     @FXML private VBox vboxConteudo;
 
     private MetodosRaizes metodosRaizes = new MetodosRaizes();
@@ -72,29 +77,26 @@ public class NewtonController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("a"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("b"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("xn"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("xAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("xAnterior"));
+        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("derivadaXn"));
         colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("fxn"));
-        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("diferencaIntervalo"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("diferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
     @FXML
     void calcularRaiz(ActionEvent event) {
-        Funcao fx = null;
-        double a;
-        double b;
+        Funcao funcao = null;
+        double x0;
         double precisao;
         int it;
         try{
-            fx = verificador.avaliarFuncao(txtFieldFuncao.getText(), "f(x)");
-            a = verificador.avaliarDouble(txtFieldLimiteInferior.getText(), "O limite inferior");
-            b = verificador.avaliarDouble(txtFieldLimiteSuperior.getText(), "O limite superior");
+            funcao = verificador.avaliarFuncao(txtFieldFuncao.getText(), "f(x)");
+            x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
-            // RetornoNewton resultado = metodosRaizes.newton(a, b, precisao, it, fx);
-            RetornoNewton resultado = null;
+            RetornoNewton resultado = metodosRaizes.newton(x0,precisao,it,funcao);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);

@@ -31,19 +31,19 @@ public class SecanteController {
     
     @FXML private TableView<IteracaoSecante> tableIteracoes;
     @FXML
-    private TableColumn<IteracaoSecante, Double> colunaXn;
-
-    @FXML
-    private TableColumn<IteracaoSecante, Double> colunaA;
-
-    @FXML
-    private TableColumn<IteracaoSecante, Double> colunaB;
-
-    @FXML
-    private TableColumn<IteracaoSecante, Double> colunaDiferencaIntervalo;
+    private TableColumn<IteracaoSecante, Double> colunaXAtual;
 
     @FXML
     private TableColumn<IteracaoSecante, Double> colunaFxn;
+
+    @FXML
+    private TableColumn<IteracaoSecante, Double> colunaDerivadaXn;
+
+    @FXML
+    private TableColumn<IteracaoSecante, Double> colunaDiferenca;
+
+    @FXML
+    private TableColumn<IteracaoSecante, Double> colunaXAnterior;
 
     @FXML
     private TableColumn<IteracaoSecante, Integer> colunaK;
@@ -52,11 +52,18 @@ public class SecanteController {
     @FXML private Label lblFeedback;
     @FXML private Label lblRaiz;
     @FXML private ScrollPane scrollLayout;
-    @FXML private TextField txtFieldFuncao;
-    @FXML private TextField txtFieldIteracoes;
-    @FXML private TextField txtFieldLimiteInferior;
-    @FXML private TextField txtFieldLimiteSuperior;
-    @FXML private TextField txtFieldPrecisao;
+    @FXML
+    private TextField txtFieldFuncao;
+
+    @FXML
+    private TextField txtFieldIteracoes;
+
+    @FXML
+    private TextField txtFieldPrecisao;
+
+    @FXML
+    private TextField txtFieldXInicial;
+
     @FXML private VBox vboxConteudo;
 
     private MetodosRaizes metodosRaizes = new MetodosRaizes();
@@ -72,25 +79,23 @@ public class SecanteController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("a"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("b"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xn"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xAnterior"));
+        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("derivadaXn"));
         colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("fxn"));
-        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("diferencaIntervalo"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("diferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
     @FXML
     void calcularRaiz(ActionEvent event) {
-        Funcao fx = null;
-        double a;
-        double b;
+        Funcao funcao = null;
+        double x0;
         double precisao;
         int it;
         try{
-            fx = verificador.avaliarFuncao(txtFieldFuncao.getText(), "f(x)");
-            a = verificador.avaliarDouble(txtFieldLimiteInferior.getText(), "O limite inferior");
-            b = verificador.avaliarDouble(txtFieldLimiteSuperior.getText(), "O limite superior");
+            funcao = verificador.avaliarFuncao(txtFieldFuncao.getText(), "f(x)");
+            x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
             // RetornoSecante resultado = metodosRaizes.Secante(a, b, precisao, it, fx);

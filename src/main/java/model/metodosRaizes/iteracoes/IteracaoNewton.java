@@ -2,52 +2,52 @@ package model.metodosRaizes.iteracoes;
 
 public class IteracaoNewton {
     private int k;
-    private double xn;
+    private double xAnterior;
+    private double xAtual;
     private double fxn;
-    private double a;
-    private double b;
-    private double diferencaIntervalo;
+    private double derivadaXn;
     private double precisao;
+    private double diferenca;
 
-    public IteracaoNewton(int k, double xn, double fxn, double a, double b, double precisao){
+    public IteracaoNewton(int k, double xAtual, double fxn, double derivadaXn, double precisao, double xAnterior){
         this.k=k;
-        this.xn=xn;
+        this.xAtual=xAtual;
         this.fxn=fxn;
-        this.a=a;
-        this.b=b;
+        this.derivadaXn=derivadaXn;
         this.precisao=precisao;
-        this.diferencaIntervalo=Math.abs(b-a);
+        this.xAnterior=xAnterior;
+        diferenca=Math.abs(xAtual-xAnterior);
     }
 
     public boolean criterioParadaFuncao(){
         return Math.abs(fxn)<precisao;
     }
 
-    public boolean criterioParadaIntervalo(){
-        return Math.abs(diferencaIntervalo)<precisao;
+    public boolean criterioParadaDiferenca(){
+        return Math.abs(diferenca)<precisao;
     }
 
     public int getK() {
         return k;
     }
 
-    public double getXn() {
-        return xn;
+    public double getXAtual() {
+        return xAtual;
     }
 
     public double getFxn() {
         return fxn;
     }
 
-    public double getA() {
-        return a;
+    public double getDerivadaXn() {
+        return derivadaXn;
     }
 
-    public double getB() {
-        return b;
+    public double getXAnterior() {
+        return xAnterior;
     }
 
-    public double getDiferencaIntervalo() {
-        return diferencaIntervalo;
+    public double getDiferenca() {
+        return diferenca;
     }
 }
