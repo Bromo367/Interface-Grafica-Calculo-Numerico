@@ -4,7 +4,17 @@ import service.funcoes.Funcao;
 import java.util.ArrayList;
 
 import model.metodosRaizes.iteracoes.IteracaoBisseccao;
+import model.metodosRaizes.iteracoes.IteracaoNewton;
+import model.metodosRaizes.iteracoes.IteracaoSecante;
+import model.metodosRaizes.iteracoes.IteracaoMIL;
+import model.metodosRaizes.iteracoes.IteracaoRegulaFalsi;
+
 import model.metodosRaizes.retornos.RetornoBisseccao;
+import model.metodosRaizes.retornos.RetornoNewton;
+import model.metodosRaizes.retornos.RetornoSecante;
+import model.metodosRaizes.retornos.RetornoMIL;
+import model.metodosRaizes.retornos.RetornoRegulaFalsi;
+
 import model.metodosRaizes.Raiz;
 
 public class MetodosRaizes {
@@ -49,7 +59,8 @@ public class MetodosRaizes {
         RetornoBisseccao retorno = new RetornoBisseccao(iteracoes, raiz);
         return retorno;
     }
-    public void mil(double x0, double precisao, int it, Funcao f, Funcao fi){
+    public RetornoMIL mil(double x0, double precisao, int it, Funcao f, Funcao fi){
+        ArrayList<IteracaoMIL> iteracoes = new ArrayList<IteracaoMIL>();
         double xAtual=x0;
         double xAnterior=xAtual;
 
@@ -64,10 +75,28 @@ public class MetodosRaizes {
             xAtual=fi.aplicar(xAtual);
             fAtual=f.aplicar(xAtual);
 
-            parou=parou||parada.erroFuncao(fAtual, k, precisao);
-            parou=parou||parada.erroAbsoluto(xAtual, xAnterior, k, precisao);            
+            System.out.println(fi.arvoreEmOrdem());
+
+            iteracoes.add(new IteracaoMIL(k, xAtual, fAtual, fi.aplicar(xAtual), precisao, xAnterior));
+
+            parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
+            parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();            
             k++;
         }
+        String criterioParada;
+        IteracaoMIL ultimaIteracao=iteracoes.get(iteracoes.size()-1);
+        if(ultimaIteracao.criterioParadaFuncao()){
+            criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxn())+" < "+precisao;
+        }
+        else if(ultimaIteracao.criterioParadaDiferenca()){
+            criterioParada="|"+xAtual+"-"+xAnterior+"| = "+(Math.abs(ultimaIteracao.getDiferenca()))+" < "+precisao;
+        }
+        else{
+            criterioParada="Ultrapassou o limite de iterações";
+        }
+        Raiz raiz = new Raiz(k-1,ultimaIteracao.getXAtual(),ultimaIteracao.getFxn(),criterioParada);
+        RetornoMIL retorno = new RetornoMIL(iteracoes, raiz);
+        return retorno;
     }
 
     public void newton(double x0, double precisao, int it, Funcao f){
