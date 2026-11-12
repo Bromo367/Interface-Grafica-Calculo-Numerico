@@ -1,11 +1,17 @@
 package service.metodos;
 import service.funcoes.Funcao;
 
+import java.util.ArrayList;
+
+import model.metodosRaizes.iteracoes.IteracaoBisseccao;
+import model.metodosRaizes.retornos.RetornoBisseccao;
+import model.metodosRaizes.Raiz;
+
 public class MetodosRaizes {
     private CriteriosParadaRaizes parada = new CriteriosParadaRaizes();
 
-
-    public void bisseccao(double a, double b, double precisao, int it, Funcao f){
+    public RetornoBisseccao bisseccao(double a, double b, double precisao, int it, Funcao f){
+        ArrayList<IteracaoBisseccao> iteracoes = new ArrayList<IteracaoBisseccao>();
         int k=1;
         double fInicio;
         double meio=0;
@@ -22,11 +28,26 @@ public class MetodosRaizes {
             else{
                 a=meio;
             }
-            parou=parou||parada.erroFuncao(fMeio, k-1, precisao);
-            parou=parou||parada.diferencaIntervalo(a,b, precisao);
+            iteracoes.add(new IteracaoBisseccao(k, meio, fMeio, a, b, precisao));
+
+            parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
+            parou=parou||iteracoes.get(k-1).criterioParadaIntervalo();
             k++;
         }
-
+        String criterioParada;
+        IteracaoBisseccao ultimaIteracao=iteracoes.get(iteracoes.size()-1);
+        if(ultimaIteracao.criterioParadaFuncao()){
+            criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxn())+" < "+precisao;
+        }
+        else if(ultimaIteracao.criterioParadaIntervalo()){
+            criterioParada="|"+b+"-"+a+"| = "+(Math.abs(ultimaIteracao.getDiferencaIntervalo()))+" < "+precisao;
+        }
+        else{
+            criterioParada="Ultrapassou o limite de iterações";
+        }
+        Raiz raiz = new Raiz(k-1,ultimaIteracao.getXn(),ultimaIteracao.getFxn(),criterioParada);
+        RetornoBisseccao retorno = new RetornoBisseccao(iteracoes, raiz);
+        return retorno;
     }
     public void mil(double x0, double precisao, int it, Funcao f, Funcao fi){
         double xAtual=x0;
