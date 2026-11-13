@@ -4,13 +4,13 @@ import service.funcoes.Funcao;
 import java.util.ArrayList;
 
 import model.metodosRaizes.iteracoes.IteracaoBisseccao;
-import model.metodosRaizes.iteracoes.IteracaoNewton;
+import model.metodosRaizes.iteracoes.IteracaoNewtonRaphson;
 import model.metodosRaizes.iteracoes.IteracaoSecante;
 import model.metodosRaizes.iteracoes.IteracaoMIL;
 import model.metodosRaizes.iteracoes.IteracaoRegulaFalsi;
 
 import model.metodosRaizes.retornos.RetornoBisseccao;
-import model.metodosRaizes.retornos.RetornoNewton;
+import model.metodosRaizes.retornos.RetornoNewtonRaphson;
 import model.metodosRaizes.retornos.RetornoSecante;
 import model.metodosRaizes.retornos.RetornoMIL;
 import model.metodosRaizes.retornos.RetornoRegulaFalsi;
@@ -99,8 +99,8 @@ public class MetodosRaizes {
         return retorno;
     }
 
-    public RetornoNewton newton(double x0, double precisao, int it, Funcao f){
-        ArrayList<IteracaoNewton> iteracoes = new ArrayList<>();
+    public RetornoNewtonRaphson newton(double x0, double precisao, int it, Funcao f){
+        ArrayList<IteracaoNewtonRaphson> iteracoes = new ArrayList<>();
 
         double xAtual=x0;
         double xAnterior=xAtual;
@@ -117,7 +117,7 @@ public class MetodosRaizes {
             xAtual=xAtual-(fAtual/fDerivada.aplicar(xAtual));
             fAtual=f.aplicar(xAtual);
 
-            iteracoes.add(new IteracaoNewton(k, xAtual, fAtual , fDerivada.aplicar(xAtual), precisao, xAnterior));
+            iteracoes.add(new IteracaoNewtonRaphson(k, xAtual, fAtual , fDerivada.aplicar(xAtual), precisao, xAnterior));
             System.out.println("Derivas "+iteracoes.getLast().getDerivadaXn());
 
             parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
@@ -126,7 +126,7 @@ public class MetodosRaizes {
             k++;
         }
         String criterioParada;
-        IteracaoNewton ultimaIteracao=iteracoes.get(iteracoes.size()-1);
+        IteracaoNewtonRaphson ultimaIteracao=iteracoes.get(iteracoes.size()-1);
         if(ultimaIteracao.criterioParadaFuncao()){
             criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxn())+" < "+precisao;
         }
@@ -137,31 +137,31 @@ public class MetodosRaizes {
             criterioParada="Ultrapassou o limite de iterações";
         }
         Raiz raiz = new Raiz(k-1,ultimaIteracao.getXAtual(),ultimaIteracao.getFxn(),criterioParada);
-        RetornoNewton retorno = new RetornoNewton(iteracoes, raiz);
+        RetornoNewtonRaphson retorno = new RetornoNewtonRaphson(iteracoes, raiz);
         return retorno;
     }
 
-    public void secante(double x0, double x1, double precisao, int it, Funcao f){
+    public RetornoSecante secante(double x0, double x1, double precisao, int it, Funcao f){
+        ArrayList<IteracaoSecante> iteracoes = new ArrayList<>();
         double xAnterior=x0;
-        System.out.println("Insira x1:");
         double xAtual=x1;
 
         double fAtual=f.aplicar(xAtual);
         double fAnterior=f.aplicar(xAnterior);
-        double raiz=0;
+        double valorRaiz=0;
         boolean parou=false;
         
         if(parada.erroFuncao(fAtual, 0, precisao)){
             parou=true;
-            raiz=xAnterior;
+            valorRaiz=xAnterior;
         }
         else if(parada.erroFuncao(fAtual, 1, precisao)){
             parou=true;
-            raiz=xAtual;
+            valorRaiz=xAtual;
         }
         else if(parada.erroAbsoluto(xAtual, xAnterior, 1, precisao)){
             parou=true;
-            raiz=xAtual;
+            valorRaiz=xAtual;
         }
 
         int k=1;
@@ -172,36 +172,54 @@ public class MetodosRaizes {
             fAtual=f.aplicar(xAtual);
             fAnterior=f.aplicar(xAnterior);
 
-            parou=parou||parada.erroFuncao(fAtual, k+1, precisao);
-            parou=parou||parada.erroAbsoluto(xAtual, xAnterior, k+1, precisao);
+            iteracoes.add(new IteracaoSecante(k, xAtual, fAtual, fAnterior, precisao, xAnterior));
+
+            parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
+            parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();       
 
             if(parou){
-                raiz=xAtual;
+                valorRaiz=xAtual;
             }
             k++;
         }
+
+        String criterioParada;
+        IteracaoSecante ultimaIteracao=iteracoes.get(iteracoes.size()-1);
+        if(ultimaIteracao.criterioParadaFuncao()){
+            criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxAtual())+" < "+precisao;
+        }
+        else if(ultimaIteracao.criterioParadaDiferenca()){
+            criterioParada="|"+xAtual+"-"+xAnterior+"| = "+(Math.abs(ultimaIteracao.getDiferenca()))+" < "+precisao;
+        }
+        else{
+            criterioParada="Ultrapassou o limite de iterações";
+        }
+        Raiz raiz = new Raiz(k-1,ultimaIteracao.getXAtual(),ultimaIteracao.getFxAtual(),criterioParada);
+        RetornoSecante retorno = new RetornoSecante(iteracoes, raiz);
+        return retorno;
     }
 
-    public void regulaFalsi(double a, double b, double precisao, int it, Funcao f){
+    public RetornoRegulaFalsi regulaFalsi(double a, double b, double precisao, int it, Funcao f){
+        ArrayList<IteracaoRegulaFalsi> iteracoes = new ArrayList<>();
         double xAtual=0;
         double fInicio=f.aplicar(a);
         double fFim=f.aplicar(b);
         double fAtual=0;
-        double raiz=0;
+        double valorRaiz=0;
         boolean parou=false;
 
         
         if(parada.erroFuncaoVariavel(fInicio,"a",precisao)){
             parou=true;
-            raiz=a;
+            valorRaiz=a;
         }
         else if(parada.erroFuncaoVariavel(fInicio,"b",precisao)){
             parou=true;
-            raiz=b;
+            valorRaiz=b;
         }
         else if(parada.diferencaIntervalo(a, b, precisao)){
             parou=true;
-            raiz=a;
+            valorRaiz=a;
         }
 
         int k=1;
@@ -209,22 +227,39 @@ public class MetodosRaizes {
             xAtual=((a*fFim)-(b*fInicio))/(fFim-fInicio);
             fAtual=f.aplicar(xAtual);
 
-            parou=parou||parada.erroFuncao(fAtual, k-1, precisao);
             if(fInicio*fAtual<0){
                 b=xAtual;
                 fFim=fAtual;
-                parou=parou||parada.erroRelativo(xAtual, a, k-1, precisao);
             }
             else{
                 a=xAtual;
                 fInicio=fAtual;
-                parou=parou||parada.erroRelativo(xAtual, b, k-1, precisao);
             }
 
+            iteracoes.add(new IteracaoRegulaFalsi(k, xAtual, fAtual, a, b, precisao));
+
+            parou = parou || iteracoes.get(k-1).criterioParadaFuncao();
+            parou = parou || iteracoes.get(k-1).criterioParadaErroRelativo();
+
             if(parou){
-                raiz=xAtual;
+                valorRaiz=xAtual;
             }
             k++;
         }
+
+        String criterioParada;
+        IteracaoRegulaFalsi ultimaIteracao = iteracoes.get(iteracoes.size()-1);
+        if(ultimaIteracao.criterioParadaFuncao()){
+            criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxn())+" < "+precisao;
+        }
+        else if(ultimaIteracao.criterioParadaErroRelativo()){
+            criterioParada="|("+b+"-"+a+")/"+xAtual+"| = "+(ultimaIteracao.getErroRelativo())+" < "+precisao;
+        }
+        else{
+            criterioParada="Ultrapassou o limite de iterações";
+        }
+        Raiz raiz = new Raiz(k-1,ultimaIteracao.getXn(),ultimaIteracao.getFxn(),criterioParada);
+        RetornoRegulaFalsi retorno = new RetornoRegulaFalsi(iteracoes, raiz);
+        return retorno;
     }
 }

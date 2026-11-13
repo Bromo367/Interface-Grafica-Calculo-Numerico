@@ -24,14 +24,14 @@ public class MenuPrincipalController {
         FXMLLoader fxmlFuncoes = new FXMLLoader(getClass().getResource("/view/geral/funcoes-view.fxml"));
         FXMLLoader fxmlBisseccao = new FXMLLoader(getClass().getResource("/view/metodosRaizes/bisseccao-view.fxml"));
         FXMLLoader fxmlMIL = new FXMLLoader(getClass().getResource("/view/metodosRaizes/mil-view.fxml"));
-        FXMLLoader fxmlNewton = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newton-view.fxml"));
+        FXMLLoader fxmlNewtonRaphson = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newtonRaphson-view.fxml"));
         FXMLLoader fxmlSecante = new FXMLLoader(getClass().getResource("/view/metodosRaizes/secante-view.fxml"));
         FXMLLoader fxmlRegulaFalsi = new FXMLLoader(getClass().getResource("/view/metodosRaizes/regulaFalsi-view.fxml"));
         try{
             noFuncoes = fxmlFuncoes.load();
             noBisseccao = fxmlBisseccao.load();
             noMIL = fxmlMIL.load();
-            noNewton = fxmlNewton.load();
+            noNewton = fxmlNewtonRaphson.load();
             noSecante = fxmlSecante.load();
             noRegulaFalsi = fxmlRegulaFalsi.load();
         }

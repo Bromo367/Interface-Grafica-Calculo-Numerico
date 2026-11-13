@@ -6,7 +6,7 @@ public class IteracaoRegulaFalsi {
     private double fxn;
     private double a;
     private double b;
-    private double diferencaIntervalo;
+    private double erroRelativo;
     private double precisao;
 
     public IteracaoRegulaFalsi(int k, double xn, double fxn, double a, double b, double precisao){
@@ -16,15 +16,15 @@ public class IteracaoRegulaFalsi {
         this.a=a;
         this.b=b;
         this.precisao=precisao;
-        this.diferencaIntervalo=Math.abs(b-a);
+        this.erroRelativo=Math.abs((b-a)/xn);
     }
 
     public boolean criterioParadaFuncao(){
         return Math.abs(fxn)<precisao;
     }
 
-    public boolean criterioParadaIntervalo(){
-        return Math.abs(diferencaIntervalo)<precisao;
+    public boolean criterioParadaErroRelativo(){
+        return Math.abs((b-a)/xn)<precisao;
     }
 
     public int getK() {
@@ -47,7 +47,7 @@ public class IteracaoRegulaFalsi {
         return b;
     }
 
-    public double getDiferencaIntervalo() {
-        return diferencaIntervalo;
+    public double getErroRelativo() {
+        return erroRelativo;
     }
 }
