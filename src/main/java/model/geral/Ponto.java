@@ -1,19 +1,19 @@
 package model.geral;
 
 public class Ponto {
-    double x;
-    double y;
+    Double x;
+    Double y;
     
     public Ponto(double x, double y){
         this.x=x;
         this.y=y;
     }
 
-    public double getX() {
+    public Double getX() {
         return x;
     }
 
-    public double getY() {
+    public Double getY() {
         return y;
     }
 }

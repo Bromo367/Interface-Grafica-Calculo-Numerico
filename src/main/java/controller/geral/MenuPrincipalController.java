@@ -17,6 +17,7 @@ public class MenuPrincipalController {
     private Region noNewton = null;
     private Region noSecante = null;
     private Region noRegulaFalsi = null;
+    private Region noLagrange = null;
 
     @FXML
     void initialize() {
@@ -27,6 +28,8 @@ public class MenuPrincipalController {
         FXMLLoader fxmlNewtonRaphson = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newtonRaphson-view.fxml"));
         FXMLLoader fxmlSecante = new FXMLLoader(getClass().getResource("/view/metodosRaizes/secante-view.fxml"));
         FXMLLoader fxmlRegulaFalsi = new FXMLLoader(getClass().getResource("/view/metodosRaizes/regulaFalsi-view.fxml"));
+        FXMLLoader fxmlLagrange = new FXMLLoader(getClass().getResource("/view/interpolacao/lagrange-view.fxml"));
+
         try{
             noFuncoes = fxmlFuncoes.load();
             noBisseccao = fxmlBisseccao.load();
@@ -34,6 +37,7 @@ public class MenuPrincipalController {
             noNewton = fxmlNewtonRaphson.load();
             noSecante = fxmlSecante.load();
             noRegulaFalsi = fxmlRegulaFalsi.load();
+            noLagrange = fxmlLagrange.load();
         }
         catch(IOException e){
             System.out.println("Não foi possível carregar o arquivo fxml");
@@ -70,5 +74,10 @@ public class MenuPrincipalController {
     @FXML
     void abrirRegulaFalsi(ActionEvent event) {
         telaPrincipal.setCenter(noRegulaFalsi);
+    }
+
+    @FXML
+    void abrirLagrange(ActionEvent event) {
+        telaPrincipal.setCenter(noLagrange);
     }
 }
