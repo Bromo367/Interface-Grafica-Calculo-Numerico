@@ -18,7 +18,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirBisseccao" text="Bissecção" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirMIL" text="MIL" />
-                  <MenuItem mnemonicParsing="false" onAction="#abrirNewton" text="Newton" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirNewton" text="Newton-Raphson" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirSecante" text="Secante" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirRegulaFalsi" text="Regula Falsi" />
             </items>
@@ -33,7 +33,7 @@
             <Menu mnemonicParsing="false" text="Interpolação">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#abrirLagrange" text="Lagrange" />
-                  <MenuItem mnemonicParsing="false" text="Newton" />
+                  <MenuItem mnemonicParsing="false" text="Forma de Newton" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Integração">
