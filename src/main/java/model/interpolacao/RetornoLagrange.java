@@ -1,4 +1,4 @@
-package model.metodosInterpolacao;
+package model.interpolacao;
 
 import java.util.List;
 

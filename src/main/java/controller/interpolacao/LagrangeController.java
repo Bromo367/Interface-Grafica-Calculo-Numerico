@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import model.geral.Ponto;
-import model.metodosInterpolacao.RetornoLagrange;
-
+import model.interpolacao.RetornoLagrange;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -71,6 +70,9 @@ public class LagrangeController {
 
     @FXML
     void initialize() {
+        scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
+            hboxLayout.setPrefWidth(novo.doubleValue());
+        });
 
         txtFieldQtdPontos.textProperty().addListener((observable, antigo, novo)->{
             try{

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 import model.geral.Ponto;
-import model.metodosInterpolacao.RetornoFormaNewton;
-import model.metodosInterpolacao.RetornoLagrange;
+import model.interpolacao.RetornoFormaNewton;
+import model.interpolacao.RetornoLagrange;
 
 public class MetodosInterpolacao {
     public RetornoLagrange lagrange(List<Ponto> pontos){
