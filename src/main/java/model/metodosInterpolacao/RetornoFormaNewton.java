@@ -15,7 +15,7 @@ public class RetornoFormaNewton {
         return polinomio;
     }
 
-    public List<Double> getdiferencasDivididas() {
+    public List<Double> getDiferencasDivididas() {
         return diferencasDivididas;
     }
 }

@@ -33,7 +33,7 @@
             <Menu mnemonicParsing="false" text="Interpolação">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#abrirLagrange" text="Lagrange" />
-                  <MenuItem mnemonicParsing="false" text="Forma de Newton" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirFormaNewton" text="Forma de Newton" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Integração">

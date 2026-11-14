@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import model.geral.Ponto;
+import model.metodosInterpolacao.RetornoFormaNewton;
 import model.metodosInterpolacao.RetornoLagrange;
 
 public class MetodosInterpolacao {
@@ -33,6 +34,38 @@ public class MetodosInterpolacao {
         polinomio=polinomio.substring(0,polinomio.length()-1);
 
         RetornoLagrange retorno = new RetornoLagrange(polinomio, subpolinomios);
+        return retorno;
+    }
+
+    public RetornoFormaNewton formaNewton(List<Ponto> pontos){
+        String polinomio="";
+        int n=pontos.size();
+        double[][] diferencasDivididas = new double[n][n];
+        for(int i=0;i<n;i++){
+            diferencasDivididas[i][0]=pontos.get(i).getY();
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<n-i;j++){
+                double diferencaAtual = (diferencasDivididas[j+1][i-1]-diferencasDivididas[j][i-1]);
+                double denominador = pontos.get(j+i).getX()-pontos.get(j).getX();
+                diferencasDivididas[j][i] = diferencaAtual/denominador;
+            }
+        }
+        for(int i=0;i<n;i++){
+            polinomio+=diferencasDivididas[0][i];
+            for(int j=0;j<i;j++){
+                polinomio+="*(x-"+pontos.get(j).getX()+")";
+            }
+            polinomio += "+";
+        }
+        polinomio = polinomio.substring(0,polinomio.length()-1);
+
+        List<Double> diferencasPrincipais = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            diferencasPrincipais.add(diferencasDivididas[0][i]);
+        }
+
+        RetornoFormaNewton retorno = new RetornoFormaNewton(polinomio, diferencasPrincipais);
         return retorno;
     }
 }

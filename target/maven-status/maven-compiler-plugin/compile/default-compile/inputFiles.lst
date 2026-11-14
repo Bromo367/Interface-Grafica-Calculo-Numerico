@@ -1,6 +1,7 @@
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\FuncoesController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\MenuPrincipalController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\PlanoCartesianoController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\interpolacao\FormaNewtonController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\interpolacao\LagrangeController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\BisseccaoController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\MILController.java
@@ -9,6 +10,7 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\SecanteController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\main\Main.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\geral\Ponto.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosInterpolacao\RetornoFormaNewton.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosInterpolacao\RetornoLagrange.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\iteracoes\IteracaoBisseccao.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\iteracoes\IteracaoMIL.java

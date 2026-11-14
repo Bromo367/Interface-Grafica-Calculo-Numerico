@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import model.geral.Ponto;
+import model.metodosInterpolacao.RetornoFormaNewton;
 import model.metodosInterpolacao.RetornoLagrange;
 
 import javafx.event.ActionEvent;
@@ -71,7 +72,6 @@ public class FormaNewtonController {
 
     @FXML
     void initialize() {
-
         txtFieldQtdPontos.textProperty().addListener((observable, antigo, novo)->{
             try{
                 qtdPontos=verificador.avaliarInt(novo, "A quantidade de pontos");
@@ -83,7 +83,6 @@ public class FormaNewtonController {
                     mostraMensagem(lblFeedback, "A quantidade de pontos deve ser positiva", TiposTexto.FRACASSO);
                     qtdPontos=0;
                 }
-                System.out.println("Linhas: "+gridEntradas.getRowCount());
             }
             catch(EntradaException ex){
                 qtdPontos=0;
@@ -102,12 +101,15 @@ public class FormaNewtonController {
             gridEntradas.getChildren().remove((qtdPontosAntiga-i)*2+3);
             gridEntradas.getChildren().remove((qtdPontosAntiga-i)*2+2);
         }
-        for(int i=0;i<qtdPontos-gridEntradas.getRowCount()+3;i++){
+
+        int qtdAntigaLinhas = gridEntradas.getRowCount();
+        for(int i=0;i<qtdPontos-qtdAntigaLinhas+3;i++){
             RowConstraints linha = new RowConstraints();
             linha.setPrefHeight(tamanhoLinha);
             linha.setMinHeight(tamanhoLinha);
             gridEntradas.getRowConstraints().add(linha);
         }
+
         for(int i=0;i<diferencaQtdPontos;i++){
             entradasX.add(new TextField());
             entradasY.add(new TextField());
@@ -127,10 +129,10 @@ public class FormaNewtonController {
                     double y = verificador.avaliarDouble(entradasY.get(i).getText().trim(), "Y"+i);
                     pontos.add(new Ponto(x,y));
                 }
-                RetornoLagrange resultado = metodosInterpolacao.lagrange(pontos);
+                RetornoFormaNewton resultado = metodosInterpolacao.formaNewton(pontos);
                 String strResultado = "";
-                for(int i=0; i<resultado.getSubpolinomios().size();i++){
-                    strResultado += "L"+i+"(x) = "+resultado.getSubpolinomios().get(i)+"\n";
+                for(int i=0; i<resultado.getDiferencasDivididas().size();i++){
+                    strResultado += "d"+i+" = "+resultado.getDiferencasDivididas().get(i)+"\n";
                 }
                 strResultado += "p(x) = "+resultado.getPolinomio();
                 lblResultado.setText(strResultado);

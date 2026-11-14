@@ -83,7 +83,6 @@ public class LagrangeController {
                     mostraMensagem(lblFeedback, "A quantidade de pontos deve ser positiva", TiposTexto.FRACASSO);
                     qtdPontos=0;
                 }
-                System.out.println("Linhas: "+gridEntradas.getRowCount());
             }
             catch(EntradaException ex){
                 qtdPontos=0;
@@ -102,7 +101,9 @@ public class LagrangeController {
             gridEntradas.getChildren().remove((qtdPontosAntiga-i)*2+3);
             gridEntradas.getChildren().remove((qtdPontosAntiga-i)*2+2);
         }
-        for(int i=0;i<qtdPontos-gridEntradas.getRowCount()+3;i++){
+
+        int qtdAntigaLinhas = gridEntradas.getRowCount();
+        for(int i=0;i<qtdPontos-qtdAntigaLinhas+3;i++){
             RowConstraints linha = new RowConstraints();
             linha.setPrefHeight(tamanhoLinha);
             linha.setMinHeight(tamanhoLinha);

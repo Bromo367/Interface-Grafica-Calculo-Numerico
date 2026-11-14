@@ -11,6 +11,9 @@ public class VerificadorEntradas {
             throw new EntradaException(nome + " deve ser um valor inteiro!");
         }
         int i=0;
+        if(i<entrada.length()&&entrada.charAt(i)=='-'){
+            i++;
+        }
         while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
             i++;
         }
@@ -24,6 +27,9 @@ public class VerificadorEntradas {
             throw new EntradaException(nome + " deve ser um valor racional!");
         }
         int i=0;
+        if(i<entrada.length()&&entrada.charAt(i)=='-'){
+            i++;
+        }
         boolean sucesso;
         while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
             i++;
