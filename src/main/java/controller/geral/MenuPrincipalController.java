@@ -20,6 +20,7 @@ public class MenuPrincipalController {
     private Region noLagrange = null;
     private Region noFormaNewton = null;
     private Region noTrapezioRepetido = null;
+    private Region noSimpsonRepetido = null;
 
     @FXML
     void initialize() {
@@ -33,6 +34,7 @@ public class MenuPrincipalController {
         FXMLLoader fxmlLagrange = new FXMLLoader(getClass().getResource("/view/interpolacao/lagrange-view.fxml"));
         FXMLLoader fxmlFormaNewton = new FXMLLoader(getClass().getResource("/view/interpolacao/formaNewton-view.fxml"));
         FXMLLoader fxmlTrapezioRepetido = new FXMLLoader(getClass().getResource("/view/integracao/trapezioRepetido-view.fxml"));
+        FXMLLoader fxmlSimpsonRepetido = new FXMLLoader(getClass().getResource("/view/integracao/simpsonRepetido-view.fxml"));
 
         try{
             noFuncoes = fxmlFuncoes.load();
@@ -44,6 +46,7 @@ public class MenuPrincipalController {
             noLagrange = fxmlLagrange.load();
             noFormaNewton = fxmlFormaNewton.load();
             noTrapezioRepetido = fxmlTrapezioRepetido.load();
+            noSimpsonRepetido = fxmlSimpsonRepetido.load();
         }
         catch(IOException e){
             System.out.println("Não foi possível carregar o arquivo fxml");
@@ -95,5 +98,10 @@ public class MenuPrincipalController {
     @FXML
     void abrirTrapezioRepetido(ActionEvent event) {
         telaPrincipal.setCenter(noTrapezioRepetido);
+    }
+
+    @FXML
+    void abrirSimpsonRepetido(ActionEvent event) {
+        telaPrincipal.setCenter(noSimpsonRepetido);
     }
 }

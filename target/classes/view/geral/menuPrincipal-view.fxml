@@ -39,7 +39,7 @@
             <Menu mnemonicParsing="false" text="Integração">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#abrirTrapezioRepetido" text="Trapézio Repetido" />
-                  <MenuItem mnemonicParsing="false" text="1/3 de Simpson Repetido" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirSimpsonRepetido" text="1/3 de Simpson Repetido" />
                   <MenuItem mnemonicParsing="false" text="Caso Discreto" />
                </items>
             </Menu>
