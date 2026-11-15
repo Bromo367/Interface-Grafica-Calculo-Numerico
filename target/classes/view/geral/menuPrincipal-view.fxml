@@ -25,7 +25,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Sistemas Lineares">
             <items>
-              <MenuItem mnemonicParsing="false" text="Eliminação de Gauss" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirEliminacaoGauss" text="Eliminação de Gauss" />
                   <MenuItem mnemonicParsing="false" text="Fatoração LU" />
                   <MenuItem mnemonicParsing="false" text="Gauss-Seidel" />
             </items>
