@@ -1,6 +1,7 @@
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\FuncoesController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\MenuPrincipalController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\PlanoCartesianoController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\integracao\TrapezioRepetidoController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\interpolacao\FormaNewtonController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\interpolacao\LagrangeController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\BisseccaoController.java
@@ -10,8 +11,10 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\SecanteController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\main\Main.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\geral\Ponto.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosInterpolacao\RetornoFormaNewton.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosInterpolacao\RetornoLagrange.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\integracao\retornos\RetornoTrapezio.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\integracao\subintervalos\SubintervaloTrapezio.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\interpolacao\RetornoFormaNewton.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\interpolacao\RetornoLagrange.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\iteracoes\IteracaoBisseccao.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\iteracoes\IteracaoMIL.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\iteracoes\IteracaoNewtonRaphson.java
@@ -32,6 +35,7 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\EntradaExce
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\TiposTexto.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\geral\VerificadorEntradas.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\metodos\CriteriosParadaRaizes.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\metodos\MetodosIntegracao.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\metodos\MetodosInterpolacao.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\metodos\MetodosRaizes.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\view\Divisores.java
