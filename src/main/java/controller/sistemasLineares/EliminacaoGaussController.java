@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.geral.MatrizDouble;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -52,9 +53,10 @@ public class EliminacaoGaussController {
     private int ordemMatrizAntiga=0;
 
     private int larguraAnchor = 480;
-    private int alturaAnchor = 360;
+    private int alturaAnchor = 400;
 
-    private int larguraTextFieldCoeficientes = 30;
+    private int larguraEntradas = 40;
+    private int alturaEntradas = 26;
 
     @FXML
     void initialize() {
@@ -67,8 +69,8 @@ public class EliminacaoGaussController {
             try{
                 ordemMatriz=verificador.avaliarInt(novo, "O número de variáveis");
                 if(ordemMatriz>0){
-                    criarEntradas();
                     mostraMensagem(lblFeedback, "", TiposTexto.NEUTRO);
+                    criarEntradas();
                 }
                 else{
                     mostraMensagem(lblFeedback, "O número de variáveis deve ser positivo", TiposTexto.FRACASSO);
@@ -80,9 +82,21 @@ public class EliminacaoGaussController {
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         });
+
+        // MatrizDouble matriz = new MatrizDouble(2,2);
+        // matriz.set(1.7,0,0);
+        // matriz.set(2.7,0,1);
+        // matriz.set(3.0,1,0);
+        // matriz.set(4.7,1,1);
+
+        // vboxConteudo.getChildren().add(matrizParaAnchor(matriz));
     }
 
     void criarEntradas(){
+        if(ordemMatriz>5){
+            mostraMensagem(lblFeedback, "Ordem da matriz limitada a 5", TiposTexto.NEUTRO);
+            ordemMatriz = 5;
+        }
         if(ordemMatriz>0){
             anchorEntradas.getChildren().clear();
             anchorEntradas.setPrefHeight(alturaAnchor);
@@ -90,20 +104,80 @@ public class EliminacaoGaussController {
                 entradasCoeficientes.add(new ArrayList<>());
                 for(int j = 0;j<ordemMatriz;j++){
                     TextField entradaCoeficiente = new TextField();
-                    entradaCoeficiente.setPrefWidth(larguraTextFieldCoeficientes);
-                    entradaCoeficiente.setMaxWidth(larguraTextFieldCoeficientes);
+                    entradaCoeficiente.setPrefWidth(larguraEntradas);
+                    entradaCoeficiente.setMaxWidth(larguraEntradas);
+                    entradaCoeficiente.setPrefHeight(alturaEntradas);
 
-                    entradaCoeficiente.setLayoutX((alturaAnchor*(i+1))/(ordemMatriz+1));
-                    entradaCoeficiente.setLayoutY((alturaAnchor*(j+1))/(ordemMatriz+1));
+                    Label textoX = new Label();
+                    
+                    if(i!=ordemMatriz-1){
+                        textoX.setText("X"+i+"+");
+                    }
+                    else{
+                        textoX.setText("X"+i);
+                    }
+                    
+                    double tamanhoTexto = textoX.getFont().getSize();
+
+                    entradaCoeficiente.setLayoutX(((alturaAnchor*(i+1))/(ordemMatriz+1))-larguraEntradas/2);
+                    entradaCoeficiente.setLayoutY((alturaAnchor*(j+1))/(ordemMatriz+1)-alturaEntradas/2);
+
+                    textoX.setLayoutX(((alturaAnchor*(i+1))/(ordemMatriz+1))+larguraEntradas/2+3);
+                    textoX.setLayoutY((alturaAnchor*(j+1))/(ordemMatriz+1)-tamanhoTexto/2);
 
                     entradasCoeficientes.get(i).add(entradaCoeficiente);
                     anchorEntradas.getChildren().add(entradaCoeficiente);
+                    anchorEntradas.getChildren().add(textoX);
                 }
+            }
+            for(int i=0;i<ordemMatriz;i++){
+                Label lblIgual = new Label();
+                lblIgual.setText("=");
+                double tamanhoTexto = lblIgual.getFont().getSize();
+
+                TextField entradaResultado = new TextField();
+                entradaResultado.setPrefWidth(larguraEntradas);
+                entradaResultado.setMaxWidth(larguraEntradas);
+                entradaResultado.setPrefHeight(alturaEntradas);
+
+                lblIgual.setLayoutX(((larguraAnchor-alturaAnchor)/3)+alturaAnchor-8);
+                lblIgual.setLayoutY((alturaAnchor*(i+1))/(ordemMatriz+1)-tamanhoTexto/2);
+
+                entradaResultado.setLayoutX((((larguraAnchor-alturaAnchor)*2)/3)+alturaAnchor-8);
+                entradaResultado.setLayoutY((alturaAnchor*(i+1))/(ordemMatriz+1)-alturaEntradas/2);
+
+                anchorEntradas.getChildren().add(lblIgual);
+                anchorEntradas.getChildren().add(entradaResultado);
+
+                entradasResultados.add(entradaResultado);
             }
         }
         else{
             mostraMensagem(lblFeedback, "O número de variáveis deve ser positivo", TiposTexto.FRACASSO);
         }
+    }
+
+    AnchorPane matrizParaAnchor(MatrizDouble matriz){
+        AnchorPane anchorMatriz = new AnchorPane();
+        anchorMatriz.setPrefHeight(alturaAnchor);
+        anchorMatriz.setMaxHeight(alturaAnchor);
+        anchorMatriz.setPrefWidth(larguraAnchor);
+        anchorMatriz.setMaxWidth(larguraAnchor);
+
+        int alturaMatriz = matriz.getAltura();
+        int larguraMatriz = matriz.getLargura();
+        for(int i=0;i<alturaMatriz;i++){
+            for(int j=0;j<larguraMatriz;j++){
+                Label lblValorMatriz = new Label();
+                lblValorMatriz.setText(matriz.get(i,j).toString());
+                lblValorMatriz.setLayoutX((larguraAnchor*(j+1))/(larguraMatriz+1));
+                lblValorMatriz.setLayoutY((alturaAnchor*(i+1))/(alturaMatriz+1));
+                anchorMatriz.getChildren().add(lblValorMatriz);
+            }
+        }
+
+
+        return anchorMatriz;
     }
 
     @FXML
