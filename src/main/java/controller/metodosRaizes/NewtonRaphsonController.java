@@ -19,32 +19,32 @@ import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
 
-import model.metodosRaizes.iteracoes.IteracaoNewton;
+import model.metodosRaizes.iteracoes.IteracaoNewtonRaphson;
 import model.metodosRaizes.Raiz;
-import model.metodosRaizes.retornos.RetornoNewton;
+import model.metodosRaizes.retornos.RetornoNewtonRaphson;
 
 
-public class NewtonController {
+public class NewtonRaphsonController {
 
     
-    @FXML private TableView<IteracaoNewton> tableIteracoes;
+    @FXML private TableView<IteracaoNewtonRaphson> tableIteracoes;
     @FXML
-    private TableColumn<IteracaoNewton, Double> colunaXAtual;
+    private TableColumn<IteracaoNewtonRaphson, Double> colunaXAtual;
 
     @FXML
-    private TableColumn<IteracaoNewton, Double> colunaFxn;
+    private TableColumn<IteracaoNewtonRaphson, Double> colunaFxn;
 
     @FXML
-    private TableColumn<IteracaoNewton, Double> colunaDerivadaXn;
+    private TableColumn<IteracaoNewtonRaphson, Double> colunaDerivadaXn;
 
     @FXML
-    private TableColumn<IteracaoNewton, Double> colunaDiferenca;
+    private TableColumn<IteracaoNewtonRaphson, Double> colunaDiferenca;
 
     @FXML
-    private TableColumn<IteracaoNewton, Double> colunaXAnterior;
+    private TableColumn<IteracaoNewtonRaphson, Double> colunaXAnterior;
 
     @FXML
-    private TableColumn<IteracaoNewton, Integer> colunaK;
+    private TableColumn<IteracaoNewtonRaphson, Integer> colunaK;
 
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -66,7 +66,7 @@ public class NewtonController {
 
     private MetodosRaizes metodosRaizes = new MetodosRaizes();
     private VerificadorEntradas verificador = new VerificadorEntradas();
-    private ObservableList<IteracaoNewton> iteracoes;
+    private ObservableList<IteracaoNewtonRaphson> iteracoes;
     private Raiz raiz;
     private double tamanhoCelula=30;
 
@@ -76,12 +76,12 @@ public class NewtonController {
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
 
-        colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("xAnterior"));
-        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("derivadaXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("fxn"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewton,Double>("diferenca"));
+        colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Integer>("k"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("xAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("xAnterior"));
+        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("derivadaXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("fxn"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("diferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -96,7 +96,7 @@ public class NewtonController {
             x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
-            RetornoNewton resultado = metodosRaizes.newton(x0,precisao,it,funcao);
+            RetornoNewtonRaphson resultado = metodosRaizes.newton(x0,precisao,it,funcao);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);

@@ -31,19 +31,19 @@ public class SecanteController {
     
     @FXML private TableView<IteracaoSecante> tableIteracoes;
     @FXML
-    private TableColumn<IteracaoSecante, Double> colunaXAtual;
-
-    @FXML
-    private TableColumn<IteracaoSecante, Double> colunaFxn;
-
-    @FXML
-    private TableColumn<IteracaoSecante, Double> colunaDerivadaXn;
-
-    @FXML
     private TableColumn<IteracaoSecante, Double> colunaDiferenca;
 
     @FXML
+    private TableColumn<IteracaoSecante, Double>  colunaFXAnterior;
+
+    @FXML
+    private TableColumn<IteracaoSecante, Double> colunaFXAtual;
+
+    @FXML
     private TableColumn<IteracaoSecante, Double> colunaXAnterior;
+
+    @FXML
+    private TableColumn<IteracaoSecante, Double> colunaXAtual;
 
     @FXML
     private TableColumn<IteracaoSecante, Integer> colunaK;
@@ -62,7 +62,10 @@ public class SecanteController {
     private TextField txtFieldPrecisao;
 
     @FXML
-    private TextField txtFieldXInicial;
+    private TextField txtFieldXUm;
+
+    @FXML
+    private TextField txtFieldXZero;
 
     @FXML private VBox vboxConteudo;
 
@@ -81,8 +84,8 @@ public class SecanteController {
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Integer>("k"));
         colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xAtual"));
         colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xAnterior"));
-        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("derivadaXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("fxn"));
+        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("fxAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("fxAtual"));
         colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("diferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
@@ -91,15 +94,16 @@ public class SecanteController {
     void calcularRaiz(ActionEvent event) {
         Funcao funcao = null;
         double x0;
+        double x1;
         double precisao;
         int it;
         try{
             funcao = verificador.avaliarFuncao(txtFieldFuncao.getText(), "f(x)");
-            x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
+            x0 = verificador.avaliarDouble(txtFieldXUm.getText(), "X0");
+            x1 = verificador.avaliarDouble(txtFieldXZero.getText(), "X1");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
-            // RetornoSecante resultado = metodosRaizes.Secante(a, b, precisao, it, fx);
-            RetornoSecante resultado = null;
+            RetornoSecante resultado = metodosRaizes.secante(x0, x1, precisao, it, funcao);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);

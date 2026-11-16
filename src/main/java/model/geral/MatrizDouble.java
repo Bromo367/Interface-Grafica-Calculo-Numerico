@@ -1,0 +1,70 @@
+package model.geral;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class MatrizDouble {
+    private List<List<Double>> valores;
+    private int altura;
+    private int largura;
+
+    public MatrizDouble(int largura, int altura){
+        this.largura = largura;
+        this.altura = altura;
+        for(int i=0;i<altura;i++){
+            valores.add(new ArrayList<>());
+        }
+    }
+
+    public Double get(int linha,int coluna){
+        return valores.get(linha).get(coluna);
+    }
+
+    public void set(double valor, int linha, int coluna){
+        valores.get(linha).set(coluna, valor);
+    }
+
+    public void trocarLinhas(int linha1,int linha2){
+        List<Double> aux = new ArrayList<>();
+        for(int i=0;i<largura;i++){
+            aux.add(valores.get(linha1).get(i));
+        }
+        for(int i=0;i<largura;i++){
+            valores.get(linha1).set(i, valores.get(linha2).get(i));
+        }
+        for(int i=0;i<largura;i++){
+            valores.get(linha2).set(i, aux.get(i));
+        }
+    }
+
+    public void trocarColunas(int coluna1,int coluna2){
+        List<Double> aux = new ArrayList<>();
+        for(int i=0;i<altura;i++){
+            aux.add(valores.get(i).get(coluna1));
+        }
+        for(int i=0;i<altura;i++){
+            valores.get(i).set(coluna1, valores.get(i).get(coluna2));
+        }
+        for(int i=0;i<altura;i++){
+            valores.get(i).set(coluna2, aux.get(i));
+        }
+    }
+
+    public MatrizDouble submatriz(int larguraSubmatriz, int alturaSubmatriz){
+        MatrizDouble submatriz = new MatrizDouble(larguraSubmatriz, alturaSubmatriz);
+        for(int i=0;i<alturaSubmatriz;i++){
+            for(int j=0;j<larguraSubmatriz;j++){
+                submatriz.set(get(i,j), i, j);
+            }
+        }
+        return submatriz;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public int getLargura() {
+        return largura;
+    }
+}

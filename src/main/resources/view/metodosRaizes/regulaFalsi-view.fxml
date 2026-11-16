@@ -92,7 +92,7 @@
                         <TableColumn fx:id="colunaFxn" text="f(Xn)" />
                         <TableColumn fx:id="colunaA" text="a" />
                         <TableColumn fx:id="colunaB" text="b" />
-                        <TableColumn fx:id="colunaDiferencaIntervalo" text="|b-a|" />
+                        <TableColumn fx:id="colunaErroRelativo" text="|(b-a)/Xn|" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

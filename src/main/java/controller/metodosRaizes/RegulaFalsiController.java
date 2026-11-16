@@ -40,7 +40,7 @@ public class RegulaFalsiController {
     private TableColumn<IteracaoRegulaFalsi, Double> colunaB;
 
     @FXML
-    private TableColumn<IteracaoRegulaFalsi, Double> colunaDiferencaIntervalo;
+    private TableColumn<IteracaoRegulaFalsi, Double> colunaErroRelativo;
 
     @FXML
     private TableColumn<IteracaoRegulaFalsi, Double> colunaFxn;
@@ -76,7 +76,7 @@ public class RegulaFalsiController {
         colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("b"));
         colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("xn"));
         colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("fxn"));
-        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("diferencaIntervalo"));
+        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("erroRelativo"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -93,8 +93,7 @@ public class RegulaFalsiController {
             b = verificador.avaliarDouble(txtFieldLimiteSuperior.getText(), "O limite superior");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
-            // RetornoRegulaFalsi resultado = metodosRaizes.RegulaFalsi(a, b, precisao, it, fx);
-            RetornoRegulaFalsi resultado = null;
+            RetornoRegulaFalsi resultado = metodosRaizes.regulaFalsi(a, b, precisao, it, fx);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);

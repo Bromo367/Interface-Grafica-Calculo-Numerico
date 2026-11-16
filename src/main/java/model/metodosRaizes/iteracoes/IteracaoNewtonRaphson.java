@@ -1,6 +1,6 @@
 package model.metodosRaizes.iteracoes;
 
-public class IteracaoNewton {
+public class IteracaoNewtonRaphson {
     private int k;
     private double xAnterior;
     private double xAtual;
@@ -9,7 +9,7 @@ public class IteracaoNewton {
     private double precisao;
     private double diferenca;
 
-    public IteracaoNewton(int k, double xAtual, double fxn, double derivadaXn, double precisao, double xAnterior){
+    public IteracaoNewtonRaphson(int k, double xAtual, double fxn, double derivadaXn, double precisao, double xAnterior){
         this.k=k;
         this.xAtual=xAtual;
         this.fxn=fxn;

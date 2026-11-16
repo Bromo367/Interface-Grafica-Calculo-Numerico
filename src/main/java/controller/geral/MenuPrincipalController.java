@@ -17,6 +17,12 @@ public class MenuPrincipalController {
     private Region noNewton = null;
     private Region noSecante = null;
     private Region noRegulaFalsi = null;
+    private Region noLagrange = null;
+    private Region noFormaNewton = null;
+    private Region noTrapezioRepetido = null;
+    private Region noSimpsonRepetido = null;
+    private Region noEliminacaoGauss = null;
+
 
     @FXML
     void initialize() {
@@ -24,16 +30,27 @@ public class MenuPrincipalController {
         FXMLLoader fxmlFuncoes = new FXMLLoader(getClass().getResource("/view/geral/funcoes-view.fxml"));
         FXMLLoader fxmlBisseccao = new FXMLLoader(getClass().getResource("/view/metodosRaizes/bisseccao-view.fxml"));
         FXMLLoader fxmlMIL = new FXMLLoader(getClass().getResource("/view/metodosRaizes/mil-view.fxml"));
-        FXMLLoader fxmlNewton = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newton-view.fxml"));
+        FXMLLoader fxmlNewtonRaphson = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newtonRaphson-view.fxml"));
         FXMLLoader fxmlSecante = new FXMLLoader(getClass().getResource("/view/metodosRaizes/secante-view.fxml"));
         FXMLLoader fxmlRegulaFalsi = new FXMLLoader(getClass().getResource("/view/metodosRaizes/regulaFalsi-view.fxml"));
+        FXMLLoader fxmlLagrange = new FXMLLoader(getClass().getResource("/view/interpolacao/lagrange-view.fxml"));
+        FXMLLoader fxmlFormaNewton = new FXMLLoader(getClass().getResource("/view/interpolacao/formaNewton-view.fxml"));
+        FXMLLoader fxmlTrapezioRepetido = new FXMLLoader(getClass().getResource("/view/integracao/trapezioRepetido-view.fxml"));
+        FXMLLoader fxmlSimpsonRepetido = new FXMLLoader(getClass().getResource("/view/integracao/simpsonRepetido-view.fxml"));
+        FXMLLoader fxmlEliminacaoGauss = new FXMLLoader(getClass().getResource("/view/sistemasLineares/eliminacaoGauss-view.fxml"));
+
         try{
             noFuncoes = fxmlFuncoes.load();
             noBisseccao = fxmlBisseccao.load();
             noMIL = fxmlMIL.load();
-            noNewton = fxmlNewton.load();
+            noNewton = fxmlNewtonRaphson.load();
             noSecante = fxmlSecante.load();
             noRegulaFalsi = fxmlRegulaFalsi.load();
+            noLagrange = fxmlLagrange.load();
+            noFormaNewton = fxmlFormaNewton.load();
+            noTrapezioRepetido = fxmlTrapezioRepetido.load();
+            noSimpsonRepetido = fxmlSimpsonRepetido.load();
+            noEliminacaoGauss = fxmlEliminacaoGauss.load();
         }
         catch(IOException e){
             System.out.println("Não foi possível carregar o arquivo fxml");
@@ -70,5 +87,30 @@ public class MenuPrincipalController {
     @FXML
     void abrirRegulaFalsi(ActionEvent event) {
         telaPrincipal.setCenter(noRegulaFalsi);
+    }
+
+    @FXML
+    void abrirLagrange(ActionEvent event) {
+        telaPrincipal.setCenter(noLagrange);
+    }
+
+    @FXML
+    void abrirFormaNewton(ActionEvent event) {
+        telaPrincipal.setCenter(noFormaNewton);
+    }
+
+    @FXML
+    void abrirTrapezioRepetido(ActionEvent event) {
+        telaPrincipal.setCenter(noTrapezioRepetido);
+    }
+
+    @FXML
+    void abrirSimpsonRepetido(ActionEvent event) {
+        telaPrincipal.setCenter(noSimpsonRepetido);
+    }
+
+    @FXML
+    void abrirEliminacaoGauss(ActionEvent event){
+        telaPrincipal.setCenter(noEliminacaoGauss);
     }
 }

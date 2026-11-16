@@ -2,52 +2,52 @@ package model.metodosRaizes.iteracoes;
 
 public class IteracaoSecante {
     private int k;
-    private double xn;
-    private double fxn;
-    private double a;
-    private double b;
-    private double diferencaIntervalo;
+    private double xAnterior;
+    private double xAtual;
+    private double fxAtual;
+    private double fxAnterior;
     private double precisao;
+    private double diferenca;
 
-    public IteracaoSecante(int k, double xn, double fxn, double a, double b, double precisao){
+    public IteracaoSecante(int k, double xAtual, double fxAtual, double fxAnterior, double precisao, double xAnterior){
         this.k=k;
-        this.xn=xn;
-        this.fxn=fxn;
-        this.a=a;
-        this.b=b;
+        this.xAtual=xAtual;
+        this.fxAtual=fxAtual;
+        this.fxAnterior=fxAnterior;
         this.precisao=precisao;
-        this.diferencaIntervalo=Math.abs(b-a);
+        this.xAnterior=xAnterior;
+        diferenca=Math.abs(xAtual-xAnterior);
     }
 
     public boolean criterioParadaFuncao(){
-        return Math.abs(fxn)<precisao;
+        return Math.abs(fxAtual)<precisao;
     }
 
-    public boolean criterioParadaIntervalo(){
-        return Math.abs(diferencaIntervalo)<precisao;
+    public boolean criterioParadaDiferenca(){
+        return Math.abs(diferenca)<precisao;
     }
 
     public int getK() {
         return k;
     }
 
-    public double getXn() {
-        return xn;
+    public double getXAtual() {
+        return xAtual;
     }
 
-    public double getFxn() {
-        return fxn;
+    public double getFxAtual() {
+        return fxAtual;
     }
 
-    public double getA() {
-        return a;
+    public double getFxAnterior() {
+        return fxAnterior;
     }
 
-    public double getB() {
-        return b;
+    public double getXAnterior() {
+        return xAnterior;
     }
 
-    public double getDiferencaIntervalo() {
-        return diferencaIntervalo;
+    public double getDiferenca() {
+        return diferenca;
     }
 }

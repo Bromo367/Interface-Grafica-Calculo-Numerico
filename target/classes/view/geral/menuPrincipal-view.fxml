@@ -18,28 +18,28 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirBisseccao" text="Bissecção" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirMIL" text="MIL" />
-                  <MenuItem mnemonicParsing="false" onAction="#abrirNewton" text="Newton" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirNewton" text="Newton-Raphson" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirSecante" text="Secante" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirRegulaFalsi" text="Regula Falsi" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Sistemas Lineares">
             <items>
-              <MenuItem mnemonicParsing="false" text="Eliminação de Gauss" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirEliminacaoGauss" text="Eliminação de Gauss" />
                   <MenuItem mnemonicParsing="false" text="Fatoração LU" />
                   <MenuItem mnemonicParsing="false" text="Gauss-Seidel" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Interpolação">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Lagrange" />
-                  <MenuItem mnemonicParsing="false" text="Newton" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirLagrange" text="Lagrange" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirFormaNewton" text="Forma de Newton" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Integração">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Trapézio Repetido" />
-                  <MenuItem mnemonicParsing="false" text="1/3 de Simpson Repetido" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTrapezioRepetido" text="Trapézio Repetido" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirSimpsonRepetido" text="1/3 de Simpson Repetido" />
                   <MenuItem mnemonicParsing="false" text="Caso Discreto" />
                </items>
             </Menu>
