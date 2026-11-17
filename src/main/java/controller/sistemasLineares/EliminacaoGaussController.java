@@ -17,6 +17,7 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.metodos.MetodosInterpolacao;
+import service.metodos.MetodosSistemas;
 
 public class EliminacaoGaussController {
 
@@ -41,8 +42,11 @@ public class EliminacaoGaussController {
     @FXML
     private VBox vboxConteudo;
 
+    @FXML
+    private VBox vboxResultados;
 
-    private MetodosInterpolacao metodosInterpolacao = new MetodosInterpolacao();
+
+    private MetodosSistemas metodosSistemas = new MetodosSistemas();
 
     private List<List<TextField>> entradasCoeficientes = new ArrayList<>();
     private List<TextField> entradasResultados = new ArrayList<>();
@@ -86,6 +90,7 @@ public class EliminacaoGaussController {
         // MatrizDouble matriz = new MatrizDouble(2,2);
         // matriz.set(1.7,0,0);
         // matriz.set(2.7,0,1);
+        // matriz.set(3.6,0,1);
         // matriz.set(3.0,1,0);
         // matriz.set(4.7,1,1);
 
@@ -182,7 +187,27 @@ public class EliminacaoGaussController {
 
     @FXML
     void resolverSistema(ActionEvent event) {
-        
+        try{
+            vboxResultados.getChildren().clear();
+            MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
+            for(int i=0;i<ordemMatriz;i++){
+                for(int j=0;j<ordemMatriz;j++){
+                    //Algum dia arrume o fato de que as entradas tão com indice invertido em relação à matriz
+                    matrizB.set(verificador.avaliarDouble(entradasCoeficientes.get(j).get(i).getText(), "Coeficiente "+i+" "+j), i, j);
+                }
+            }
+            for(int i=0;i<ordemMatriz;i++){
+                matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
+            }
+            List<MatrizDouble> iteracoes = metodosSistemas.eliminacaoGauss(matrizB);
+
+            for(MatrizDouble matriz:iteracoes){
+                vboxResultados.getChildren().add(matrizParaAnchor(matriz));
+            }
+        }
+        catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
     }
 
     private void mostraMensagem(Label label, String msg, TiposTexto tipo) {

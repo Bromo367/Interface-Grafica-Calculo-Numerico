@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MatrizDouble {
-    private List<List<Double>> valores;
+    private List<List<Double>> valores = new ArrayList<>();
     private int altura;
     private int largura;
 
@@ -13,6 +13,9 @@ public class MatrizDouble {
         this.altura = altura;
         for(int i=0;i<altura;i++){
             valores.add(new ArrayList<>());
+            for(int j=0;j<largura; j++){
+                valores.get(i).add(0.0);
+            }
         }
     }
 
@@ -58,6 +61,28 @@ public class MatrizDouble {
             }
         }
         return submatriz;
+    }
+
+    public MatrizDouble criarCopia(){
+        MatrizDouble novaMatriz = new MatrizDouble(largura, altura);
+        for(int i=0;i<altura;i++){
+            for(int j=0;j<largura;j++){
+                novaMatriz.set(get(i,j), i, j);
+            }
+        }
+        return novaMatriz;
+    }
+
+    public void somarValorLinha(int linha, double valor){
+        for(int i=0;i<largura;i++){
+            set(get(linha,i)+valor,linha,i);
+        }
+    }
+
+    public void somarLinhas(int linha1, int linha2, double multiplicador){
+        for(int i=0;i<largura;i++){
+            set(get(linha1,i)+(get(linha2,i)*multiplicador),linha1,i);
+        }
     }
 
     public int getAltura() {

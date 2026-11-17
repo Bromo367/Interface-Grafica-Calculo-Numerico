@@ -56,6 +56,7 @@
                   <Button mnemonicParsing="false" onAction="#resolverSistema" text="Resolver sistema" />
                   <Label fx:id="lblFeedback" />
                   <Separator prefWidth="200.0" />
+                  <VBox fx:id="vboxResultados" maxWidth="1.7976931348623157E308" />
                </children>
             </VBox>
          </children>
