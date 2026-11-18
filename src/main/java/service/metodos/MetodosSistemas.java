@@ -43,6 +43,9 @@ public class MetodosSistemas {
         int largura = matrizB.getLargura();
         MatrizDouble matrizL = new MatrizDouble(altura, altura);
         MatrizDouble matrizU = new MatrizDouble(altura, altura);
+        List<MatrizDouble> iteracoesL = new ArrayList<>();
+        List<MatrizDouble> iteracoesU = new ArrayList<>();
+        
         return null;
     }
 }
