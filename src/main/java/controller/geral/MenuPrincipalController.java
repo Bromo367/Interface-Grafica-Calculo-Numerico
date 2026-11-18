@@ -118,7 +118,7 @@ public class MenuPrincipalController {
     }
 
     @FXML
-    void abrirFatoracao(ActionEvent event){
+    void abrirFatoracaoLU(ActionEvent event){
         telaPrincipal.setCenter(noFatoracaoLU);
     }
 }

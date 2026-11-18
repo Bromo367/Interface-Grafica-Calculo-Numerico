@@ -94,6 +94,10 @@ public class EliminacaoGaussController {
         }
         if(ordemMatriz>0){
             anchorEntradas.getChildren().clear();
+            for(List<TextField> listas:entradasCoeficientes){
+                listas.clear();
+            }
+            entradasResultados.clear();
             anchorEntradas.setPrefHeight(alturaAnchor);
             for(int i = 0; i<ordemMatriz;i++){
                 entradasCoeficientes.add(new ArrayList<>());
