@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MatrizDouble {
-    private List<List<Double>> valores;
+    private List<List<Double>> valores = new ArrayList<>();
     private int altura;
     private int largura;
 
@@ -13,6 +13,9 @@ public class MatrizDouble {
         this.altura = altura;
         for(int i=0;i<altura;i++){
             valores.add(new ArrayList<>());
+            for(int j=0;j<largura; j++){
+                valores.get(i).add(0.0);
+            }
         }
     }
 
@@ -22,6 +25,41 @@ public class MatrizDouble {
 
     public void set(double valor, int linha, int coluna){
         valores.get(linha).set(coluna, valor);
+    }
+
+    public List<Double> getLinha(int idxLinha){
+        List<Double> linha = new ArrayList<>();
+        for(int i=0;i<largura;i++){
+            linha.add(Double.valueOf((valores.get(idxLinha).get(i))));
+        }
+        return linha;
+    }
+
+    public List<Double> getColuna(int idxColuna){
+        List<Double> coluna = new ArrayList<>();
+        for(int i=0;i<altura;i++){
+            coluna.add(Double.valueOf((valores.get(i).get(idxColuna))));
+        }
+        return coluna;
+    }
+
+    public void adicionarLinha(List<Double> novaLinha){
+        if(novaLinha.size()==largura){
+            altura++;
+            valores.add(new ArrayList<>());
+            for(int i=0;i<largura; i++){
+                valores.get(altura-1).add(Double.valueOf(novaLinha.get(i)));
+            }
+        }
+    }
+
+    public void adicionarColuna(List<Double> novaColuna){
+        if(novaColuna.size()==altura){
+            altura++;
+            for(int i=0;i<altura;i++){
+                valores.get(i).add(Double.valueOf(novaColuna.get(i)));
+            }
+        }
     }
 
     public void trocarLinhas(int linha1,int linha2){
@@ -58,6 +96,28 @@ public class MatrizDouble {
             }
         }
         return submatriz;
+    }
+
+    public MatrizDouble criarCopia(){
+        MatrizDouble novaMatriz = new MatrizDouble(largura, altura);
+        for(int i=0;i<altura;i++){
+            for(int j=0;j<largura;j++){
+                novaMatriz.set(get(i,j), i, j);
+            }
+        }
+        return novaMatriz;
+    }
+
+    public void somarValorLinha(int linha, double valor){
+        for(int i=0;i<largura;i++){
+            set(get(linha,i)+valor,linha,i);
+        }
+    }
+
+    public void somarLinhas(int linha1, int linha2, double multiplicador){
+        for(int i=0;i<largura;i++){
+            set(get(linha1,i)+(get(linha2,i)*multiplicador),linha1,i);
+        }
     }
 
     public int getAltura() {

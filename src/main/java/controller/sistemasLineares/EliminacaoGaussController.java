@@ -13,10 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.geral.MatrizDouble;
+import model.sistemasLineares.RetornoGauss;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
-import service.metodos.MetodosInterpolacao;
+import service.metodos.MetodosSistemas;
 
 public class EliminacaoGaussController {
 
@@ -41,8 +42,11 @@ public class EliminacaoGaussController {
     @FXML
     private VBox vboxConteudo;
 
+    @FXML
+    private VBox vboxResultados;
 
-    private MetodosInterpolacao metodosInterpolacao = new MetodosInterpolacao();
+
+    private MetodosSistemas metodosSistemas = new MetodosSistemas();
 
     private List<List<TextField>> entradasCoeficientes = new ArrayList<>();
     private List<TextField> entradasResultados = new ArrayList<>();
@@ -50,7 +54,6 @@ public class EliminacaoGaussController {
     private VerificadorEntradas verificador = new VerificadorEntradas();
 
     private int ordemMatriz;
-    private int ordemMatrizAntiga=0;
 
     private int larguraAnchor = 480;
     private int alturaAnchor = 400;
@@ -82,14 +85,6 @@ public class EliminacaoGaussController {
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         });
-
-        // MatrizDouble matriz = new MatrizDouble(2,2);
-        // matriz.set(1.7,0,0);
-        // matriz.set(2.7,0,1);
-        // matriz.set(3.0,1,0);
-        // matriz.set(4.7,1,1);
-
-        // vboxConteudo.getChildren().add(matrizParaAnchor(matriz));
     }
 
     void criarEntradas(){
@@ -182,7 +177,37 @@ public class EliminacaoGaussController {
 
     @FXML
     void resolverSistema(ActionEvent event) {
-        
+        try{
+            vboxResultados.getChildren().clear();
+            MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
+            for(int i=0;i<ordemMatriz;i++){
+                for(int j=0;j<ordemMatriz;j++){
+                    matrizB.set(verificador.avaliarDouble(entradasCoeficientes.get(j).get(i).getText(), "Coeficiente "+i+" "+j), i, j);
+                }
+            }
+            for(int i=0;i<ordemMatriz;i++){
+                matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
+            }
+            RetornoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
+
+            List<MatrizDouble> iteracoes = resultado.getIteracoes();
+            for(int i=0;i<iteracoes.size();i++){
+                Label lblK = new Label();
+                lblK.setText("K = "+(i+1));
+                lblK.setStyle(null);
+                vboxResultados.getChildren().add(lblK);
+                vboxResultados.getChildren().add(matrizParaAnchor(iteracoes.get(i)));
+            }
+            Label lblSolucao = new Label();
+            lblSolucao.setText("Matriz solução:");
+            vboxResultados.getChildren().add(lblSolucao);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucao()));
+
+            mostraMensagem(lblFeedback, "Sistema resolvido!", TiposTexto.SUCESSO);
+        }
+        catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
     }
 
     private void mostraMensagem(Label label, String msg, TiposTexto tipo) {
