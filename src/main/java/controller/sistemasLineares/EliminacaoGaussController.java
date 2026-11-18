@@ -13,10 +13,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.geral.MatrizDouble;
+import model.sistemasLineares.RetornoGauss;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
-import service.metodos.MetodosInterpolacao;
 import service.metodos.MetodosSistemas;
 
 public class EliminacaoGaussController {
@@ -54,7 +54,6 @@ public class EliminacaoGaussController {
     private VerificadorEntradas verificador = new VerificadorEntradas();
 
     private int ordemMatriz;
-    private int ordemMatrizAntiga=0;
 
     private int larguraAnchor = 480;
     private int alturaAnchor = 400;
@@ -86,15 +85,6 @@ public class EliminacaoGaussController {
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         });
-
-        // MatrizDouble matriz = new MatrizDouble(2,2);
-        // matriz.set(1.7,0,0);
-        // matriz.set(2.7,0,1);
-        // matriz.set(3.6,0,1);
-        // matriz.set(3.0,1,0);
-        // matriz.set(4.7,1,1);
-
-        // vboxConteudo.getChildren().add(matrizParaAnchor(matriz));
     }
 
     void criarEntradas(){
@@ -192,18 +182,28 @@ public class EliminacaoGaussController {
             MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
             for(int i=0;i<ordemMatriz;i++){
                 for(int j=0;j<ordemMatriz;j++){
-                    //Algum dia arrume o fato de que as entradas tão com indice invertido em relação à matriz
                     matrizB.set(verificador.avaliarDouble(entradasCoeficientes.get(j).get(i).getText(), "Coeficiente "+i+" "+j), i, j);
                 }
             }
             for(int i=0;i<ordemMatriz;i++){
                 matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
             }
-            List<MatrizDouble> iteracoes = metodosSistemas.eliminacaoGauss(matrizB);
+            RetornoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
 
-            for(MatrizDouble matriz:iteracoes){
-                vboxResultados.getChildren().add(matrizParaAnchor(matriz));
+            List<MatrizDouble> iteracoes = resultado.getIteracoes();
+            for(int i=0;i<iteracoes.size();i++){
+                Label lblK = new Label();
+                lblK.setText("K = "+(i+1));
+                lblK.setStyle(null);
+                vboxResultados.getChildren().add(lblK);
+                vboxResultados.getChildren().add(matrizParaAnchor(iteracoes.get(i)));
             }
+            Label lblSolucao = new Label();
+            lblSolucao.setText("Matriz solução:");
+            vboxResultados.getChildren().add(lblSolucao);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucao()));
+
+            mostraMensagem(lblFeedback, "Sistema resolvido!", TiposTexto.SUCESSO);
         }
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);

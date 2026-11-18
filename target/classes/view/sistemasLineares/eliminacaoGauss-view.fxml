@@ -53,8 +53,19 @@
                      </VBox.margin>
                   </GridPane>
                   <AnchorPane fx:id="anchorEntradas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="480.0" />
-                  <Button mnemonicParsing="false" onAction="#resolverSistema" text="Resolver sistema" />
-                  <Label fx:id="lblFeedback" />
+                  <GridPane fx:id="gridEntradas1" maxWidth="1.7976931348623157E308" prefWidth="480.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.599951171875" minWidth="10.0" prefWidth="240.79996337890626" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.00001525878906" minWidth="10.0" prefWidth="240.0000366210937" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#resolverSistema" text="Resolver sistema" />
+                        <Label fx:id="lblFeedback" prefHeight="18.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
                   <Separator prefWidth="200.0" />
                   <VBox fx:id="vboxResultados" maxWidth="1.7976931348623157E308" />
                </children>

@@ -27,6 +27,41 @@ public class MatrizDouble {
         valores.get(linha).set(coluna, valor);
     }
 
+    public List<Double> getLinha(int idxLinha){
+        List<Double> linha = new ArrayList<>();
+        for(int i=0;i<largura;i++){
+            linha.add(Double.valueOf((valores.get(idxLinha).get(i))));
+        }
+        return linha;
+    }
+
+    public List<Double> getColuna(int idxColuna){
+        List<Double> coluna = new ArrayList<>();
+        for(int i=0;i<altura;i++){
+            coluna.add(Double.valueOf((valores.get(i).get(idxColuna))));
+        }
+        return coluna;
+    }
+
+    public void adicionarLinha(List<Double> novaLinha){
+        if(novaLinha.size()==largura){
+            altura++;
+            valores.add(new ArrayList<>());
+            for(int i=0;i<largura; i++){
+                valores.get(altura-1).add(Double.valueOf(novaLinha.get(i)));
+            }
+        }
+    }
+
+    public void adicionarColuna(List<Double> novaColuna){
+        if(novaColuna.size()==altura){
+            altura++;
+            for(int i=0;i<altura;i++){
+                valores.get(i).add(Double.valueOf(novaColuna.get(i)));
+            }
+        }
+    }
+
     public void trocarLinhas(int linha1,int linha2){
         List<Double> aux = new ArrayList<>();
         for(int i=0;i<largura;i++){
