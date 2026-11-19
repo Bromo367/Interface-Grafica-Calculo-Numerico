@@ -3,11 +3,11 @@ package model.sistemasLineares;
 import java.util.List;
 import model.geral.MatrizDouble;
 
-public class RetornoGauss {
+public class RetornoEliminacaoGauss {
     private List<MatrizDouble> iteracoes;
     private MatrizDouble solucao;
 
-    public RetornoGauss(List<MatrizDouble> iteracoes, MatrizDouble solucao){
+    public RetornoEliminacaoGauss(List<MatrizDouble> iteracoes, MatrizDouble solucao){
         this.iteracoes = iteracoes;
         this.solucao = solucao;
     }

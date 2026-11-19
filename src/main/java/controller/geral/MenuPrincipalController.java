@@ -23,6 +23,7 @@ public class MenuPrincipalController {
     private Region noSimpsonRepetido = null;
     private Region noEliminacaoGauss = null;
     private Region noFatoracaoLU = null;
+    private Region noGaussSeidel = null;
 
 
     @FXML
@@ -40,6 +41,7 @@ public class MenuPrincipalController {
         FXMLLoader fxmlSimpsonRepetido = new FXMLLoader(getClass().getResource("/view/integracao/simpsonRepetido-view.fxml"));
         FXMLLoader fxmlEliminacaoGauss = new FXMLLoader(getClass().getResource("/view/sistemasLineares/eliminacaoGauss-view.fxml"));
         FXMLLoader fxmlFatoracaoLU = new FXMLLoader(getClass().getResource("/view/sistemasLineares/fatoracaoLU-view.fxml"));
+        FXMLLoader fxmlGaussSeidel = new FXMLLoader(getClass().getResource("/view/sistemasLineares/gaussSeidel-view.fxml"));
 
         try{
             noFuncoes = fxmlFuncoes.load();
@@ -54,6 +56,7 @@ public class MenuPrincipalController {
             noSimpsonRepetido = fxmlSimpsonRepetido.load();
             noEliminacaoGauss = fxmlEliminacaoGauss.load();
             noFatoracaoLU = fxmlFatoracaoLU.load();
+            noGaussSeidel = fxmlGaussSeidel.load();
         }
         catch(IOException e){
             System.out.println("Falha ao carregar o arquivo fxml");
@@ -120,5 +123,10 @@ public class MenuPrincipalController {
     @FXML
     void abrirFatoracaoLU(ActionEvent event){
         telaPrincipal.setCenter(noFatoracaoLU);
+    }
+
+    @FXML
+    void abrirGaussSeidel(ActionEvent event){
+        telaPrincipal.setCenter(noGaussSeidel);
     }
 }

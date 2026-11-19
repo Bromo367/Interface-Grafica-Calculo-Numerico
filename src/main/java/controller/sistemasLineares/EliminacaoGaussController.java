@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.geral.MatrizDouble;
-import model.sistemasLineares.RetornoGauss;
+import model.sistemasLineares.RetornoEliminacaoGauss;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -192,7 +192,7 @@ public class EliminacaoGaussController {
             for(int i=0;i<ordemMatriz;i++){
                 matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
             }
-            RetornoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
+            RetornoEliminacaoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
 
             List<MatrizDouble> iteracoes = resultado.getIteracoes();
             for(int i=0;i<iteracoes.size();i++){

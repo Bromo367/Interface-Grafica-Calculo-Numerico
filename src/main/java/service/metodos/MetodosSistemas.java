@@ -3,12 +3,12 @@ package service.metodos;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.sistemasLineares.RetornoGauss;
+import model.sistemasLineares.RetornoEliminacaoGauss;
 import model.sistemasLineares.RetornoLU;
 import model.geral.MatrizDouble;
 
 public class MetodosSistemas {
-    public RetornoGauss eliminacaoGauss(MatrizDouble matrizB){
+    public RetornoEliminacaoGauss eliminacaoGauss(MatrizDouble matrizB){
         List<MatrizDouble> iteracoes = new ArrayList<>();
         for(int i=0;i<matrizB.getAltura();i++){
             double pivo = matrizB.get(i,i);
@@ -35,7 +35,7 @@ public class MetodosSistemas {
             solucao.set(valorXAtual,i,0);
         }
 
-        return new RetornoGauss(iteracoes, solucao);
+        return new RetornoEliminacaoGauss(iteracoes, solucao);
     }
 
     public RetornoLU fatoracaoLU(MatrizDouble matrizB){

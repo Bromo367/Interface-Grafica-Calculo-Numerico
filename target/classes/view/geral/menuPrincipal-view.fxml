@@ -27,7 +27,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirEliminacaoGauss" text="Eliminação de Gauss" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirFatoracaoLU" text="Fatoração LU" />
-                  <MenuItem mnemonicParsing="false" text="Gauss-Seidel" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirGaussSeidel" text="Gauss-Seidel" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Interpolação">
