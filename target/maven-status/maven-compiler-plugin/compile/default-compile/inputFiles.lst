@@ -1,6 +1,7 @@
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\FuncoesController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\MenuPrincipalController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\geral\PlanoCartesianoController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\integracao\CasoDiscretoController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\integracao\SimpsonRepetidoController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\integracao\TrapezioRepetidoController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\interpolacao\FormaNewtonController.java
@@ -16,6 +17,7 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\sistemasLinear
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\main\Main.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\geral\MatrizDouble.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\geral\Ponto.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\integracao\retornos\RetornoCasoDiscreto.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\integracao\retornos\RetornoSimpson.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\integracao\retornos\RetornoTrapezio.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\integracao\subintervalos\SubintervaloSimpson.java

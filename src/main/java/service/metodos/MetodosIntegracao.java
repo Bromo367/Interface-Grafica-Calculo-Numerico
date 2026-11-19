@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 import service.funcoes.Funcao;
+import model.geral.MatrizDouble;
+import model.geral.Ponto;
 import model.integracao.retornos.RetornoTrapezio;
 import model.integracao.subintervalos.SubintervaloTrapezio;
+import model.sistemasLineares.RetornoEliminacaoGauss;
+import model.integracao.retornos.RetornoCasoDiscreto;
 import model.integracao.retornos.RetornoSimpson;
 import model.integracao.subintervalos.SubintervaloSimpson;
 
@@ -42,6 +46,47 @@ public class MetodosIntegracao {
         }
 
         return new RetornoSimpson(subintervalos);
+    }
+
+    public RetornoCasoDiscreto casoDiscreto(List<Ponto> pontos, int grauPolinomio){
+        int altura = grauPolinomio+1;
+        int largura = grauPolinomio+2;
+        MatrizDouble matrizB = new MatrizDouble(largura, altura);
+        MatrizDouble matrizBOriginal;
+        MetodosSistemas metodosSistemas = new MetodosSistemas();
+
+        for(int i=0;i<altura;i++){
+            for(int j=0;j<largura;j++){
+                double coeficienteAtual = 0;
+                for(int k=0;k<pontos.size();k++){
+                    coeficienteAtual += Math.pow(pontos.get(k).getX(),i+j);
+                }
+                matrizB.set(coeficienteAtual, i, j);
+            }
+        }
+
+        for(int i=0;i<altura;i++){
+            double resultadoAtual = 0;
+            for(int j=0;j<pontos.size();j++){
+                resultadoAtual += pontos.get(j).getY()*Math.pow((pontos.get(j).getX()),i);
+            }
+            matrizB.set(resultadoAtual, i, largura-1);
+        }
+
+        matrizBOriginal=matrizB.criarCopia();
+
+        RetornoEliminacaoGauss resolucaoSistema = metodosSistemas.eliminacaoGauss(matrizB);
+
+        String polinomio = "";
+
+        List<Double> solucaoAlfas = resolucaoSistema.getSolucao().getColuna(0);
+
+        for(int i=0; i<solucaoAlfas.size();i++){
+            polinomio += solucaoAlfas.get(i)+"*x^"+i+"+";
+        }
+        polinomio = polinomio.substring(0,polinomio.length()-1);
+        
+        return new RetornoCasoDiscreto(polinomio, matrizBOriginal, resolucaoSistema);
     }
     
 }
