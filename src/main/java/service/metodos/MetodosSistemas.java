@@ -3,7 +3,9 @@ package service.metodos;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.sistemasLineares.IteracaoGaussSeidel;
 import model.sistemasLineares.RetornoEliminacaoGauss;
+import model.sistemasLineares.RetornoGaussSeidel;
 import model.sistemasLineares.RetornoLU;
 import model.geral.MatrizDouble;
 
@@ -90,5 +92,32 @@ public class MetodosSistemas {
 
 
         return new RetornoLU(matrizL.criarCopia(), matrizU.criarCopia(), solucaoX, solucaoY);
+    }
+    
+    public RetornoGaussSeidel gaussSeidel(MatrizDouble matrizB, double precisao, MatrizDouble matrizChutesIniciais){
+        List<IteracaoGaussSeidel> iteracoes = new ArrayList<>();
+        int altura = matrizB.getAltura();
+        int largura = matrizB.getLargura();
+        MatrizDouble matrizXAtual = matrizChutesIniciais.criarCopia();
+        MatrizDouble matrizXAnterior = matrizChutesIniciais.criarCopia();
+        int k=0;
+        do{
+            k++;
+            matrizXAnterior = matrizXAtual.criarCopia();
+            for(int i=0;i<altura;i++){
+                double xAtual = matrizB.get(i, largura-1);
+                for(int j=0;j<altura;j++){
+                    if(j!=i){
+                        xAtual-=matrizB.get(i,j)*matrizXAtual.get(j,0);
+                    }
+                }
+                xAtual/=matrizB.get(i,i);
+                matrizXAtual.set(xAtual,i,0);
+            }
+            iteracoes.add(new IteracaoGaussSeidel(matrizXAtual.criarCopia(), matrizXAnterior.criarCopia(), precisao));
+        }while(k<100&iteracoes.get(iteracoes.size()-1).getErroRelativo()>=precisao);
+
+
+        return new RetornoGaussSeidel(iteracoes, matrizXAtual.criarCopia());
     }
 }

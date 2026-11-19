@@ -12,7 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import model.geral.MatrizDouble;
+import model.sistemasLineares.IteracaoGaussSeidel;
+import model.sistemasLineares.RetornoGaussSeidel;
 import model.sistemasLineares.RetornoLU;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
@@ -44,12 +47,19 @@ public class GaussSeidelController {
 
     @FXML
     private VBox vboxResultados;
+    
+    @FXML
+    private TextField txtFieldPrecisao;
 
+    @FXML
+    private AnchorPane anchorChutes;
 
     private MetodosSistemas metodosSistemas = new MetodosSistemas();
 
     private List<List<TextField>> entradasCoeficientes = new ArrayList<>();
     private List<TextField> entradasResultados = new ArrayList<>();
+    private List<TextField> entradasChutes = new ArrayList<>();
+
 
     private VerificadorEntradas verificador = new VerificadorEntradas();
 
@@ -150,6 +160,31 @@ public class GaussSeidelController {
 
                 entradasResultados.add(entradaResultado);
             }
+
+            anchorChutes.getChildren().clear();
+            entradasChutes.clear();
+
+            for(int i=0;i<ordemMatriz;i++){
+
+
+                TextField entradaChute = new TextField();
+                entradaChute.setPrefWidth(larguraEntradas);
+                entradaChute.setMaxWidth(larguraEntradas);
+                entradaChute.setPrefHeight(alturaEntradas);
+
+                Label textoX = new Label();
+                textoX.setText("X"+i+"=");
+
+                entradaChute.setLayoutX(((larguraAnchor*(i+1))/(ordemMatriz+1))-larguraEntradas/2);
+                entradaChute.setLayoutY(anchorChutes.getHeight()/2-3);
+
+                textoX.setLayoutX(((larguraAnchor*(i+1))/(ordemMatriz+1))-larguraEntradas/2-25);
+                textoX.setLayoutY(anchorChutes.getHeight()/2);
+
+                entradasChutes.add(entradaChute);
+                anchorChutes.getChildren().add(entradaChute);
+                anchorChutes.getChildren().add(textoX);
+            }
         }
         else{
             mostraMensagem(lblFeedback, "O número de variáveis deve ser positivo", TiposTexto.FRACASSO);
@@ -182,9 +217,12 @@ public class GaussSeidelController {
     @FXML
     void resolverSistema(ActionEvent event) {
         try{
+            verificador.avaliarInt(txtFieldQtdPontos.getText(), "A quantidade de variáveis");
             System.out.println("Fatoração lu");
             vboxResultados.getChildren().clear();
             MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
+            MatrizDouble matrizChutesIniciais = new MatrizDouble(1, ordemMatriz);
+            double precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             for(int i=0;i<ordemMatriz;i++){
                 for(int j=0;j<ordemMatriz;j++){
                     matrizB.set(verificador.avaliarDouble(entradasCoeficientes.get(j).get(i).getText(), "Coeficiente "+i+" "+j), i, j);
@@ -193,32 +231,31 @@ public class GaussSeidelController {
             for(int i=0;i<ordemMatriz;i++){
                 matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
             }
-            RetornoLU resultado = metodosSistemas.fatoracaoLU(matrizB);
+            for(int i=0;i<ordemMatriz;i++){
+                matrizChutesIniciais.set(verificador.avaliarDouble(entradasChutes.get(i).getText(),"Chute "+i),i, 0);
+            }
+            RetornoGaussSeidel resultado = metodosSistemas.gaussSeidel(matrizB, precisao, matrizChutesIniciais);
 
             Label lblB = new Label();
             lblB.setText("Matriz B:");
             vboxResultados.getChildren().add(lblB);
             vboxResultados.getChildren().add(matrizParaAnchor(matrizB));
 
-            Label lblL = new Label();
-            lblL.setText("Matriz L:");
-            vboxResultados.getChildren().add(lblL);
-            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizL()));
-
-            Label lblU = new Label();
-            lblU.setText("Matriz U:");
-            vboxResultados.getChildren().add(lblU);
-            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizU()));
-
-            Label lblY = new Label();
-            lblY.setText("Solução Y:");
-            vboxResultados.getChildren().add(lblY);
-            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucaoY()));
+            List<IteracaoGaussSeidel> iteracoes = resultado.getIteracoes();
+            for(int i=0;i<iteracoes.size();i++){
+                Label lblK = new Label();
+                lblK.setText("K = "+(i+1));
+                vboxResultados.getChildren().add(lblK);
+                vboxResultados.getChildren().add(matrizParaAnchor(iteracoes.get(i).getMatrizXAtual()));
+                Label lblCriterioParada = new Label();
+                lblCriterioParada.setText(iteracoes.get(i).stringCriterioParada()+"\n\n");
+                vboxResultados.getChildren().add(lblCriterioParada);
+            }
 
             Label lblX = new Label();
             lblX.setText("Solução X:");
             vboxResultados.getChildren().add(lblX);
-            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucaoX()));
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucao()));
 
             mostraMensagem(lblFeedback, "Sistema resolvido!", TiposTexto.SUCESSO);
         }

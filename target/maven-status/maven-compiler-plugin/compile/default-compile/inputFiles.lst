@@ -12,6 +12,7 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\metodosRaizes\SecanteController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\sistemasLineares\EliminacaoGaussController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\sistemasLineares\FatoracaoLUController.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\controller\sistemasLineares\GaussSeidelController.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\main\Main.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\geral\MatrizDouble.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\geral\Ponto.java
@@ -32,7 +33,9 @@ C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\retor
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\retornos\RetornoNewtonRaphson.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\retornos\RetornoRegulaFalsi.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\metodosRaizes\retornos\RetornoSecante.java
-C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\sistemasLineares\RetornoGauss.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\sistemasLineares\IteracaoGaussSeidel.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\sistemasLineares\RetornoEliminacaoGauss.java
+C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\sistemasLineares\RetornoGaussSeidel.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\model\sistemasLineares\RetornoLU.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\funcoes\Derivador.java
 C:\Users\bhier\Documents\TrabalhoFinalCN\src\main\java\service\funcoes\Funcao.java

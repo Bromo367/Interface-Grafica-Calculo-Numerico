@@ -39,6 +39,7 @@
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número de variáveis">
@@ -47,23 +48,35 @@
                            </font>
                         </Text>
                         <TextField fx:id="txtFieldQtdPontos" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Precisão" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtFieldPrecisao" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </GridPane>
                   <AnchorPane fx:id="anchorEntradas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="480.0" />
+                  <Label text="Chutes iniciais:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="anchorChutes" maxHeight="-Infinity" prefHeight="60.0" prefWidth="480.0" />
                   <GridPane fx:id="gridEntradas1" maxWidth="1.7976931348623157E308" prefWidth="480.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.599951171875" minWidth="10.0" prefWidth="240.79996337890626" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.00001525878906" minWidth="10.0" prefWidth="240.0000366210937" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.599951171875" minWidth="10.0" prefWidth="147.79998474121095" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.6000030517578" minWidth="10.0" prefWidth="331.8000152587891" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Button mnemonicParsing="false" onAction="#resolverSistema" text="Resolver sistema" />
-                        <Label fx:id="lblFeedback" prefHeight="18.0" GridPane.columnIndex="1" />
+                        <Label fx:id="lblFeedback" prefHeight="18.0" wrapText="true" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <Separator prefWidth="200.0" />
