@@ -200,7 +200,7 @@ public class FatoracaoLUController {
             Label lblB = new Label();
             lblB.setText("Matriz B:");
             vboxResultados.getChildren().add(lblB);
-            vboxResultados.getChildren().add(matrizParaAnchor(matrizB));
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizB()));
 
             Label lblL = new Label();
             lblL.setText("Matriz L:");

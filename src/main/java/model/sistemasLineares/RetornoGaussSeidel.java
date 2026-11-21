@@ -6,8 +6,10 @@ import model.geral.MatrizDouble;
 public class RetornoGaussSeidel {
     private List<IteracaoGaussSeidel> iteracoes;
     private MatrizDouble solucao;
+    private MatrizDouble matrizB;
 
-    public RetornoGaussSeidel(List<IteracaoGaussSeidel> iteracoes, MatrizDouble solucao){
+    public RetornoGaussSeidel(MatrizDouble matrizB, List<IteracaoGaussSeidel> iteracoes, MatrizDouble solucao){
+        this.matrizB = matrizB;
         this.iteracoes = iteracoes;
         this.solucao = solucao;
     }
@@ -18,5 +20,9 @@ public class RetornoGaussSeidel {
 
     public MatrizDouble getSolucao() {
         return solucao;
+    }
+
+    public MatrizDouble getMatrizB() {
+        return matrizB;
     }
 }

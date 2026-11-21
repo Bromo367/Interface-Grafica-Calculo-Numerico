@@ -12,6 +12,7 @@
           <Menu mnemonicParsing="false" text="Geral">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirPlanoCartesiano" text="Plano Cartesiano" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirAplicarFuncoes" text="Aplicar Funções" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Métodos Raízes">

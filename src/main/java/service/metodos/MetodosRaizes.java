@@ -21,8 +21,17 @@ public class MetodosRaizes {
     private CriteriosParadaRaizes parada = new CriteriosParadaRaizes();
 
     public RetornoBisseccao bisseccao(double a, double b, double precisao, int it, Funcao f) throws ResolucaoException{
+        if(precisao < 0){
+            throw new ResolucaoException("A precisão deve ser positiva");
+        }
+        if(it < 0){
+            throw new ResolucaoException("O número máximo de iterações deve ser positivo");
+        }
         if(f.aplicar(a)*f.aplicar(b)>0){
             throw new ResolucaoException("O intervalo dado não contém necessariamente uma raiz");
+        }
+        if(a>=b){
+            throw new ResolucaoException("O intervalo dado não é válido");
         }
 
         ArrayList<IteracaoBisseccao> iteracoes = new ArrayList<IteracaoBisseccao>();
@@ -63,7 +72,13 @@ public class MetodosRaizes {
         RetornoBisseccao retorno = new RetornoBisseccao(iteracoes, raiz);
         return retorno;
     }
-    public RetornoMIL mil(double x0, double precisao, int it, Funcao f, Funcao fi){
+    public RetornoMIL mil(double x0, double precisao, int it, Funcao f, Funcao fi) throws ResolucaoException{
+        if(precisao < 0){
+            throw new ResolucaoException("A precisão deve ser positiva");
+        }
+        if(it < 0){
+            throw new ResolucaoException("O número máximo de iterações deve ser positivo");
+        }
         ArrayList<IteracaoMIL> iteracoes = new ArrayList<IteracaoMIL>();
         double xAtual=x0;
         double xAnterior=xAtual;
@@ -103,7 +118,13 @@ public class MetodosRaizes {
         return retorno;
     }
 
-    public RetornoNewtonRaphson newton(double x0, double precisao, int it, Funcao f){
+    public RetornoNewtonRaphson newton(double x0, double precisao, int it, Funcao f) throws ResolucaoException{
+        if(precisao < 0){
+            throw new ResolucaoException("A precisão deve ser positiva");
+        }
+        if(it < 0){
+            throw new ResolucaoException("O número máximo de iterações deve ser positivo");
+        }
         ArrayList<IteracaoNewtonRaphson> iteracoes = new ArrayList<>();
 
         double xAtual=x0;
@@ -145,7 +166,14 @@ public class MetodosRaizes {
         return retorno;
     }
 
-    public RetornoSecante secante(double x0, double x1, double precisao, int it, Funcao f){
+    public RetornoSecante secante(double x0, double x1, double precisao, int it, Funcao f) throws ResolucaoException{
+        if(precisao < 0){
+            throw new ResolucaoException("A precisão deve ser positiva");
+        }
+        if(it < 0){
+            throw new ResolucaoException("O número máximo de iterações deve ser positivo");
+        }
+
         ArrayList<IteracaoSecante> iteracoes = new ArrayList<>();
         double xAnterior=x0;
         double xAtual=x1;
@@ -203,7 +231,20 @@ public class MetodosRaizes {
         return retorno;
     }
 
-    public RetornoRegulaFalsi regulaFalsi(double a, double b, double precisao, int it, Funcao f){
+    public RetornoRegulaFalsi regulaFalsi(double a, double b, double precisao, int it, Funcao f) throws ResolucaoException{
+        if(precisao < 0){
+            throw new ResolucaoException("A precisão deve ser positiva");
+        }
+        if(it < 0){
+            throw new ResolucaoException("O número máximo de iterações deve ser positivo");
+        }
+        if(f.aplicar(a)*f.aplicar(b)>0){
+            throw new ResolucaoException("O intervalo dado não contém necessariamente uma raiz");
+        }
+        if(a>=b){
+            throw new ResolucaoException("O intervalo dado não é válido");
+        }
+        
         ArrayList<IteracaoRegulaFalsi> iteracoes = new ArrayList<>();
         double xAtual=0;
         double fInicio=f.aplicar(a);

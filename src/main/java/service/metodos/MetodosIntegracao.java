@@ -14,7 +14,13 @@ import model.integracao.retornos.RetornoSimpson;
 import model.integracao.subintervalos.SubintervaloSimpson;
 
 public class MetodosIntegracao {
-    public RetornoTrapezio trapezioRepetido(double a, double b, int nSubintervalos, Funcao f){
+    public RetornoTrapezio trapezioRepetido(double a, double b, int nSubintervalos, Funcao f) throws ResolucaoException{
+        if(a>=b){
+            throw new ResolucaoException("O intervalo dado não é válido");
+        }
+        if(nSubintervalos < 0){
+            throw new ResolucaoException("O número de subintervalos deve ser positivo");
+        }
         List<SubintervaloTrapezio> subintervalos = new ArrayList<>();
 
         double h=(b-a)/nSubintervalos;
@@ -30,7 +36,16 @@ public class MetodosIntegracao {
         return new RetornoTrapezio(subintervalos);
     }
 
-    public RetornoSimpson simpsonRepetido(double a, double b, int nSubintervalos, Funcao f){
+    public RetornoSimpson simpsonRepetido(double a, double b, int nSubintervalos, Funcao f) throws ResolucaoException{
+        if(a>=b){
+            throw new ResolucaoException("O intervalo dado não é válido");
+        }
+        if(nSubintervalos < 0){
+            throw new ResolucaoException("O número de subintervalos deve ser positivo");
+        }
+        if(nSubintervalos%2 !=0){
+            throw new ResolucaoException("O número de subintervalos deve ser par");
+        }
         List<SubintervaloSimpson> subintervalos = new ArrayList<>();
 
         double h=(b-a)/nSubintervalos;
@@ -48,7 +63,11 @@ public class MetodosIntegracao {
         return new RetornoSimpson(subintervalos);
     }
 
-    public RetornoCasoDiscreto casoDiscreto(List<Ponto> pontos, int grauPolinomio){
+    public RetornoCasoDiscreto casoDiscreto(List<Ponto> pontos, int grauPolinomio) throws ResolucaoException{
+        if(grauPolinomio < 0){
+            throw new ResolucaoException("O grau do polinômio deve ser positivo");
+        }
+        validarPontos(pontos);
         int altura = grauPolinomio+1;
         int largura = grauPolinomio+2;
         MatrizDouble matrizB = new MatrizDouble(largura, altura);
@@ -87,6 +106,16 @@ public class MetodosIntegracao {
         polinomio = polinomio.substring(0,polinomio.length()-1);
         
         return new RetornoCasoDiscreto(polinomio, matrizBOriginal, resolucaoSistema);
+    }
+
+    public void validarPontos(List<Ponto> pontos) throws ResolucaoException{
+        for(int i=0;i<pontos.size();i++){
+            for(int j=i+1;j<pontos.size();j++){
+                if(pontos.get(i).getX()==pontos.get(j).getX()){
+                    throw new ResolucaoException("As abscissas dos pontos devem ser diferentes entre si");
+                }
+            }
+        }
     }
     
 }

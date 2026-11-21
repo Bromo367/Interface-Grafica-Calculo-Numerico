@@ -25,6 +25,7 @@ public class MenuPrincipalController {
     private Region noFatoracaoLU = null;
     private Region noGaussSeidel = null;
     private Region noCasoDiscreto = null;
+    private Region noAplicarFuncoes = null;
 
 
     @FXML
@@ -44,6 +45,7 @@ public class MenuPrincipalController {
         FXMLLoader fxmlFatoracaoLU = new FXMLLoader(getClass().getResource("/view/sistemasLineares/fatoracaoLU-view.fxml"));
         FXMLLoader fxmlGaussSeidel = new FXMLLoader(getClass().getResource("/view/sistemasLineares/gaussSeidel-view.fxml"));
         FXMLLoader fxmlCasoDiscreto = new FXMLLoader(getClass().getResource("/view/integracao/casoDiscreto-view.fxml"));
+        FXMLLoader fxmlAplicarFuncoes = new FXMLLoader(getClass().getResource("/view/geral/aplicarFuncoes-view.fxml"));
 
         try{
             noFuncoes = fxmlFuncoes.load();
@@ -60,6 +62,7 @@ public class MenuPrincipalController {
             noFatoracaoLU = fxmlFatoracaoLU.load();
             noGaussSeidel = fxmlGaussSeidel.load();
             noCasoDiscreto = fxmlCasoDiscreto.load();
+            noAplicarFuncoes = fxmlAplicarFuncoes.load();
         }
         catch(IOException e){
             System.out.println("Falha ao carregar o arquivo fxml");
@@ -136,5 +139,10 @@ public class MenuPrincipalController {
     @FXML
     void abrirCasoDiscreto(ActionEvent event){
         telaPrincipal.setCenter(noCasoDiscreto);
+    }
+
+    @FXML
+    void abrirAplicarFuncoes(ActionEvent event){
+        telaPrincipal.setCenter(noAplicarFuncoes);
     }
 }

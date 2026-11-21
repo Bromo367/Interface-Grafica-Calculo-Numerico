@@ -120,6 +120,37 @@ public class MatrizDouble {
         }
     }
 
+    public double determinante(){
+        if(altura!=largura){
+            return -1;
+        }
+        if(altura==1){
+            return get(0,0);
+        }
+        double determinante = 0;
+        for(int i=0;i<largura;i++){
+            MatrizDouble submatriz = new MatrizDouble(largura-1, altura-1);
+            for(int j=0;j<altura-1;j++){
+                int deslocamento=0;
+                for(int k=0;k<largura;k++){
+                    if(k==i){
+                        deslocamento=-1;
+                    }
+                    else{
+                        submatriz.set(get(j+1,k),j,k+deslocamento);
+                    }
+                }
+            }
+            double parcela = get(0, i)*submatriz.determinante();
+            if(i%2!=0){
+                parcela*=-1;
+            }
+            determinante+=parcela;
+        }
+
+        return determinante;
+    }
+
     public int getAltura() {
         return altura;
     }

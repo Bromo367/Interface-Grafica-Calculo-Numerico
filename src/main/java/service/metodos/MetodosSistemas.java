@@ -10,27 +10,36 @@ import model.sistemasLineares.RetornoLU;
 import model.geral.MatrizDouble;
 
 public class MetodosSistemas {
-    public RetornoEliminacaoGauss eliminacaoGauss(MatrizDouble matrizB){
+    public RetornoEliminacaoGauss eliminacaoGauss(MatrizDouble matrizB) throws ResolucaoException{
+        int largura = matrizB.getLargura();
+        int altura = matrizB.getAltura();
+        if(matrizB.submatriz(altura,altura).determinante()==0){
+            throw new ResolucaoException("Determinante da matriz A nulo");
+        }
+
         List<MatrizDouble> iteracoes = new ArrayList<>();
-        for(int i=0;i<matrizB.getAltura();i++){
+        for(int i=0;i<altura;i++){
             double pivo = matrizB.get(i,i);
             int linhaPraTrocar = i+1;
-            while (pivo==0 && linhaPraTrocar<matrizB.getAltura()) {
+            while (pivo==0 && linhaPraTrocar<altura) {
                 matrizB.trocarLinhas(i, linhaPraTrocar);
                 pivo = matrizB.get(i,i);
                 iteracoes.add(matrizB.criarCopia());
             }
-            for(int j=i+1;j<matrizB.getAltura();j++){
+            if(pivo==0){
+                throw new ResolucaoException("O sistema pode apresentar infinitas soluções!");
+            }
+            for(int j=i+1;j<altura;j++){
                 double multiplicador =  -matrizB.get(j,i)/pivo;
                 matrizB.somarLinhas(j, i, multiplicador);
                 iteracoes.add(matrizB.criarCopia());
             }
         }
-        MatrizDouble solucao = new MatrizDouble(1,matrizB.getAltura());
+        MatrizDouble solucao = new MatrizDouble(1,altura);
 
-        for(int i=matrizB.getAltura()-1;i>=0;i--){
-            double valorXAtual = matrizB.get(i,matrizB.getLargura()-1);
-            for(int j=matrizB.getLargura()-2;j>i;j--){
+        for(int i=altura-1;i>=0;i--){
+            double valorXAtual = matrizB.get(i,largura-1);
+            for(int j=largura-2;j>i;j--){
                 valorXAtual -= matrizB.get(i, j)*solucao.get(j,0);
             }
             valorXAtual/=matrizB.get(i,i);
@@ -43,6 +52,31 @@ public class MetodosSistemas {
     public RetornoLU fatoracaoLU(MatrizDouble matrizB){
         int altura = matrizB.getAltura();
         int largura = matrizB.getLargura();
+
+        boolean necessitaTroca = false;
+        int linhaPraTrocar1 = 0;
+        int linhaPraTrocar2 = 0;
+        do{
+            for(int i=1;i<=altura;i++){
+                if(matrizB.submatriz(i,i).determinante()==0){
+                    necessitaTroca=true;
+                }
+            }
+            if(necessitaTroca){
+                linhaPraTrocar2++;
+                if(linhaPraTrocar2==altura){
+                    linhaPraTrocar1++;
+                    linhaPraTrocar2=linhaPraTrocar1+1;
+                }
+                if(linhaPraTrocar1<altura-2){
+                    matrizB.trocarLinhas(linhaPraTrocar1, linhaPraTrocar2);
+                }
+            }
+        }while(necessitaTroca && linhaPraTrocar1<altura-2);
+        if(necessitaTroca){
+            throw new ResolucaoException("Determinante de uma submatriz nulo!");
+        }
+
         MatrizDouble matrizL = new MatrizDouble(altura, altura);
         MatrizDouble matrizU = new MatrizDouble(altura, altura);
         
@@ -91,7 +125,7 @@ public class MetodosSistemas {
         }
 
 
-        return new RetornoLU(matrizL.criarCopia(), matrizU.criarCopia(), solucaoX, solucaoY);
+        return new RetornoLU(matrizB.criarCopia(), matrizL.criarCopia(), matrizU.criarCopia(), solucaoX, solucaoY);
     }
     
     public RetornoGaussSeidel gaussSeidel(MatrizDouble matrizB, double precisao, MatrizDouble matrizChutesIniciais){
@@ -100,6 +134,44 @@ public class MetodosSistemas {
         int largura = matrizB.getLargura();
         MatrizDouble matrizXAtual = matrizChutesIniciais.criarCopia();
         MatrizDouble matrizXAnterior = matrizChutesIniciais.criarCopia();
+
+        int linhaPraTrocar1 = 0;
+        int linhaPraTrocar2 = 0;
+        boolean criterioSassenfeld = false;
+        do{ 
+            criterioSassenfeld = true;
+            List<Double> betas = new ArrayList<>();
+            for(int i=0;i<altura;i++){
+                double betaAtual=0;
+                for(int j=0;j<largura-1;j++){
+                    if(j>i){
+                        betaAtual+=Math.abs(matrizB.get(i,j));
+                    }
+                    else if(j<i){
+                        betaAtual+=Math.abs(matrizB.get(i,j))*betas.get(j);
+                    }
+                }
+                betaAtual/=Math.abs(matrizB.get(i,i));
+                if(betaAtual>=1){
+                    criterioSassenfeld = false;
+                }
+                betas.add(betaAtual);
+            }
+            if(!criterioSassenfeld){
+                linhaPraTrocar2++;
+                if(linhaPraTrocar2==altura){
+                    linhaPraTrocar1++;
+                    linhaPraTrocar2=linhaPraTrocar1+1;
+                }
+                if(linhaPraTrocar1<altura-2){
+                    matrizB.trocarLinhas(linhaPraTrocar1, linhaPraTrocar2);
+                }
+            }
+        }while(!criterioSassenfeld && linhaPraTrocar1<altura-2);
+        if(!criterioSassenfeld){
+            throw new ResolucaoException("Não passou no critério Sassenfeld");
+        }
+
         int k=0;
         do{
             k++;
@@ -118,6 +190,6 @@ public class MetodosSistemas {
         }while(k<100&iteracoes.get(iteracoes.size()-1).getErroRelativo()>=precisao);
 
 
-        return new RetornoGaussSeidel(iteracoes, matrizXAtual.criarCopia());
+        return new RetornoGaussSeidel(matrizB.criarCopia(), iteracoes, matrizXAtual.criarCopia());
     }
 }

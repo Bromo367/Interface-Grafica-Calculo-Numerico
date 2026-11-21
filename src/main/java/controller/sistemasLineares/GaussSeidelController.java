@@ -240,7 +240,7 @@ public class GaussSeidelController {
             Label lblB = new Label();
             lblB.setText("Matriz B:");
             vboxResultados.getChildren().add(lblB);
-            vboxResultados.getChildren().add(matrizParaAnchor(matrizB));
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizB()));
 
             List<IteracaoGaussSeidel> iteracoes = resultado.getIteracoes();
             for(int i=0;i<iteracoes.size();i++){

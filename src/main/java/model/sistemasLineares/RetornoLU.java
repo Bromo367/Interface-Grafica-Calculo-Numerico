@@ -3,17 +3,23 @@ package model.sistemasLineares;
 import model.geral.MatrizDouble;
 
 public class RetornoLU {
+    private MatrizDouble matrizB;
     private MatrizDouble matrizL;
     private MatrizDouble matrizU;
     private MatrizDouble solucaoX;
     private MatrizDouble solucaoY;
 
 
-    public RetornoLU(MatrizDouble matrizL, MatrizDouble matrizU, MatrizDouble solucaoX, MatrizDouble solucaoY){
+    public RetornoLU(MatrizDouble matrizB, MatrizDouble matrizL, MatrizDouble matrizU, MatrizDouble solucaoX, MatrizDouble solucaoY){
+        this.matrizB = matrizB;
         this.matrizL = matrizL;
         this.matrizU = matrizU;
         this.solucaoX = solucaoX;
         this.solucaoY = solucaoY;
+    }
+
+    public MatrizDouble getMatrizB() {
+        return matrizB;
     }
 
     public MatrizDouble getMatrizL() {
