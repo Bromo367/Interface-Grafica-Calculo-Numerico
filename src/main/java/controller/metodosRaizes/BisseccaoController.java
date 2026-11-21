@@ -24,6 +24,7 @@ import model.metodosRaizes.iteracoes.IteracaoBisseccao;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoBisseccao;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 
 public class BisseccaoController {
@@ -102,6 +103,9 @@ public class BisseccaoController {
             lblRaiz.setText(raiz.toString());
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

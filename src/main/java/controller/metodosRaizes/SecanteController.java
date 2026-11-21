@@ -24,6 +24,7 @@ import model.metodosRaizes.iteracoes.IteracaoSecante;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoSecante;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 
 public class SecanteController {
@@ -112,6 +113,9 @@ public class SecanteController {
             lblRaiz.setText(raiz.toString());
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

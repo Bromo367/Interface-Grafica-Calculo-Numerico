@@ -1,5 +1,6 @@
 package controller.integracao;
 
+import java.lang.module.ResolutionException;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
@@ -175,6 +176,9 @@ public class CasoDiscretoController {
                 mostraMensagem(lblFeedback, "Polinômio calculado!", TiposTexto.SUCESSO);
             }
             catch(EntradaException ex){
+                mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+            }
+            catch(ResolutionException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         }

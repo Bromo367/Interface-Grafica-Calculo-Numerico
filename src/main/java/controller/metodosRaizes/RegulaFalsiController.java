@@ -24,6 +24,7 @@ import model.metodosRaizes.iteracoes.IteracaoRegulaFalsi;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoRegulaFalsi;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 
 public class RegulaFalsiController {
@@ -102,6 +103,9 @@ public class RegulaFalsiController {
             lblRaiz.setText(raiz.toString());
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

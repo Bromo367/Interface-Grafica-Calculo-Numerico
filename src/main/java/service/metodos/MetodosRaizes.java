@@ -20,7 +20,11 @@ import model.metodosRaizes.Raiz;
 public class MetodosRaizes {
     private CriteriosParadaRaizes parada = new CriteriosParadaRaizes();
 
-    public RetornoBisseccao bisseccao(double a, double b, double precisao, int it, Funcao f){
+    public RetornoBisseccao bisseccao(double a, double b, double precisao, int it, Funcao f) throws ResolucaoException{
+        if(f.aplicar(a)*f.aplicar(b)>0){
+            throw new ResolucaoException("O intervalo dado não contém necessariamente uma raiz");
+        }
+
         ArrayList<IteracaoBisseccao> iteracoes = new ArrayList<IteracaoBisseccao>();
         int k=1;
         double fInicio;

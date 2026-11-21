@@ -1,6 +1,7 @@
 package controller.sistemasLineares;
 
 import java.util.List;
+import java.lang.module.ResolutionException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -224,6 +225,9 @@ public class FatoracaoLUController {
             mostraMensagem(lblFeedback, "Sistema resolvido!", TiposTexto.SUCESSO);
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }
