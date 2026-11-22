@@ -73,8 +73,8 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtFieldXZero" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="txtFieldXUm" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtFieldX0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtFieldX1" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="txtFieldPrecisao" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="txtFieldIteracoes" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Button mnemonicParsing="false" onAction="#calcularRaiz" text="Calcular raiz" GridPane.rowIndex="5" />

@@ -24,16 +24,15 @@ import model.metodosRaizes.iteracoes.IteracaoBisseccao;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoBisseccao;
 
-import java.lang.module.ResolutionException;
 
 public class BisseccaoController {
 
     @FXML private TableView<IteracaoBisseccao> tableIteracoes;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaXn;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaA;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaB;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaDiferencaIntervalo;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaXn;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaA;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaB;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaDiferencaIntervalo;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaFxn;
     @FXML private TableColumn<IteracaoBisseccao, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -59,11 +58,11 @@ public class BisseccaoController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("strA"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("strB"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("strXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("strFxn"));
-        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("strDiferencaIntervalo"));
+        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strA"));
+        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strB"));
+        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strFxn"));
+        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strDiferencaIntervalo"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 

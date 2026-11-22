@@ -1,6 +1,7 @@
 package service.metodos;
 
 import java.util.List;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import model.geral.Ponto;
@@ -10,6 +11,14 @@ import model.interpolacao.RetornoLagrange;
 public class MetodosInterpolacao {
     public RetornoLagrange lagrange(List<Ponto> pontos) throws ResolucaoException{
         validarPontos(pontos);
+
+        String formato = "0.";
+        int numCasasDecimais = 6;
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        DecimalFormat df = new DecimalFormat(formato);
+
         int n=pontos.size();
         String polinomio = "";
         List<String> subpolinomios = new ArrayList<>();
@@ -19,17 +28,17 @@ public class MetodosInterpolacao {
             Double denominador = 1.0;
             for(int j=0;j<n;j++){
                 if(i!=j){
-                    subpolinomioAtual+="(x-"+pontos.get(j).getX().toString()+")*";
+                    subpolinomioAtual+="(x-"+df.format(pontos.get(j).getX())+")*";
                     denominador*=(pontos.get(i).getX()-pontos.get(j).getX());
                 }
             }
             subpolinomioAtual=subpolinomioAtual.substring(0,subpolinomioAtual.length()-1);
-            subpolinomioAtual+="/("+denominador.toString()+"))";
+            subpolinomioAtual+="/("+df.format(denominador)+"))";
             subpolinomios.add(subpolinomioAtual);
         }
 
         for(int i=0;i<n;i++){
-            polinomio+=pontos.get(i).getY().toString()+"*"+subpolinomios.get(i)+"+";
+            polinomio+=df.format(pontos.get(i).getY())+"*"+subpolinomios.get(i)+"+";
         }
 
         polinomio=polinomio.substring(0,polinomio.length()-1);
@@ -40,6 +49,14 @@ public class MetodosInterpolacao {
 
     public RetornoFormaNewton formaNewton(List<Ponto> pontos) throws ResolucaoException{
         validarPontos(pontos);
+
+        String formato = "0.";
+        int numCasasDecimais = 6;
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        DecimalFormat df = new DecimalFormat(formato);
+
         String polinomio="";
         int n=pontos.size();
         double[][] diferencasDivididas = new double[n][n];
@@ -54,9 +71,9 @@ public class MetodosInterpolacao {
             }
         }
         for(int i=0;i<n;i++){
-            polinomio+=diferencasDivididas[0][i];
+            polinomio+=df.format(diferencasDivididas[0][i]);
             for(int j=0;j<i;j++){
-                polinomio+="*(x-"+pontos.get(j).getX()+")";
+                polinomio+="*(x-"+df.format(pontos.get(j).getX())+")";
             }
             polinomio += "+";
         }

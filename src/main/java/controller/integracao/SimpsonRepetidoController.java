@@ -26,11 +26,11 @@ public class SimpsonRepetidoController {
 
     
     @FXML private TableView<SubintervaloSimpson> tableSubintervalos;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXAtual;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXAnterior;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaFXAtual;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXProximo;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaArea;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaXAtual;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaXAnterior;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaFXAtual;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaXProximo;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaArea;
     @FXML private TableColumn<SubintervaloSimpson, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -54,11 +54,11 @@ public class SimpsonRepetidoController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("xAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("fxAtual"));
-        colunaXProximo.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("xProximo"));
-        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("area"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("xAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("xAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("fxAtual"));
+        colunaXProximo.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("xProximo"));
+        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("area"));
         tableSubintervalos.setFixedCellSize(tamanhoCelula);
     }
 

@@ -28,11 +28,11 @@ public class SecanteController {
 
     
     @FXML private TableView<IteracaoSecante> tableIteracoes;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaDiferenca;
-    @FXML private TableColumn<IteracaoSecante, Double>  colunaFXAnterior;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaFXAtual;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaXAnterior;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaXAtual;
+    @FXML private TableColumn<IteracaoSecante, String> colunaDiferenca;
+    @FXML private TableColumn<IteracaoSecante, String>  colunaFXAnterior;
+    @FXML private TableColumn<IteracaoSecante, String> colunaFXAtual;
+    @FXML private TableColumn<IteracaoSecante, String> colunaXAnterior;
+    @FXML private TableColumn<IteracaoSecante, String> colunaXAtual;
     @FXML private TableColumn<IteracaoSecante, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -58,11 +58,11 @@ public class SecanteController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("strXAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("strXAnterior"));
-        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("strFxAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("strFxAtual"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("strDiferenca"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strXAnterior"));
+        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strFxAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strFxAtual"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strDiferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 

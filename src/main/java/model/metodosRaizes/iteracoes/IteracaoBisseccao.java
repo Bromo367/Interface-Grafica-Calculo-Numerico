@@ -9,11 +9,13 @@ public class IteracaoBisseccao {
     private double a;
     private double b;
     private double diferencaIntervalo;
+
     private String strXn;
     private String strFxn;
     private String strA;
     private String strB;
     private String strDiferencaIntervalo;
+    
     private double precisao;
     private DecimalFormat df;
 

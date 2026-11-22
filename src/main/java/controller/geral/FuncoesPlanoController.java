@@ -21,7 +21,7 @@ import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
 
-public class FuncoesController {
+public class FuncoesPlanoController {
 
     @FXML private Label lblFeedback;
     @FXML private BorderPane borderFuncoes;

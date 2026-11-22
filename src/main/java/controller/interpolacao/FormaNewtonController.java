@@ -1,6 +1,7 @@
 package controller.interpolacao;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -50,8 +51,16 @@ public class FormaNewtonController {
     private int qtdPontos;
     private int qtdPontosAntiga=0;
 
+    private int numCasasDecimais = 6;
+    private DecimalFormat df;
+
     @FXML
     void initialize() {
+        String formato = "0.";
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        df = new DecimalFormat(formato);
 
         scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
             hboxLayout.setPrefWidth(novo.doubleValue());
@@ -117,7 +126,7 @@ public class FormaNewtonController {
                 RetornoFormaNewton resultado = metodosInterpolacao.formaNewton(pontos);
                 String strResultado = "";
                 for(int i=0; i<resultado.getDiferencasDivididas().size();i++){
-                    strResultado += "d"+i+" = "+resultado.getDiferencasDivididas().get(i)+"\n";
+                    strResultado += "d"+i+" = "+df.format(resultado.getDiferencasDivididas().get(i))+"\n";
                 }
                 strResultado += "p(x) = "+resultado.getPolinomio();
                 lblResultado.setText(strResultado);

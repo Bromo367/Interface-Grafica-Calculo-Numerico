@@ -29,11 +29,11 @@ public class NewtonRaphsonController {
 
     
     @FXML private TableView<IteracaoNewtonRaphson> tableIteracoes;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaXAtual;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaFxn;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaDerivadaXn;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaDiferenca;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaXAnterior;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaXAtual;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaFxn;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaDerivadaXn;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaDiferenca;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaXAnterior;
     @FXML private TableColumn<IteracaoNewtonRaphson, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -58,11 +58,11 @@ public class NewtonRaphsonController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strXAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strXAnterior"));
-        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strDerivadaXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strFxn"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strDiferenca"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strXAnterior"));
+        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strDerivadaXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strFxn"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strDiferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 

@@ -29,11 +29,11 @@ public class RegulaFalsiController {
 
     
     @FXML private TableView<IteracaoRegulaFalsi> tableIteracoes;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaXn;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaA;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaB;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaErroRelativo;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaXn;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaA;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaB;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaErroRelativo;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaFxn;
     @FXML private TableColumn<IteracaoRegulaFalsi, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -59,11 +59,11 @@ public class RegulaFalsiController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strA"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strB"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strFxn"));
-        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strErroRelativo"));
+        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strA"));
+        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strB"));
+        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strFxn"));
+        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strErroRelativo"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 

@@ -110,7 +110,6 @@ public class MetodosRaizes {
             Raiz raiz = new Raiz(0, xAtual, fAtual, criterioParada, precisao);
             return new RetornoMIL(iteracoes, raiz);
         }
-        parou = false;
 
         int k=1;
         while(k<=it&&!parou){
@@ -118,12 +117,10 @@ public class MetodosRaizes {
             xAtual=fi.aplicar(xAtual);
             fAtual=f.aplicar(xAtual);
 
-            System.out.println(fi.arvoreEmOrdem());
-
             iteracoes.add(new IteracaoMIL(k, xAtual, fAtual, fi.aplicar(xAtual), precisao, xAnterior));
 
             parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
-            parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();            
+            parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();  
             k++;
         }
         String criterioParada;

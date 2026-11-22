@@ -27,11 +27,11 @@ public class TrapezioRepetidoController {
 
     
     @FXML private TableView<SubintervaloTrapezio> tableSubintervalos;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaXAtual;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaXAnterior;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaFXAtual;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaFXAnterior;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaArea;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaXAtual;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaXAnterior;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaFXAtual;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaFXAnterior;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaArea;
     @FXML private TableColumn<SubintervaloTrapezio, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -55,11 +55,11 @@ public class TrapezioRepetidoController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("xAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("fxAtual"));
-        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("fxAnterior"));
-        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("area"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("xAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("xAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("fxAtual"));
+        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("fxAnterior"));
+        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("area"));
         tableSubintervalos.setFixedCellSize(tamanhoCelula);
     }
 

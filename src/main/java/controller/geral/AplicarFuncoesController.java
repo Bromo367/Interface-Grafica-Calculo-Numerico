@@ -1,5 +1,7 @@
 package controller.geral;
 
+import java.text.DecimalFormat;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -26,9 +28,19 @@ public class AplicarFuncoesController {
     @FXML private VBox vboxConteudo;
 
     private VerificadorEntradas verificador = new VerificadorEntradas();
+    
+    private int numCasasDecimais = 6;
+    private DecimalFormat df;
 
     @FXML
     void initialize() {
+        String formato = "0.";
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        df = new DecimalFormat(formato);
+
+
         scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
@@ -41,7 +53,7 @@ public class AplicarFuncoesController {
         try{
             funcao = verificador.avaliarFuncao(txtFieldFuncao.getText(), "f(x)");
             x = verificador.avaliarDouble(txtFieldValorX.getText(), "x");
-            lblResultado.setText("f("+x+") = "+funcao.aplicar(x));
+            lblResultado.setText("f("+df.format(x)+") = "+df.format(funcao.aplicar(x)));
             mostraMensagem(lblFeedback, "Função aplicada!", TiposTexto.SUCESSO);
         }
         catch(EntradaException ex){

@@ -27,11 +27,11 @@ import model.metodosRaizes.retornos.RetornoMIL;
 public class MILController {
 
     @FXML private TableView<IteracaoMIL> tableIteracoes;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaDiferenca;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaFixn;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaXAnterior;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaXAtual;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoMIL, String> colunaDiferenca;
+    @FXML private TableColumn<IteracaoMIL, String> colunaFixn;
+    @FXML private TableColumn<IteracaoMIL, String> colunaXAnterior;
+    @FXML private TableColumn<IteracaoMIL, String> colunaXAtual;
+    @FXML private TableColumn<IteracaoMIL, String> colunaFxn;
     @FXML private TableColumn<IteracaoMIL, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -57,11 +57,11 @@ public class MILController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strXAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strXAnterior"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strDiferenca"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strFxn"));
-        colunaFixn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strFixn"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoMIL, String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strXAnterior"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strDiferenca"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strFxn"));
+        colunaFixn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strFixn"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 

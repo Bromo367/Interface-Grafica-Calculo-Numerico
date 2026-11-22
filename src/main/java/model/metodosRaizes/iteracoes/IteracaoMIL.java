@@ -10,11 +10,13 @@ public class IteracaoMIL {
     private double fixn;
     private double precisao;
     private double diferenca;
+
     private String strXAnterior;
     private String strXAtual;
     private String strFxn;
     private String strFixn;
     private String strDiferenca;
+    
     private DecimalFormat df;
 
     public IteracaoMIL(int k, double xAtual, double fxn, double fixn, double precisao, double xAnterior){
@@ -38,7 +40,7 @@ public class IteracaoMIL {
         strXAtual = df.format(xAtual);
         strFxn = df.format(fxn);
         strFixn = df.format(fixn);
-        strDiferenca = df.format(strDiferenca);
+        strDiferenca = df.format(diferenca);
     }
 
     public boolean criterioParadaFuncao(){

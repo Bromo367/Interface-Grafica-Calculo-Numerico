@@ -10,11 +10,13 @@ public class IteracaoSecante {
     private double fxAnterior;
     private double precisao;
     private double diferenca;
+
     private String strXAnterior;
     private String strXAtual;
     private String strFxAtual;
     private String strFxAnterior;
     private String strDiferenca;
+    
     private DecimalFormat df;
 
     public IteracaoSecante(int k, double xAtual, double fxAtual, double fxAnterior, double precisao, double xAnterior){

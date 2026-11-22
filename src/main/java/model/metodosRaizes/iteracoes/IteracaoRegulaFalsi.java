@@ -9,12 +9,14 @@ public class IteracaoRegulaFalsi {
     private double a;
     private double b;
     private double erroRelativo;
+    private double precisao;
+    
     private String strXn;
     private String strFxn;
     private String strA;
     private String strB;
     private String strErroRelativo;
-    private double precisao;
+
     private DecimalFormat df;
 
 

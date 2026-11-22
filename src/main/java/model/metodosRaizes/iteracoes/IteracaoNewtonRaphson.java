@@ -10,11 +10,13 @@ public class IteracaoNewtonRaphson {
     private double derivadaXn;
     private double precisao;
     private double diferenca;
+
     private String strXAnterior;
     private String strXAtual;
     private String strFxn;
     private String strDerivadaXn;
     private String strDiferenca;
+    
     private DecimalFormat df;
 
     public IteracaoNewtonRaphson(int k, double xAtual, double fxn, double derivadaXn, double precisao, double xAnterior){
