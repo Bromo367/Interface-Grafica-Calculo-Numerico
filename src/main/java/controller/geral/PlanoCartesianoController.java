@@ -83,7 +83,7 @@ public class PlanoCartesianoController {
         anc.getChildren().add(funcao.getLinha());
    
         anc.addEventHandler(ScrollEvent.SCROLL, e->{
-            if((diferencaEixoNumerico>0.032&&e.getDeltaY()>0)||(diferencaEixoNumerico<256&&e.getDeltaY()<0)){
+            if((diferencaEixoNumerico>0.124&&e.getDeltaY()>0)||(diferencaEixoNumerico<256&&e.getDeltaY()<0)){
             double diferenca = 1+e.getDeltaY()/640;
             diferencaEixoInterface *= diferenca;
 

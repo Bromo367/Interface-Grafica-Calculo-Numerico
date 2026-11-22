@@ -1,7 +1,5 @@
 package controller.metodosRaizes;
 
-import java.lang.module.ResolutionException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -28,11 +27,11 @@ import model.metodosRaizes.retornos.RetornoMIL;
 public class MILController {
 
     @FXML private TableView<IteracaoMIL> tableIteracoes;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaDiferenca;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaFixn;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaXAnterior;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaXAtual;
-    @FXML private TableColumn<IteracaoMIL, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoMIL, String> colunaDiferenca;
+    @FXML private TableColumn<IteracaoMIL, String> colunaFixn;
+    @FXML private TableColumn<IteracaoMIL, String> colunaXAnterior;
+    @FXML private TableColumn<IteracaoMIL, String> colunaXAtual;
+    @FXML private TableColumn<IteracaoMIL, String> colunaFxn;
     @FXML private TableColumn<IteracaoMIL, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -58,11 +57,11 @@ public class MILController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("xAnterior"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("diferenca"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("fxn"));
-        colunaFixn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("fixn"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoMIL, String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strXAnterior"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strDiferenca"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strFxn"));
+        colunaFixn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,String>("strFixn"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -93,7 +92,7 @@ public class MILController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

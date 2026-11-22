@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
 public class MenuPrincipalController {
     @FXML private BorderPane telaPrincipal;
     
-    private Region noFuncoes = null;
+    private Region noFuncoesPlano = null;
     private Region noBisseccao = null;
     private Region noMIL = null;
     private Region noNewton = null;
@@ -31,7 +31,7 @@ public class MenuPrincipalController {
     @FXML
     void initialize() {
 
-        FXMLLoader fxmlFuncoes = new FXMLLoader(getClass().getResource("/view/geral/funcoes-view.fxml"));
+        FXMLLoader fxmlFuncoesPlano = new FXMLLoader(getClass().getResource("/view/geral/funcoesPlano-view.fxml"));
         FXMLLoader fxmlBisseccao = new FXMLLoader(getClass().getResource("/view/metodosRaizes/bisseccao-view.fxml"));
         FXMLLoader fxmlMIL = new FXMLLoader(getClass().getResource("/view/metodosRaizes/mil-view.fxml"));
         FXMLLoader fxmlNewtonRaphson = new FXMLLoader(getClass().getResource("/view/metodosRaizes/newtonRaphson-view.fxml"));
@@ -48,7 +48,7 @@ public class MenuPrincipalController {
         FXMLLoader fxmlAplicarFuncoes = new FXMLLoader(getClass().getResource("/view/geral/aplicarFuncoes-view.fxml"));
 
         try{
-            noFuncoes = fxmlFuncoes.load();
+            noFuncoesPlano = fxmlFuncoesPlano.load();
             noBisseccao = fxmlBisseccao.load();
             noMIL = fxmlMIL.load();
             noNewton = fxmlNewtonRaphson.load();
@@ -67,13 +67,13 @@ public class MenuPrincipalController {
         catch(IOException e){
             System.out.println("Falha ao carregar o arquivo fxml");
         }
-        telaPrincipal.setCenter(noFuncoes);
+        telaPrincipal.setCenter(noFuncoesPlano);
         
     }
 
     @FXML
     void abrirPlanoCartesiano(ActionEvent event) {
-        telaPrincipal.setCenter(noFuncoes);
+        telaPrincipal.setCenter(noFuncoesPlano);
     }
 
     @FXML

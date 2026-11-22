@@ -1,7 +1,7 @@
 package controller.interpolacao;
 
-import java.lang.module.ResolutionException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -22,6 +22,7 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.metodos.MetodosInterpolacao;
+import service.metodos.ResolucaoException;
 import model.geral.Ponto;
 import model.interpolacao.RetornoFormaNewton;
 
@@ -50,8 +51,16 @@ public class FormaNewtonController {
     private int qtdPontos;
     private int qtdPontosAntiga=0;
 
+    private int numCasasDecimais = 6;
+    private DecimalFormat df;
+
     @FXML
     void initialize() {
+        String formato = "0.";
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        df = new DecimalFormat(formato);
 
         scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
             hboxLayout.setPrefWidth(novo.doubleValue());
@@ -117,7 +126,7 @@ public class FormaNewtonController {
                 RetornoFormaNewton resultado = metodosInterpolacao.formaNewton(pontos);
                 String strResultado = "";
                 for(int i=0; i<resultado.getDiferencasDivididas().size();i++){
-                    strResultado += "d"+i+" = "+resultado.getDiferencasDivididas().get(i)+"\n";
+                    strResultado += "d"+i+" = "+df.format(resultado.getDiferencasDivididas().get(i))+"\n";
                 }
                 strResultado += "p(x) = "+resultado.getPolinomio();
                 lblResultado.setText(strResultado);
@@ -127,7 +136,7 @@ public class FormaNewtonController {
             catch(EntradaException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
-            catch(ResolutionException ex){
+            catch(ResolucaoException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         }

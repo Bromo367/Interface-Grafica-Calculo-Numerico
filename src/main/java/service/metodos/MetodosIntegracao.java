@@ -1,6 +1,7 @@
 package service.metodos;
 
 import java.util.List;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import service.funcoes.Funcao;
@@ -68,6 +69,14 @@ public class MetodosIntegracao {
             throw new ResolucaoException("O grau do polinômio deve ser positivo");
         }
         validarPontos(pontos);
+
+        String formato = "0.";
+        int numCasasDecimais = 6;
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        DecimalFormat df = new DecimalFormat(formato);
+
         int altura = grauPolinomio+1;
         int largura = grauPolinomio+2;
         MatrizDouble matrizB = new MatrizDouble(largura, altura);
@@ -101,7 +110,7 @@ public class MetodosIntegracao {
         List<Double> solucaoAlfas = resolucaoSistema.getSolucao().getColuna(0);
 
         for(int i=0; i<solucaoAlfas.size();i++){
-            polinomio += solucaoAlfas.get(i)+"*x^"+i+"+";
+            polinomio += df.format(solucaoAlfas.get(i))+"*x^"+i+"+";
         }
         polinomio = polinomio.substring(0,polinomio.length()-1);
         

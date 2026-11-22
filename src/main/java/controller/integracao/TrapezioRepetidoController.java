@@ -1,6 +1,5 @@
 package controller.integracao;
 
-import java.lang.module.ResolutionException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosIntegracao;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -27,11 +27,11 @@ public class TrapezioRepetidoController {
 
     
     @FXML private TableView<SubintervaloTrapezio> tableSubintervalos;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaXAtual;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaXAnterior;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaFXAtual;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaFXAnterior;
-    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaArea;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaXAtual;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaXAnterior;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaFXAtual;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaFXAnterior;
+    @FXML private TableColumn<SubintervaloTrapezio, String> colunaArea;
     @FXML private TableColumn<SubintervaloTrapezio, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -55,11 +55,11 @@ public class TrapezioRepetidoController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("xAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("fxAtual"));
-        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("fxAnterior"));
-        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Double>("area"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strXAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strFxAtual"));
+        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strFxAnterior"));
+        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strArea"));
         tableSubintervalos.setFixedCellSize(tamanhoCelula);
     }
 
@@ -85,7 +85,7 @@ public class TrapezioRepetidoController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

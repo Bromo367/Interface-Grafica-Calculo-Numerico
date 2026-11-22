@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -22,17 +23,16 @@ import model.metodosRaizes.iteracoes.IteracaoSecante;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoSecante;
 
-import java.lang.module.ResolutionException;
 
 public class SecanteController {
 
     
     @FXML private TableView<IteracaoSecante> tableIteracoes;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaDiferenca;
-    @FXML private TableColumn<IteracaoSecante, Double>  colunaFXAnterior;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaFXAtual;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaXAnterior;
-    @FXML private TableColumn<IteracaoSecante, Double> colunaXAtual;
+    @FXML private TableColumn<IteracaoSecante, String> colunaDiferenca;
+    @FXML private TableColumn<IteracaoSecante, String>  colunaFXAnterior;
+    @FXML private TableColumn<IteracaoSecante, String> colunaFXAtual;
+    @FXML private TableColumn<IteracaoSecante, String> colunaXAnterior;
+    @FXML private TableColumn<IteracaoSecante, String> colunaXAtual;
     @FXML private TableColumn<IteracaoSecante, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -58,11 +58,11 @@ public class SecanteController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("xAnterior"));
-        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("fxAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("fxAtual"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,Double>("diferenca"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strXAnterior"));
+        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strFxAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strFxAtual"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoSecante,String>("strDiferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -90,7 +90,7 @@ public class SecanteController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

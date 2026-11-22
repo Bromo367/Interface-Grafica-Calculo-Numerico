@@ -1,7 +1,5 @@
 package controller.integracao;
 
-import java.lang.module.ResolutionException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosIntegracao;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -27,11 +26,11 @@ public class SimpsonRepetidoController {
 
     
     @FXML private TableView<SubintervaloSimpson> tableSubintervalos;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXAtual;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXAnterior;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaFXAtual;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXProximo;
-    @FXML private TableColumn<SubintervaloSimpson, Double> colunaArea;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaXAtual;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaXAnterior;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaFXAtual;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaXProximo;
+    @FXML private TableColumn<SubintervaloSimpson, String> colunaArea;
     @FXML private TableColumn<SubintervaloSimpson, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -54,12 +53,12 @@ public class SimpsonRepetidoController {
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
 
-        colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("xAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("fxAtual"));
-        colunaXProximo.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("xProximo"));
-        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Double>("area"));
+        colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Integer>("K"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strXAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strFxAtual"));
+        colunaXProximo.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strXProximo"));
+        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strArea"));
         tableSubintervalos.setFixedCellSize(tamanhoCelula);
     }
 
@@ -90,7 +89,7 @@ public class SimpsonRepetidoController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

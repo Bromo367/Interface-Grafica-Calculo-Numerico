@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -22,18 +23,17 @@ import model.metodosRaizes.iteracoes.IteracaoRegulaFalsi;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoRegulaFalsi;
 
-import java.lang.module.ResolutionException;
 
 
 public class RegulaFalsiController {
 
     
     @FXML private TableView<IteracaoRegulaFalsi> tableIteracoes;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaXn;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaA;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaB;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaErroRelativo;
-    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaXn;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaA;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaB;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaErroRelativo;
+    @FXML private TableColumn<IteracaoRegulaFalsi, String> colunaFxn;
     @FXML private TableColumn<IteracaoRegulaFalsi, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -59,11 +59,11 @@ public class RegulaFalsiController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("a"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("b"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("xn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("fxn"));
-        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("erroRelativo"));
+        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strA"));
+        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strB"));
+        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strFxn"));
+        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,String>("strErroRelativo"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -91,7 +91,7 @@ public class RegulaFalsiController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
+import service.metodos.ResolucaoException;
 import service.metodos.MetodosRaizes;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
@@ -23,16 +24,15 @@ import model.metodosRaizes.iteracoes.IteracaoBisseccao;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoBisseccao;
 
-import java.lang.module.ResolutionException;
 
 public class BisseccaoController {
 
     @FXML private TableView<IteracaoBisseccao> tableIteracoes;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaXn;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaA;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaB;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaDiferencaIntervalo;
-    @FXML private TableColumn<IteracaoBisseccao, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaXn;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaA;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaB;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaDiferencaIntervalo;
+    @FXML private TableColumn<IteracaoBisseccao, String> colunaFxn;
     @FXML private TableColumn<IteracaoBisseccao, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -58,11 +58,11 @@ public class BisseccaoController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("a"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("b"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("xn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("fxn"));
-        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,Double>("diferencaIntervalo"));
+        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strA"));
+        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strB"));
+        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strFxn"));
+        colunaDiferencaIntervalo.setCellValueFactory(new PropertyValueFactory<IteracaoBisseccao,String>("strDiferencaIntervalo"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -90,7 +90,7 @@ public class BisseccaoController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

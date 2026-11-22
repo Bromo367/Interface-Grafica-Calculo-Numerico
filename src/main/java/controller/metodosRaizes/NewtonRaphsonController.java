@@ -1,6 +1,5 @@
 package controller.metodosRaizes;
 
-import java.lang.module.ResolutionException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -29,11 +29,11 @@ public class NewtonRaphsonController {
 
     
     @FXML private TableView<IteracaoNewtonRaphson> tableIteracoes;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaXAtual;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaFxn;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaDerivadaXn;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaDiferenca;
-    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaXAnterior;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaXAtual;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaFxn;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaDerivadaXn;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaDiferenca;
+    @FXML private TableColumn<IteracaoNewtonRaphson, String> colunaXAnterior;
     @FXML private TableColumn<IteracaoNewtonRaphson, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
@@ -58,11 +58,11 @@ public class NewtonRaphsonController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("xAnterior"));
-        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("derivadaXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("fxn"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("diferenca"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strXAnterior"));
+        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strDerivadaXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strFxn"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,String>("strDiferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -77,7 +77,7 @@ public class NewtonRaphsonController {
             x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
-            RetornoNewtonRaphson resultado = metodosRaizes.newton(x0,precisao,it,funcao);
+            RetornoNewtonRaphson resultado = metodosRaizes.newtonRaphson(x0,precisao,it,funcao);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);
@@ -88,7 +88,7 @@ public class NewtonRaphsonController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }
