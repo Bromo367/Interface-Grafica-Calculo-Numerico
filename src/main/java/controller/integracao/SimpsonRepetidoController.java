@@ -53,12 +53,12 @@ public class SimpsonRepetidoController {
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
 
-        colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("xAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("fxAtual"));
-        colunaXProximo.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("xProximo"));
-        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("area"));
+        colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,Integer>("K"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strXAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strFxAtual"));
+        colunaXProximo.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strXProximo"));
+        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloSimpson,String>("strArea"));
         tableSubintervalos.setFixedCellSize(tamanhoCelula);
     }
 

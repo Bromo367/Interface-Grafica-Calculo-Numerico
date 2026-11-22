@@ -55,11 +55,11 @@ public class TrapezioRepetidoController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("xAnterior"));
-        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("fxAtual"));
-        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("fxAnterior"));
-        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("area"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strXAnterior"));
+        colunaFXAtual.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strFxAtual"));
+        colunaFXAnterior.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strFxAnterior"));
+        colunaArea.setCellValueFactory(new PropertyValueFactory<SubintervaloTrapezio,String>("strArea"));
         tableSubintervalos.setFixedCellSize(tamanhoCelula);
     }
 
