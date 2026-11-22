@@ -77,7 +77,7 @@ public class NewtonRaphsonController {
             x0 = verificador.avaliarDouble(txtFieldXInicial.getText(), "O chute inicial");
             precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
             it = verificador.avaliarInt(txtFieldIteracoes.getText(), "O número máximo de iterações");
-            RetornoNewtonRaphson resultado = metodosRaizes.newton(x0,precisao,it,funcao);
+            RetornoNewtonRaphson resultado = metodosRaizes.newtonRaphson(x0,precisao,it,funcao);
             iteracoes = FXCollections.observableList(resultado.getIteracoes());
             raiz = resultado.getRaiz();
             mostraMensagem(lblFeedback, "Raiz calculada", TiposTexto.SUCESSO);

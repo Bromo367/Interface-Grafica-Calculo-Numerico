@@ -18,7 +18,6 @@ import model.metodosRaizes.retornos.RetornoRegulaFalsi;
 import model.metodosRaizes.Raiz;
 
 public class MetodosRaizes {
-    private CriteriosParadaRaizes parada = new CriteriosParadaRaizes();
 
     public RetornoBisseccao bisseccao(double a, double b, double precisao, int it, Funcao f) throws ResolucaoException{
         if(precisao < 0){
@@ -72,6 +71,7 @@ public class MetodosRaizes {
         RetornoBisseccao retorno = new RetornoBisseccao(iteracoes, raiz);
         return retorno;
     }
+
     public RetornoMIL mil(double x0, double precisao, int it, Funcao f, Funcao fi) throws ResolucaoException{
         if(precisao < 0){
             throw new ResolucaoException("A precisão deve ser positiva");
@@ -86,7 +86,13 @@ public class MetodosRaizes {
         double fAtual=f.aplicar(xAtual);
         boolean parou=false;
 
-        parou=parada.erroFuncao(fAtual, 0, precisao);
+        if(Math.abs(fAtual)<precisao){
+            String criterioParada;
+            criterioParada="|f(x0)| = "+Math.abs(fAtual)+" < "+precisao;
+            Raiz raiz = new Raiz(0, xAtual, fAtual, criterioParada);
+            return new RetornoMIL(iteracoes, raiz);
+        }
+        parou = false;
 
         int k=1;
         while(k<=it&&!parou){
@@ -118,7 +124,7 @@ public class MetodosRaizes {
         return retorno;
     }
 
-    public RetornoNewtonRaphson newton(double x0, double precisao, int it, Funcao f) throws ResolucaoException{
+    public RetornoNewtonRaphson newtonRaphson(double x0, double precisao, int it, Funcao f) throws ResolucaoException{
         if(precisao < 0){
             throw new ResolucaoException("A precisão deve ser positiva");
         }
@@ -134,7 +140,14 @@ public class MetodosRaizes {
 
         double fAtual=f.aplicar(xAtual);
         boolean parou=false;
-        parou=parada.erroFuncao(fAtual, 0, precisao);
+
+        if(Math.abs(fAtual)<precisao){
+            String criterioParada;
+            criterioParada="|f(x0)| = "+Math.abs(fAtual)+" < "+precisao;
+            Raiz raiz = new Raiz(0, xAtual, fAtual, criterioParada);
+            return new RetornoNewtonRaphson(iteracoes, raiz);
+        }
+        parou = false;
 
         int k=1;
         while(k<=it&&!parou){
@@ -180,20 +193,24 @@ public class MetodosRaizes {
 
         double fAtual=f.aplicar(xAtual);
         double fAnterior=f.aplicar(xAnterior);
-        double valorRaiz=0;
         boolean parou=false;
+
+        String criterioParada;
         
-        if(parada.erroFuncao(fAtual, 0, precisao)){
-            parou=true;
-            valorRaiz=xAnterior;
+        if(Math.abs(fAnterior) < precisao){
+            criterioParada="|f(x0)| = "+Math.abs(fAnterior)+" < "+precisao;
+            Raiz raiz = new Raiz(0, xAnterior, fAnterior, criterioParada);
+            return new RetornoSecante(iteracoes, raiz);
         }
-        else if(parada.erroFuncao(fAtual, 1, precisao)){
-            parou=true;
-            valorRaiz=xAtual;
+        else if(Math.abs(fAtual) < precisao){
+            criterioParada="|f(x1)| = "+Math.abs(fAtual)+" < "+precisao;
+            Raiz raiz = new Raiz(0, xAtual, fAtual, criterioParada);
+            return new RetornoSecante(iteracoes, raiz);
         }
-        else if(parada.erroAbsoluto(xAtual, xAnterior, 1, precisao)){
-            parou=true;
-            valorRaiz=xAtual;
+        else if(Math.abs(xAtual-xAnterior) < precisao){
+            criterioParada="|"+xAtual+"-"+xAnterior+"| = "+(Math.abs(xAtual-xAnterior))+" < "+precisao;
+            Raiz raiz = new Raiz(0, xAtual, fAtual, criterioParada);
+            return new RetornoSecante(iteracoes, raiz);
         }
 
         int k=1;
@@ -209,13 +226,9 @@ public class MetodosRaizes {
             parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
             parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();       
 
-            if(parou){
-                valorRaiz=xAtual;
-            }
             k++;
         }
 
-        String criterioParada;
         IteracaoSecante ultimaIteracao=iteracoes.get(iteracoes.size()-1);
         if(ultimaIteracao.criterioParadaFuncao()){
             criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxAtual())+" < "+precisao;
@@ -250,21 +263,25 @@ public class MetodosRaizes {
         double fInicio=f.aplicar(a);
         double fFim=f.aplicar(b);
         double fAtual=0;
-        double valorRaiz=0;
         boolean parou=false;
 
+        String criterioParada;
+
         
-        if(parada.erroFuncaoVariavel(fInicio,"a",precisao)){
-            parou=true;
-            valorRaiz=a;
+        if(Math.abs(fInicio) < precisao){
+            criterioParada="|f(x0)| = "+Math.abs(fInicio)+" < "+precisao;
+            Raiz raiz = new Raiz(0, a, a, criterioParada);
+            return new RetornoRegulaFalsi(iteracoes, raiz);
         }
-        else if(parada.erroFuncaoVariavel(fInicio,"b",precisao)){
-            parou=true;
-            valorRaiz=b;
+        else if(Math.abs(fFim) < precisao){
+            criterioParada="|f(x1)| = "+Math.abs(fFim)+" < "+precisao;
+            Raiz raiz = new Raiz(0, b, fFim, criterioParada);
+            return new RetornoRegulaFalsi(iteracoes, raiz);
         }
-        else if(parada.diferencaIntervalo(a, b, precisao)){
-            parou=true;
-            valorRaiz=a;
+        else if(Math.abs(b-a) < precisao){
+            criterioParada="|"+b+"-"+a+"| = "+(Math.abs(b-a))+" < "+precisao;
+            Raiz raiz = new Raiz(0, b, fFim, criterioParada);
+            return new RetornoRegulaFalsi(iteracoes, raiz);
         }
 
         int k=1;
@@ -286,13 +303,9 @@ public class MetodosRaizes {
             parou = parou || iteracoes.get(k-1).criterioParadaFuncao();
             parou = parou || iteracoes.get(k-1).criterioParadaErroRelativo();
 
-            if(parou){
-                valorRaiz=xAtual;
-            }
             k++;
         }
 
-        String criterioParada;
         IteracaoRegulaFalsi ultimaIteracao = iteracoes.get(iteracoes.size()-1);
         if(ultimaIteracao.criterioParadaFuncao()){
             criterioParada="|f(x"+(k-2)+")| = "+Math.abs(ultimaIteracao.getFxn())+" < "+precisao;
