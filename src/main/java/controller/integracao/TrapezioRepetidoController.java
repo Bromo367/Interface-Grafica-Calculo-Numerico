@@ -14,12 +14,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+
 import service.metodos.MetodosIntegracao;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
-
 import model.integracao.retornos.RetornoTrapezio;
 import model.integracao.subintervalos.SubintervaloTrapezio;
 
@@ -27,24 +27,12 @@ public class TrapezioRepetidoController {
 
     
     @FXML private TableView<SubintervaloTrapezio> tableSubintervalos;
-    @FXML
-    private TableColumn<SubintervaloTrapezio, Double> colunaXAtual;
-
-    @FXML
-    private TableColumn<SubintervaloTrapezio, Double> colunaXAnterior;
-
-    @FXML
-    private TableColumn<SubintervaloTrapezio, Double> colunaFXAtual;
-
-    @FXML
-    private TableColumn<SubintervaloTrapezio, Double> colunaFXAnterior;
-
-    @FXML
-    private TableColumn<SubintervaloTrapezio, Double> colunaArea;
-
-    @FXML
-    private TableColumn<SubintervaloTrapezio, Integer> colunaK;
-
+    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaXAtual;
+    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaXAnterior;
+    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaFXAtual;
+    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaFXAnterior;
+    @FXML private TableColumn<SubintervaloTrapezio, Double> colunaArea;
+    @FXML private TableColumn<SubintervaloTrapezio, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
     @FXML private Label lblResultado;

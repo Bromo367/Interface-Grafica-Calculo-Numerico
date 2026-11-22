@@ -9,8 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 
 public class MenuPrincipalController {
-    @FXML
-    private BorderPane telaPrincipal;
+    @FXML private BorderPane telaPrincipal;
+    
     private Region noFuncoes = null;
     private Region noBisseccao = null;
     private Region noMIL = null;

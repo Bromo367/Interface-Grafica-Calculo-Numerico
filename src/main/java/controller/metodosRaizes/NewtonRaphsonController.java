@@ -20,7 +20,6 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
-
 import model.metodosRaizes.iteracoes.IteracaoNewtonRaphson;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoNewtonRaphson;
@@ -30,40 +29,20 @@ public class NewtonRaphsonController {
 
     
     @FXML private TableView<IteracaoNewtonRaphson> tableIteracoes;
-    @FXML
-    private TableColumn<IteracaoNewtonRaphson, Double> colunaXAtual;
-
-    @FXML
-    private TableColumn<IteracaoNewtonRaphson, Double> colunaFxn;
-
-    @FXML
-    private TableColumn<IteracaoNewtonRaphson, Double> colunaDerivadaXn;
-
-    @FXML
-    private TableColumn<IteracaoNewtonRaphson, Double> colunaDiferenca;
-
-    @FXML
-    private TableColumn<IteracaoNewtonRaphson, Double> colunaXAnterior;
-
-    @FXML
-    private TableColumn<IteracaoNewtonRaphson, Integer> colunaK;
-
+    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaXAtual;
+    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaDerivadaXn;
+    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaDiferenca;
+    @FXML private TableColumn<IteracaoNewtonRaphson, Double> colunaXAnterior;
+    @FXML private TableColumn<IteracaoNewtonRaphson, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
     @FXML private Label lblRaiz;
     @FXML private ScrollPane scrollLayout;
-    @FXML
-    private TextField txtFieldFuncao;
-
-    @FXML
-    private TextField txtFieldIteracoes;
-
-    @FXML
-    private TextField txtFieldPrecisao;
-
-    @FXML
-    private TextField txtFieldXInicial;
-
+    @FXML private TextField txtFieldFuncao;
+    @FXML private TextField txtFieldIteracoes;
+    @FXML private TextField txtFieldPrecisao;
+    @FXML private TextField txtFieldXInicial;
     @FXML private VBox vboxConteudo;
 
     private MetodosRaizes metodosRaizes = new MetodosRaizes();

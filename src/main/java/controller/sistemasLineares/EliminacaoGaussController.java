@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import model.geral.MatrizDouble;
 import model.sistemasLineares.RetornoEliminacaoGauss;
 import service.geral.EntradaException;
@@ -22,29 +23,14 @@ import service.metodos.MetodosSistemas;
 
 public class EliminacaoGaussController {
 
-    @FXML
-    private AnchorPane anchorEntradas;
-
-    @FXML
-    private GridPane gridEntradas;
-
-    @FXML
-    private HBox hboxLayout;
-
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldQtdPontos;
-
-    @FXML
-    private VBox vboxConteudo;
-
-    @FXML
-    private VBox vboxResultados;
+    @FXML private AnchorPane anchorEntradas;
+    @FXML private GridPane gridEntradas;
+    @FXML private HBox hboxLayout;
+    @FXML private Label lblFeedback;
+    @FXML private ScrollPane scrollLayout;
+    @FXML private TextField txtFieldQtdPontos;
+    @FXML private VBox vboxConteudo;
+    @FXML private VBox vboxResultados;
 
 
     private MetodosSistemas metodosSistemas = new MetodosSistemas();

@@ -23,7 +23,16 @@ import view.QuantidadeDivisores;
 
 public class PlanoCartesianoController {
     
-
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private AnchorPane anc;
+    @FXML private Line lnEixoX;
+    @FXML private Line lnEixoY;
+    @FXML private Polygon setaX;
+    @FXML private Polygon setaY;
+    @FXML private Label lblX;
+    @FXML private Label lblY;
+    
     private double h;
     private double w;
 
@@ -43,33 +52,6 @@ public class PlanoCartesianoController {
 
     private FuncaoGrafica funcao = new FuncaoGrafica();
 
-    
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private AnchorPane anc;
-
-    @FXML
-    private Line lnEixoX;
-
-    @FXML
-    private Line lnEixoY;
-
-    @FXML
-    private Polygon setaX;
-
-    @FXML
-    private Polygon setaY;
-
-    @FXML
-    private Label lblX;
-
-    @FXML
-    private Label lblY;
 
     
 

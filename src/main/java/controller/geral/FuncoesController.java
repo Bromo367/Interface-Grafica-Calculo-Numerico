@@ -14,31 +14,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Label;
+
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
-import javafx.scene.control.Label;
 
 public class FuncoesController {
 
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private BorderPane borderFuncoes;
-
-    @FXML
-    private TextField txtFieldFuncao;
-    
-    @FXML
-    private Button btnDerivar;
-
-    @FXML
-    private Button btnEnviar;
-    
-    @FXML
-    private ColorPicker colorPickerFuncao;
+    @FXML private Label lblFeedback;
+    @FXML private BorderPane borderFuncoes;
+    @FXML private TextField txtFieldFuncao;
+    @FXML private Button btnDerivar;
+    @FXML private Button btnEnviar;
+    @FXML private ColorPicker colorPickerFuncao;
 
     private PlanoCartesianoController planoController=null;
 
@@ -46,8 +36,6 @@ public class FuncoesController {
 
     @FXML
     void initialize() {
-        
-
         FXMLLoader fxmlPlano = new FXMLLoader(getClass().getResource("/view/geral/planoCartesiano-view.fxml"));
         Region noPlano=null;
         try{

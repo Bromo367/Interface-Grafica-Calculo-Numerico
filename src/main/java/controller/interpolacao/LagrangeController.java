@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import model.geral.Ponto;
-import model.interpolacao.RetornoLagrange;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,43 +17,26 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.metodos.MetodosInterpolacao;
+import model.geral.Ponto;
+import model.interpolacao.RetornoLagrange;
 
 public class LagrangeController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private GridPane gridEntradas;
-
-    @FXML
-    private HBox hboxLayout;
-
-
-    @FXML
-    private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldQtdPontos;
-
-    @FXML
-    private VBox vboxConteudo;
-
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private Label lblCopiar;
-
-    @FXML
-    private Label lblResultado;
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private GridPane gridEntradas;
+    @FXML private HBox hboxLayout;
+    @FXML private ScrollPane scrollLayout;
+    @FXML private TextField txtFieldQtdPontos;
+    @FXML private VBox vboxConteudo;
+    @FXML private Label lblFeedback;
+    @FXML private Label lblCopiar;
+    @FXML private Label lblResultado;
 
     private MetodosInterpolacao metodosInterpolacao = new MetodosInterpolacao();
 

@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
@@ -25,30 +24,16 @@ import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoBisseccao;
 
 import java.lang.module.ResolutionException;
-import java.util.List;
 
 public class BisseccaoController {
 
-    
     @FXML private TableView<IteracaoBisseccao> tableIteracoes;
-    @FXML
-    private TableColumn<IteracaoBisseccao, Double> colunaXn;
-
-    @FXML
-    private TableColumn<IteracaoBisseccao, Double> colunaA;
-
-    @FXML
-    private TableColumn<IteracaoBisseccao, Double> colunaB;
-
-    @FXML
-    private TableColumn<IteracaoBisseccao, Double> colunaDiferencaIntervalo;
-
-    @FXML
-    private TableColumn<IteracaoBisseccao, Double> colunaFxn;
-
-    @FXML
-    private TableColumn<IteracaoBisseccao, Integer> colunaK;
-
+    @FXML private TableColumn<IteracaoBisseccao, Double> colunaXn;
+    @FXML private TableColumn<IteracaoBisseccao, Double> colunaA;
+    @FXML private TableColumn<IteracaoBisseccao, Double> colunaB;
+    @FXML private TableColumn<IteracaoBisseccao, Double> colunaDiferencaIntervalo;
+    @FXML private TableColumn<IteracaoBisseccao, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoBisseccao, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
     @FXML private Label lblRaiz;

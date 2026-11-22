@@ -20,7 +20,6 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
-
 import model.metodosRaizes.iteracoes.IteracaoMIL;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoMIL;
@@ -28,45 +27,22 @@ import model.metodosRaizes.retornos.RetornoMIL;
 
 public class MILController {
 
-    
     @FXML private TableView<IteracaoMIL> tableIteracoes;
-    @FXML
-    private TableColumn<IteracaoMIL, Double> colunaDiferenca;
-
-    @FXML
-    private TableColumn<IteracaoMIL, Double> colunaFixn;
-
-    @FXML
-    private TableColumn<IteracaoMIL, Double> colunaXAnterior;
-
-    @FXML
-    private TableColumn<IteracaoMIL, Double> colunaXAtual;
-
-    @FXML
-    private TableColumn<IteracaoMIL, Double> colunaFxn;
-
-    @FXML
-    private TableColumn<IteracaoMIL, Integer> colunaK;
-
+    @FXML private TableColumn<IteracaoMIL, Double> colunaDiferenca;
+    @FXML private TableColumn<IteracaoMIL, Double> colunaFixn;
+    @FXML private TableColumn<IteracaoMIL, Double> colunaXAnterior;
+    @FXML private TableColumn<IteracaoMIL, Double> colunaXAtual;
+    @FXML private TableColumn<IteracaoMIL, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoMIL, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
     @FXML private Label lblRaiz;
     @FXML private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldFi;
-
-    @FXML
-    private TextField txtFieldFuncao;
-
-    @FXML
-    private TextField txtFieldIteracoes;
-
-    @FXML
-    private TextField txtFieldPrecisao;
-
-    @FXML
-    private TextField txtFieldXInicial;
+    @FXML private TextField txtFieldFi;
+    @FXML private TextField txtFieldFuncao;
+    @FXML private TextField txtFieldIteracoes;
+    @FXML private TextField txtFieldPrecisao;
+    @FXML private TextField txtFieldXInicial;
     @FXML private VBox vboxConteudo;
 
     private MetodosRaizes metodosRaizes = new MetodosRaizes();

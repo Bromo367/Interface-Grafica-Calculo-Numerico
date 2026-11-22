@@ -14,12 +14,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+
 import service.metodos.MetodosIntegracao;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
-
 import model.integracao.retornos.RetornoSimpson;
 import model.integracao.subintervalos.SubintervaloSimpson;
 
@@ -27,24 +27,12 @@ public class SimpsonRepetidoController {
 
     
     @FXML private TableView<SubintervaloSimpson> tableSubintervalos;
-    @FXML
-    private TableColumn<SubintervaloSimpson, Double> colunaXAtual;
-
-    @FXML
-    private TableColumn<SubintervaloSimpson, Double> colunaXAnterior;
-
-    @FXML
-    private TableColumn<SubintervaloSimpson, Double> colunaFXAtual;
-
-    @FXML
-    private TableColumn<SubintervaloSimpson, Double> colunaXProximo;
-
-    @FXML
-    private TableColumn<SubintervaloSimpson, Double> colunaArea;
-
-    @FXML
-    private TableColumn<SubintervaloSimpson, Integer> colunaK;
-
+    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXAtual;
+    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXAnterior;
+    @FXML private TableColumn<SubintervaloSimpson, Double> colunaFXAtual;
+    @FXML private TableColumn<SubintervaloSimpson, Double> colunaXProximo;
+    @FXML private TableColumn<SubintervaloSimpson, Double> colunaArea;
+    @FXML private TableColumn<SubintervaloSimpson, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
     @FXML private Label lblResultado;

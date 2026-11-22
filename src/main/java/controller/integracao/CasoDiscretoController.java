@@ -9,7 +9,11 @@ import java.util.ResourceBundle;
 import model.geral.MatrizDouble;
 import model.geral.Ponto;
 import model.integracao.retornos.RetornoCasoDiscreto;
-import model.interpolacao.RetornoLagrange;
+import service.geral.EntradaException;
+import service.geral.TiposTexto;
+import service.geral.VerificadorEntradas;
+import service.metodos.MetodosIntegracao;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,48 +26,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import service.geral.EntradaException;
-import service.geral.TiposTexto;
-import service.geral.VerificadorEntradas;
-import service.metodos.MetodosIntegracao;
-import service.metodos.MetodosInterpolacao;
 
 public class CasoDiscretoController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private GridPane gridEntradas;
-
-    @FXML
-    private HBox hboxLayout;
-
-
-    @FXML
-    private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldQtdPontos;
-
-    @FXML
-    private VBox vboxConteudo;
-
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private Label lblCopiar;
-    
-    @FXML
-    private VBox vboxResultados;
-
-
-    @FXML
-    private TextField txtFieldGrauPolinomio;
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private GridPane gridEntradas;
+    @FXML private HBox hboxLayout;
+    @FXML private ScrollPane scrollLayout;
+    @FXML private TextField txtFieldQtdPontos;
+    @FXML private VBox vboxConteudo;
+    @FXML private Label lblFeedback;
+    @FXML private Label lblCopiar;
+    @FXML private VBox vboxResultados;
+    @FXML private TextField txtFieldGrauPolinomio;
 
     private MetodosIntegracao metodosIntegracao = new MetodosIntegracao();
 

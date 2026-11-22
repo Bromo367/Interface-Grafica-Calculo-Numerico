@@ -17,7 +17,6 @@ import javafx.scene.layout.VBox;
 import model.geral.MatrizDouble;
 import model.sistemasLineares.IteracaoGaussSeidel;
 import model.sistemasLineares.RetornoGaussSeidel;
-import model.sistemasLineares.RetornoLU;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -25,35 +24,16 @@ import service.metodos.MetodosSistemas;
 
 public class GaussSeidelController {
 
-    @FXML
-    private AnchorPane anchorEntradas;
-
-    @FXML
-    private GridPane gridEntradas;
-
-    @FXML
-    private HBox hboxLayout;
-
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldQtdPontos;
-
-    @FXML
-    private VBox vboxConteudo;
-
-    @FXML
-    private VBox vboxResultados;
-    
-    @FXML
-    private TextField txtFieldPrecisao;
-
-    @FXML
-    private AnchorPane anchorChutes;
+    @FXML private AnchorPane anchorEntradas;
+    @FXML private GridPane gridEntradas;
+    @FXML private HBox hboxLayout;
+    @FXML private Label lblFeedback;
+    @FXML private ScrollPane scrollLayout;
+    @FXML private TextField txtFieldQtdPontos;
+    @FXML private VBox vboxConteudo;
+    @FXML private VBox vboxResultados;
+    @FXML private TextField txtFieldPrecisao;
+    @FXML private AnchorPane anchorChutes;
 
     private MetodosSistemas metodosSistemas = new MetodosSistemas();
 
