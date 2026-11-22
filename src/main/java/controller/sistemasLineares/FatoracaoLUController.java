@@ -1,6 +1,7 @@
 package controller.sistemasLineares;
 
 import java.util.List;
+import java.lang.module.ResolutionException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -12,8 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import model.geral.MatrizDouble;
-import model.sistemasLineares.RetornoGauss;
+import model.sistemasLineares.RetornoLU;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -21,29 +23,14 @@ import service.metodos.MetodosSistemas;
 
 public class FatoracaoLUController {
 
-    @FXML
-    private AnchorPane anchorEntradas;
-
-    @FXML
-    private GridPane gridEntradas;
-
-    @FXML
-    private HBox hboxLayout;
-
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldQtdPontos;
-
-    @FXML
-    private VBox vboxConteudo;
-
-    @FXML
-    private VBox vboxResultados;
+    @FXML private AnchorPane anchorEntradas;
+    @FXML private GridPane gridEntradas;
+    @FXML private HBox hboxLayout;
+    @FXML private Label lblFeedback;
+    @FXML private ScrollPane scrollLayout;
+    @FXML private TextField txtFieldQtdPontos;
+    @FXML private VBox vboxConteudo;
+    @FXML private VBox vboxResultados;
 
 
     private MetodosSistemas metodosSistemas = new MetodosSistemas();
@@ -95,6 +82,10 @@ public class FatoracaoLUController {
         if(ordemMatriz>0){
             anchorEntradas.getChildren().clear();
             anchorEntradas.setPrefHeight(alturaAnchor);
+            for(List<TextField> listas:entradasCoeficientes){
+                listas.clear();
+            }
+            entradasResultados.clear();
             for(int i = 0; i<ordemMatriz;i++){
                 entradasCoeficientes.add(new ArrayList<>());
                 for(int j = 0;j<ordemMatriz;j++){
@@ -178,6 +169,8 @@ public class FatoracaoLUController {
     @FXML
     void resolverSistema(ActionEvent event) {
         try{
+            verificador.avaliarInt(txtFieldQtdPontos.getText(), "A quantidade de variáveis");
+            System.out.println("Fatoração lu");
             vboxResultados.getChildren().clear();
             MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
             for(int i=0;i<ordemMatriz;i++){
@@ -188,24 +181,39 @@ public class FatoracaoLUController {
             for(int i=0;i<ordemMatriz;i++){
                 matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
             }
-            RetornoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
+            RetornoLU resultado = metodosSistemas.fatoracaoLU(matrizB);
 
-            List<MatrizDouble> iteracoes = resultado.getIteracoes();
-            for(int i=0;i<iteracoes.size();i++){
-                Label lblK = new Label();
-                lblK.setText("K = "+(i+1));
-                lblK.setStyle(null);
-                vboxResultados.getChildren().add(lblK);
-                vboxResultados.getChildren().add(matrizParaAnchor(iteracoes.get(i)));
-            }
-            Label lblSolucao = new Label();
-            lblSolucao.setText("Matriz solução:");
-            vboxResultados.getChildren().add(lblSolucao);
-            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucao()));
+            Label lblB = new Label();
+            lblB.setText("Matriz B:");
+            vboxResultados.getChildren().add(lblB);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizB()));
+
+            Label lblL = new Label();
+            lblL.setText("Matriz L:");
+            vboxResultados.getChildren().add(lblL);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizL()));
+
+            Label lblU = new Label();
+            lblU.setText("Matriz U:");
+            vboxResultados.getChildren().add(lblU);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizU()));
+
+            Label lblY = new Label();
+            lblY.setText("Solução Y:");
+            vboxResultados.getChildren().add(lblY);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucaoY()));
+
+            Label lblX = new Label();
+            lblX.setText("Solução X:");
+            vboxResultados.getChildren().add(lblX);
+            vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucaoX()));
 
             mostraMensagem(lblFeedback, "Sistema resolvido!", TiposTexto.SUCESSO);
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
@@ -19,35 +18,23 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.funcoes.Funcao;
-
 import model.metodosRaizes.iteracoes.IteracaoRegulaFalsi;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoRegulaFalsi;
 
-import java.util.List;
+import java.lang.module.ResolutionException;
+
 
 public class RegulaFalsiController {
 
     
     @FXML private TableView<IteracaoRegulaFalsi> tableIteracoes;
-    @FXML
-    private TableColumn<IteracaoRegulaFalsi, Double> colunaXn;
-
-    @FXML
-    private TableColumn<IteracaoRegulaFalsi, Double> colunaA;
-
-    @FXML
-    private TableColumn<IteracaoRegulaFalsi, Double> colunaB;
-
-    @FXML
-    private TableColumn<IteracaoRegulaFalsi, Double> colunaErroRelativo;
-
-    @FXML
-    private TableColumn<IteracaoRegulaFalsi, Double> colunaFxn;
-
-    @FXML
-    private TableColumn<IteracaoRegulaFalsi, Integer> colunaK;
-
+    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaXn;
+    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaA;
+    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaB;
+    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaErroRelativo;
+    @FXML private TableColumn<IteracaoRegulaFalsi, Double> colunaFxn;
+    @FXML private TableColumn<IteracaoRegulaFalsi, Integer> colunaK;
     @FXML private HBox hboxLayout;
     @FXML private Label lblFeedback;
     @FXML private Label lblRaiz;
@@ -102,6 +89,9 @@ public class RegulaFalsiController {
             lblRaiz.setText(raiz.toString());
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

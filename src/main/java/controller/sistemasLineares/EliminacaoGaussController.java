@@ -1,6 +1,7 @@
 package controller.sistemasLineares;
 
 import java.util.List;
+import java.lang.module.ResolutionException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -12,8 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import model.geral.MatrizDouble;
-import model.sistemasLineares.RetornoGauss;
+import model.sistemasLineares.RetornoEliminacaoGauss;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -21,29 +23,14 @@ import service.metodos.MetodosSistemas;
 
 public class EliminacaoGaussController {
 
-    @FXML
-    private AnchorPane anchorEntradas;
-
-    @FXML
-    private GridPane gridEntradas;
-
-    @FXML
-    private HBox hboxLayout;
-
-    @FXML
-    private Label lblFeedback;
-
-    @FXML
-    private ScrollPane scrollLayout;
-
-    @FXML
-    private TextField txtFieldQtdPontos;
-
-    @FXML
-    private VBox vboxConteudo;
-
-    @FXML
-    private VBox vboxResultados;
+    @FXML private AnchorPane anchorEntradas;
+    @FXML private GridPane gridEntradas;
+    @FXML private HBox hboxLayout;
+    @FXML private Label lblFeedback;
+    @FXML private ScrollPane scrollLayout;
+    @FXML private TextField txtFieldQtdPontos;
+    @FXML private VBox vboxConteudo;
+    @FXML private VBox vboxResultados;
 
 
     private MetodosSistemas metodosSistemas = new MetodosSistemas();
@@ -94,6 +81,10 @@ public class EliminacaoGaussController {
         }
         if(ordemMatriz>0){
             anchorEntradas.getChildren().clear();
+            for(List<TextField> listas:entradasCoeficientes){
+                listas.clear();
+            }
+            entradasResultados.clear();
             anchorEntradas.setPrefHeight(alturaAnchor);
             for(int i = 0; i<ordemMatriz;i++){
                 entradasCoeficientes.add(new ArrayList<>());
@@ -178,6 +169,7 @@ public class EliminacaoGaussController {
     @FXML
     void resolverSistema(ActionEvent event) {
         try{
+            verificador.avaliarInt(txtFieldQtdPontos.getText(), "A quantidade de variáveis");
             vboxResultados.getChildren().clear();
             MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
             for(int i=0;i<ordemMatriz;i++){
@@ -188,7 +180,7 @@ public class EliminacaoGaussController {
             for(int i=0;i<ordemMatriz;i++){
                 matrizB.set(verificador.avaliarDouble(entradasResultados.get(i).getText(), "Resultado "+i), i, ordemMatriz);
             }
-            RetornoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
+            RetornoEliminacaoGauss resultado = metodosSistemas.eliminacaoGauss(matrizB);
 
             List<MatrizDouble> iteracoes = resultado.getIteracoes();
             for(int i=0;i<iteracoes.size();i++){
@@ -206,6 +198,9 @@ public class EliminacaoGaussController {
             mostraMensagem(lblFeedback, "Sistema resolvido!", TiposTexto.SUCESSO);
         }
         catch(EntradaException ex){
+            mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
+        }
+        catch(ResolutionException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

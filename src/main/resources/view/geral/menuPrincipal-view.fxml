@@ -12,6 +12,7 @@
           <Menu mnemonicParsing="false" text="Geral">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirPlanoCartesiano" text="Plano Cartesiano" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirAplicarFuncoes" text="Aplicar Funções" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Métodos Raízes">
@@ -27,7 +28,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirEliminacaoGauss" text="Eliminação de Gauss" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirFatoracaoLU" text="Fatoração LU" />
-                  <MenuItem mnemonicParsing="false" text="Gauss-Seidel" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirGaussSeidel" text="Gauss-Seidel" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Interpolação">
@@ -40,7 +41,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#abrirTrapezioRepetido" text="Trapézio Repetido" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirSimpsonRepetido" text="1/3 de Simpson Repetido" />
-                  <MenuItem mnemonicParsing="false" text="Caso Discreto" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirCasoDiscreto" text="Caso Discreto" />
                </items>
             </Menu>
         </menus>

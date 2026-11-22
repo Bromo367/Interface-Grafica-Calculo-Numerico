@@ -8,7 +8,8 @@ import model.interpolacao.RetornoFormaNewton;
 import model.interpolacao.RetornoLagrange;
 
 public class MetodosInterpolacao {
-    public RetornoLagrange lagrange(List<Ponto> pontos){
+    public RetornoLagrange lagrange(List<Ponto> pontos) throws ResolucaoException{
+        validarPontos(pontos);
         int n=pontos.size();
         String polinomio = "";
         List<String> subpolinomios = new ArrayList<>();
@@ -37,7 +38,8 @@ public class MetodosInterpolacao {
         return retorno;
     }
 
-    public RetornoFormaNewton formaNewton(List<Ponto> pontos){
+    public RetornoFormaNewton formaNewton(List<Ponto> pontos) throws ResolucaoException{
+        validarPontos(pontos);
         String polinomio="";
         int n=pontos.size();
         double[][] diferencasDivididas = new double[n][n];
@@ -67,5 +69,15 @@ public class MetodosInterpolacao {
 
         RetornoFormaNewton retorno = new RetornoFormaNewton(polinomio, diferencasPrincipais);
         return retorno;
+    }
+
+    public void validarPontos(List<Ponto> pontos) throws ResolucaoException{
+        for(int i=0;i<pontos.size();i++){
+            for(int j=i+1;j<pontos.size();j++){
+                if(pontos.get(i).getX()==pontos.get(j).getX()){
+                    throw new ResolucaoException("As abscissas dos pontos devem ser diferentes entre si");
+                }
+            }
+        }
     }
 }

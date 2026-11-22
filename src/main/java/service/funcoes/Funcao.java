@@ -50,4 +50,6 @@ public class Funcao {
         raizArvore=raizArvore.simplificar();
     }
 
+    
+
 }

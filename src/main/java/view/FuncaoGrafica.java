@@ -59,8 +59,8 @@ public class FuncaoGrafica{
         return linhaGrafico;
     }
 
-    public void setFuncao(String novaFuncao){
-        funcao = new Funcao(novaFuncao);
+    public void setFuncao(Funcao novaFuncao){
+        funcao = novaFuncao;
     }
 
     public void derivar(){

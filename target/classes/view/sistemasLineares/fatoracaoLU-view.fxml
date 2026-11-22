@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fx:id="scrollLayout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.sistemasLineares.EliminacaoGaussController">
+<ScrollPane fx:id="scrollLayout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.sistemasLineares.FatoracaoLUController">
    <content>
       <HBox fx:id="hboxLayout" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefWidth="600.0">
          <children>
@@ -55,15 +55,15 @@
                   <AnchorPane fx:id="anchorEntradas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="480.0" />
                   <GridPane fx:id="gridEntradas1" maxWidth="1.7976931348623157E308" prefWidth="480.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.599951171875" minWidth="10.0" prefWidth="240.79996337890626" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.00001525878906" minWidth="10.0" prefWidth="240.0000366210937" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.599951171875" minWidth="10.0" prefWidth="154.40001220703124" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.6000030517578" minWidth="10.0" prefWidth="325.59998779296876" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Button mnemonicParsing="false" onAction="#resolverSistema" text="Resolver sistema" />
-                        <Label fx:id="lblFeedback" prefHeight="18.0" GridPane.columnIndex="1" />
+                        <Label fx:id="lblFeedback" prefHeight="18.0" wrapText="true" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <Separator prefWidth="200.0" />
