@@ -7,6 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.scene.control.Label;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Color;
+
+import service.funcoes.Funcao;
 import view.DivisoresEixoX;
 import view.DivisoresEixoY;
 import view.Eixo;
@@ -14,9 +19,6 @@ import view.EscalaEixoX;
 import view.EscalaEixoY;
 import view.FuncaoGrafica;
 import view.QuantidadeDivisores;
-import javafx.scene.control.Label;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
 
 
 public class PlanoCartesianoController {
@@ -99,15 +101,13 @@ public class PlanoCartesianoController {
         anc.getChildren().add(funcao.getLinha());
    
         anc.addEventHandler(ScrollEvent.SCROLL, e->{
-            System.out.println("x = "+e.getSceneX()+" y = "+ e.getSceneY());
-            if((diferencaEixoNumerico>0.016&&e.getDeltaY()>0)||(diferencaEixoNumerico<512&&e.getDeltaY()<0)){
+            if((diferencaEixoNumerico>0.032&&e.getDeltaY()>0)||(diferencaEixoNumerico<256&&e.getDeltaY()<0)){
             double diferenca = 1+e.getDeltaY()/640;
             diferencaEixoInterface *= diferenca;
 
             if(qtdDivisores.getEixoX()*diferencaEixoInterface>=2*w){
                 diferencaEixoInterface/=2;
                 diferencaEixoNumerico/=2;
-                System.out.println(diferencaEixoNumerico);
             }
             else if(qtdDivisores.getEixoX()*diferencaEixoInterface<w){
                 diferencaEixoInterface*=2;
@@ -130,7 +130,6 @@ public class PlanoCartesianoController {
         anc.widthProperty().addListener((observable,antigo,novo)->{
             double wAntigo=w;
             w=novo.doubleValue();
-            System.out.println("Resize horizontal, wAntigo = "+wAntigo+" wNovo="+ w);
             diferencaEixoInterface=w/(qtdDivisores.getEixoX()+1);
             qtdDivisores.recalcularY(w, h);
 
@@ -149,7 +148,6 @@ public class PlanoCartesianoController {
         anc.heightProperty().addListener((observable,antigo,novo)->{
             double hAntigo=h;
             h=novo.doubleValue();
-            System.out.println("Resize vertical, hAntigo = "+hAntigo+" hNovo="+ h);
             diferencaEixoInterface=w/(qtdDivisores.getEixoX()+1);
             qtdDivisores.recalcularY(w, h);
 
@@ -167,7 +165,7 @@ public class PlanoCartesianoController {
 
     }
 
-    public void adicionarFuncao(String novaFuncao){
+    public void adicionarFuncao(Funcao novaFuncao){
         funcao.setFuncao(novaFuncao);
         funcao.criar(diferencaEixoNumerico, diferencaEixoInterface, w, h);
     }

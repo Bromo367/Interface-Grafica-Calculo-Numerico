@@ -118,37 +118,39 @@ public class VerificadorEntradas {
                         if(entrada.charAt(i)=='-'){
                             i++;
                         }
-                        boolean ehOperadorUnario=false;
-                        for(String operador:operadoresUnarios){
-                            if(!ehOperadorUnario&&i+operador.length()<entrada.length()){
-                                if(entrada.substring(i,i+operador.length()).equalsIgnoreCase(operador)){
-                                    i+=operador.length();
-                                    ehOperadorUnario=true;
-                                }
-                            }
-                        }
-                        if(!ehOperadorUnario){
-                            if(entrada.charAt(i)=='x'||entrada.charAt(i)=='e'){
-                                esperandoOperador=true;
-                                i++;
-                            }
-                            else if(entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
-                                while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
-                                    i++;
-                                }
-                                if(i<entrada.length()&&(entrada.charAt(i)==','||entrada.charAt(i)=='.')){
-                                    i++;
-                                    if(i>=entrada.length()||entrada.charAt(i)<='0'||entrada.charAt(i)>='9'){
-                                        valido=false;
+                        else{
+                            boolean ehOperadorUnario=false;
+                            for(String operador:operadoresUnarios){
+                                if(!ehOperadorUnario&&i+operador.length()<entrada.length()){
+                                    if(entrada.substring(i,i+operador.length()).equalsIgnoreCase(operador)){
+                                        i+=operador.length();
+                                        ehOperadorUnario=true;
                                     }
+                                }
+                            }
+                            if(!ehOperadorUnario){
+                                if(entrada.charAt(i)=='x'||entrada.charAt(i)=='e'){
+                                    esperandoOperador=true;
+                                    i++;
+                                }
+                                else if(entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
                                     while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
                                         i++;
                                     }
+                                    if(i<entrada.length()&&(entrada.charAt(i)==','||entrada.charAt(i)=='.')){
+                                        i++;
+                                        if(i>=entrada.length()||entrada.charAt(i)<='0'||entrada.charAt(i)>='9'){
+                                            valido=false;
+                                        }
+                                        while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
+                                            i++;
+                                        }
+                                    }
+                                    esperandoOperador=true;
                                 }
-                                esperandoOperador=true;
-                            }
-                            else{
-                                valido=false;
+                                else{
+                                    valido=false;
+                                }
                             }
                         }
                     }
