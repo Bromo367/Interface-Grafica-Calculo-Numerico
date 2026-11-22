@@ -1,6 +1,5 @@
 package controller.interpolacao;
 
-import java.lang.module.ResolutionException;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.metodos.MetodosInterpolacao;
+import service.metodos.ResolucaoException;
 import model.geral.Ponto;
 import model.interpolacao.RetornoFormaNewton;
 
@@ -127,7 +127,7 @@ public class FormaNewtonController {
             catch(EntradaException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
-            catch(ResolutionException ex){
+            catch(ResolucaoException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         }

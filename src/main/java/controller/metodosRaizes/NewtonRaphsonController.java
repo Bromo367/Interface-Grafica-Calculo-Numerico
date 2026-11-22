@@ -1,6 +1,5 @@
 package controller.metodosRaizes;
 
-import java.lang.module.ResolutionException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -58,11 +58,11 @@ public class NewtonRaphsonController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("xAnterior"));
-        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("derivadaXn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("fxn"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("diferenca"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strXAnterior"));
+        colunaDerivadaXn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strDerivadaXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strFxn"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoNewtonRaphson,Double>("strDiferenca"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -88,7 +88,7 @@ public class NewtonRaphsonController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

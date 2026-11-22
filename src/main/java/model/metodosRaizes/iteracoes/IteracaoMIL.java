@@ -1,5 +1,7 @@
 package model.metodosRaizes.iteracoes;
 
+import java.text.DecimalFormat;
+
 public class IteracaoMIL {
     private int k;
     private double xAnterior;
@@ -8,6 +10,12 @@ public class IteracaoMIL {
     private double fixn;
     private double precisao;
     private double diferenca;
+    private String strXAnterior;
+    private String strXAtual;
+    private String strFxn;
+    private String strFixn;
+    private String strDiferenca;
+    private DecimalFormat df;
 
     public IteracaoMIL(int k, double xAtual, double fxn, double fixn, double precisao, double xAnterior){
         this.k=k;
@@ -17,6 +25,20 @@ public class IteracaoMIL {
         this.precisao=precisao;
         this.xAnterior=xAnterior;
         diferenca=Math.abs(xAtual-xAnterior);
+
+        String formato = "0.";
+        int i=0;
+        while(precisao*Math.pow(10,i)<1){
+            formato+="##";
+            i++;
+        }
+        df = new DecimalFormat(formato);
+
+        strXAnterior = df.format(xAnterior);
+        strXAtual = df.format(xAtual);
+        strFxn = df.format(fxn);
+        strFixn = df.format(fixn);
+        strDiferenca = df.format(strDiferenca);
     }
 
     public boolean criterioParadaFuncao(){
@@ -49,5 +71,25 @@ public class IteracaoMIL {
 
     public double getDiferenca() {
         return diferenca;
+    }
+
+    public String getStrDiferenca() {
+        return strDiferenca;
+    }
+
+    public String getStrFixn() {
+        return strFixn;
+    }
+
+    public String getStrFxn() {
+        return strFxn;
+    }
+
+    public String getStrXAnterior() {
+        return strXAnterior;
+    }
+
+    public String getStrXAtual() {
+        return strXAtual;
     }
 }

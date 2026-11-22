@@ -1,7 +1,5 @@
 package controller.metodosRaizes;
 
-import java.lang.module.ResolutionException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -58,11 +57,11 @@ public class MILController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Integer>("k"));
-        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("xAtual"));
-        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("xAnterior"));
-        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("diferenca"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("fxn"));
-        colunaFixn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("fixn"));
+        colunaXAtual.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strXAtual"));
+        colunaXAnterior.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strXAnterior"));
+        colunaDiferenca.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strDiferenca"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strFxn"));
+        colunaFixn.setCellValueFactory(new PropertyValueFactory<IteracaoMIL,Double>("strFixn"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -93,7 +92,7 @@ public class MILController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

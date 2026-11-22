@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 import service.metodos.MetodosRaizes;
+import service.metodos.ResolucaoException;
 import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
@@ -22,7 +23,6 @@ import model.metodosRaizes.iteracoes.IteracaoRegulaFalsi;
 import model.metodosRaizes.Raiz;
 import model.metodosRaizes.retornos.RetornoRegulaFalsi;
 
-import java.lang.module.ResolutionException;
 
 
 public class RegulaFalsiController {
@@ -59,11 +59,11 @@ public class RegulaFalsiController {
         });
 
         colunaK.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Integer>("k"));
-        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("a"));
-        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("b"));
-        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("xn"));
-        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("fxn"));
-        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("erroRelativo"));
+        colunaA.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strA"));
+        colunaB.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strB"));
+        colunaXn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strXn"));
+        colunaFxn.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strFxn"));
+        colunaErroRelativo.setCellValueFactory(new PropertyValueFactory<IteracaoRegulaFalsi,Double>("strErroRelativo"));
         tableIteracoes.setFixedCellSize(tamanhoCelula);
     }
 
@@ -91,7 +91,7 @@ public class RegulaFalsiController {
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
-        catch(ResolutionException ex){
+        catch(ResolucaoException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
         }
     }

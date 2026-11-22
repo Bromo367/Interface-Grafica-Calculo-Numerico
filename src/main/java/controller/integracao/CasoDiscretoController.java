@@ -1,7 +1,7 @@
 package controller.integracao;
 
-import java.lang.module.ResolutionException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import service.geral.EntradaException;
 import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.metodos.MetodosIntegracao;
-
+import service.metodos.ResolucaoException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -56,8 +56,17 @@ public class CasoDiscretoController {
     private int larguraAnchor = 480;
     private int alturaAnchor = 400;
 
+    private int numeroCasasDecimais = 4;
+    private DecimalFormat df;
+
     @FXML
-    void initialize() {
+    void initialize() {    
+        String formato = "0.";
+        for(int i=0;i<numeroCasasDecimais;i++){
+            formato+="#";
+        }
+        df = new DecimalFormat(formato);
+
         scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
@@ -154,7 +163,7 @@ public class CasoDiscretoController {
             catch(EntradaException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
-            catch(ResolutionException ex){
+            catch(ResolucaoException ex){
                 mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);
             }
         }
@@ -178,6 +187,7 @@ public class CasoDiscretoController {
     }
 
     AnchorPane matrizParaAnchor(MatrizDouble matriz){
+
         AnchorPane anchorMatriz = new AnchorPane();
         anchorMatriz.setPrefHeight(alturaAnchor);
         anchorMatriz.setMaxHeight(alturaAnchor);
@@ -189,7 +199,7 @@ public class CasoDiscretoController {
         for(int i=0;i<alturaMatriz;i++){
             for(int j=0;j<larguraMatriz;j++){
                 Label lblValorMatriz = new Label();
-                lblValorMatriz.setText(matriz.get(i,j).toString());
+                lblValorMatriz.setText(df.format(matriz.get(i,j)));
                 lblValorMatriz.setLayoutX((larguraAnchor*(j+1))/(larguraMatriz+1));
                 lblValorMatriz.setLayoutY((alturaAnchor*(i+1))/(alturaMatriz+1));
                 anchorMatriz.getChildren().add(lblValorMatriz);
