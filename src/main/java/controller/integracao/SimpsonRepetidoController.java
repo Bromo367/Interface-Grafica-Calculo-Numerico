@@ -1,5 +1,7 @@
 package controller.integracao;
 
+import java.text.DecimalFormat;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,8 +49,19 @@ public class SimpsonRepetidoController {
     private ObservableList<SubintervaloSimpson> subintervalos;
     private double tamanhoCelula=30;
 
+    private DecimalFormat df;
+    private int numCasasDecimais=4;
+
     @FXML
     void initialize() {
+
+        String formato = "0.";
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        df = new DecimalFormat(formato);
+
+
         scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
@@ -64,6 +77,7 @@ public class SimpsonRepetidoController {
 
     @FXML
     void calcularIntegral(ActionEvent event) {
+        
         Funcao fx = null;
         double a;
         double b;
@@ -80,7 +94,7 @@ public class SimpsonRepetidoController {
                 mostraMensagem(lblFeedback, "Integral calculada", TiposTexto.SUCESSO);
                 tableSubintervalos.setItems(subintervalos);
                 tableSubintervalos.setPrefHeight((subintervalos.size()+1)*tamanhoCelula);
-                lblResultado.setText("Área total aproximada: "+areaTotal);
+                lblResultado.setText("Área total aproximada: "+df.format(areaTotal));
             }
             else{
                 mostraMensagem(lblFeedback, "O número de subintervalos deve ser par e positivo", TiposTexto.FRACASSO);

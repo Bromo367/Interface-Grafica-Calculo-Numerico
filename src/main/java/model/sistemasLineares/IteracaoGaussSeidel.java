@@ -1,5 +1,7 @@
 package model.sistemasLineares;
 
+import java.text.DecimalFormat;
+
 import model.geral.MatrizDouble;
 
 public class IteracaoGaussSeidel {
@@ -9,6 +11,8 @@ public class IteracaoGaussSeidel {
     private double erroRelativo;
     private int linhaMaiorDiferenca;
     private int linhaMaiorValor;
+    private DecimalFormat df;
+
 
 
     public IteracaoGaussSeidel(MatrizDouble matrizXAtual, MatrizDouble matrizXAnterior, double precisao){
@@ -33,6 +37,14 @@ public class IteracaoGaussSeidel {
 
         erroRelativo = maiorErroAbsoluto/maiorValorAtual;
 
+        String formato = "0.";
+        int i=0;
+        while(precisao*Math.pow(10,i)<1){
+            formato+="##";
+            i++;
+        }
+        df = new DecimalFormat(formato);
+
     }
 
     public MatrizDouble getMatrizXAtual() {
@@ -47,10 +59,10 @@ public class IteracaoGaussSeidel {
     public String stringCriterioParada(){
         String strErroRelativo = "";
 
-        strErroRelativo += "|" + matrizXAtual.get(linhaMaiorDiferenca,0) + "-";
-        strErroRelativo += matrizXAnterior.get(linhaMaiorDiferenca,0) + "|";
-        strErroRelativo += "/|" + matrizXAtual.get(linhaMaiorValor,0)+"|";
-        strErroRelativo += " = " + erroRelativo;
+        strErroRelativo += "|" + df.format(matrizXAtual.get(linhaMaiorDiferenca,0)) + "-";
+        strErroRelativo += df.format(matrizXAnterior.get(linhaMaiorDiferenca,0)) + "|";
+        strErroRelativo += "/|" + df.format(matrizXAtual.get(linhaMaiorValor,0))+"|";
+        strErroRelativo += " = " + df.format(erroRelativo);
 
         if(erroRelativo >= precisao){
             strErroRelativo += " >= ";
@@ -59,7 +71,7 @@ public class IteracaoGaussSeidel {
             strErroRelativo += " < ";
         }
 
-        strErroRelativo += precisao;
+        strErroRelativo += df.format(precisao);
 
         return strErroRelativo;
     }
