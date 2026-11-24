@@ -53,9 +53,9 @@ view\Escala.class
 model\sistemasLineares\RetornoGaussSeidel.class
 model\metodosRaizes\retornos\RetornoRegulaFalsi.class
 model\metodosRaizes\iteracoes\IteracaoSecante.class
-main\CalculoNumericoAplication.class
 model\metodosRaizes\retornos\RetornoSecante.class
 service\geral\Conversor.class
+main\CalculoNumericoApplication.class
 model\geral\MatrizDouble.class
 controller\geral\FuncoesPlanoController.class
 controller\geral\PlanoCartesianoController.class

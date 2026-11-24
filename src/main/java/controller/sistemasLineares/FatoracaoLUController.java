@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -196,21 +197,25 @@ public class FatoracaoLUController {
             lblB.setText("Matriz B:");
             vboxResultados.getChildren().add(lblB);
             vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizB()));
+            vboxResultados.getChildren().add(new Separator());
 
             Label lblL = new Label();
             lblL.setText("Matriz L:");
             vboxResultados.getChildren().add(lblL);
             vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizL()));
+            vboxResultados.getChildren().add(new Separator());
 
             Label lblU = new Label();
             lblU.setText("Matriz U:");
             vboxResultados.getChildren().add(lblU);
             vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizU()));
+            vboxResultados.getChildren().add(new Separator());
 
             Label lblY = new Label();
             lblY.setText("Solução Y:");
             vboxResultados.getChildren().add(lblY);
             vboxResultados.getChildren().add(matrizParaAnchor(resultado.getSolucaoY()));
+            vboxResultados.getChildren().add(new Separator());
 
             Label lblX = new Label();
             lblX.setText("Solução X:");

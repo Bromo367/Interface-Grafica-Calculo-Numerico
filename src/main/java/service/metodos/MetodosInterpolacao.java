@@ -91,7 +91,7 @@ public class MetodosInterpolacao {
     public void validarPontos(List<Ponto> pontos) throws ResolucaoException{
         for(int i=0;i<pontos.size();i++){
             for(int j=i+1;j<pontos.size();j++){
-                if(pontos.get(i).getX()==pontos.get(j).getX()){
+                if(pontos.get(i).getX().doubleValue()==pontos.get(j).getX().doubleValue()){
                     throw new ResolucaoException("As abscissas dos pontos devem ser diferentes entre si");
                 }
             }

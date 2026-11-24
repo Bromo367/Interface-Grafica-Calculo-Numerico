@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -34,6 +35,7 @@ public class GaussSeidelController {
     @FXML private VBox vboxConteudo;
     @FXML private VBox vboxResultados;
     @FXML private TextField txtFieldPrecisao;
+    @FXML private TextField txtFieldIt;
     @FXML private AnchorPane anchorChutes;
 
     private MetodosSistemas metodosSistemas = new MetodosSistemas();
@@ -209,11 +211,11 @@ public class GaussSeidelController {
     void resolverSistema(ActionEvent event) {
         try{
             verificador.avaliarInt(txtFieldQtdPontos.getText(), "A quantidade de variáveis");
-            System.out.println("Fatoração lu");
             vboxResultados.getChildren().clear();
             MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
             MatrizDouble matrizChutesIniciais = new MatrizDouble(1, ordemMatriz);
             double precisao = verificador.avaliarDouble(txtFieldPrecisao.getText(), "A precisão");
+            int it = verificador.avaliarInt(txtFieldIt.getText(), "O número máximo de iterações");
             for(int i=0;i<ordemMatriz;i++){
                 for(int j=0;j<ordemMatriz;j++){
                     matrizB.set(verificador.avaliarDouble(entradasCoeficientes.get(j).get(i).getText(), "Coeficiente "+i+" "+j), i, j);
@@ -225,12 +227,13 @@ public class GaussSeidelController {
             for(int i=0;i<ordemMatriz;i++){
                 matrizChutesIniciais.set(verificador.avaliarDouble(entradasChutes.get(i).getText(),"Chute "+i),i, 0);
             }
-            RetornoGaussSeidel resultado = metodosSistemas.gaussSeidel(matrizB, precisao, matrizChutesIniciais);
+            RetornoGaussSeidel resultado = metodosSistemas.gaussSeidel(matrizB, precisao, matrizChutesIniciais, it);
 
             Label lblB = new Label();
             lblB.setText("Matriz B:");
             vboxResultados.getChildren().add(lblB);
             vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizB()));
+            vboxResultados.getChildren().add(new Separator());
 
             List<IteracaoGaussSeidel> iteracoes = resultado.getIteracoes();
             for(int i=0;i<iteracoes.size();i++){
@@ -241,6 +244,7 @@ public class GaussSeidelController {
                 Label lblCriterioParada = new Label();
                 lblCriterioParada.setText(iteracoes.get(i).stringCriterioParada()+"\n\n");
                 vboxResultados.getChildren().add(lblCriterioParada);
+                vboxResultados.getChildren().add(new Separator());
             }
 
             Label lblX = new Label();

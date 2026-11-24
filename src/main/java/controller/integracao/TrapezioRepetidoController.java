@@ -51,7 +51,7 @@ public class TrapezioRepetidoController {
     private double tamanhoCelula=30;
     
     private DecimalFormat df;
-    private int numCasasDecimais=4;
+    private int numCasasDecimais = 6;
 
     @FXML
     void initialize() {
