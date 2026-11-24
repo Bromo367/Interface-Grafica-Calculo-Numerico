@@ -3,14 +3,15 @@ package main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import model.geral.MatrizDouble;
+import javafx.stage.Stage; 
 
-public class Main extends Application {
+import java.io.IOException;
+
+public class CalculoNumericoAplication extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/geral/menuPrincipal-view.fxml"));
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(CalculoNumericoAplication.class.getResource("/view/geral/menuPrincipal-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Métodos Cálculo Numérico");
         stage.setMinHeight(120);

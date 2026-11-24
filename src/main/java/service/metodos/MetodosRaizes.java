@@ -181,7 +181,6 @@ public class MetodosRaizes {
             fAtual=f.aplicar(xAtual);
 
             iteracoes.add(new IteracaoNewtonRaphson(k, xAtual, fAtual , fDerivada.aplicar(xAtual), precisao, xAnterior));
-            System.out.println("Derivas "+iteracoes.getLast().getDerivadaXn());
 
             parou=parou||iteracoes.get(k-1).criterioParadaFuncao();
             parou=parou||iteracoes.get(k-1).criterioParadaDiferenca();       

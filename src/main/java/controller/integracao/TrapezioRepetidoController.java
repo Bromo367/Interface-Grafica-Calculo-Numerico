@@ -1,6 +1,8 @@
 package controller.integracao;
 
 
+import java.text.DecimalFormat;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,9 +49,19 @@ public class TrapezioRepetidoController {
     private VerificadorEntradas verificador = new VerificadorEntradas();
     private ObservableList<SubintervaloTrapezio> subintervalos;
     private double tamanhoCelula=30;
+    
+    private DecimalFormat df;
+    private int numCasasDecimais=4;
 
     @FXML
     void initialize() {
+
+        String formato = "0.";
+        for(int i=0; i<numCasasDecimais;i++){
+            formato+="#";
+        }
+        df = new DecimalFormat(formato);
+
         scrollLayout.widthProperty().addListener((observable, antigo, novo)->{
             hboxLayout.setPrefWidth(novo.doubleValue());
         });
@@ -80,7 +92,7 @@ public class TrapezioRepetidoController {
             mostraMensagem(lblFeedback, "Integral calculada", TiposTexto.SUCESSO);
             tableSubintervalos.setItems(subintervalos);
             tableSubintervalos.setPrefHeight((subintervalos.size()+1)*tamanhoCelula);
-            lblResultado.setText("Área total aproximada: "+areaTotal);
+            lblResultado.setText("Área total aproximada: "+df.format(areaTotal));
         }
         catch(EntradaException ex){
             mostraMensagem(lblFeedback, ex.getMessage(), TiposTexto.FRACASSO);

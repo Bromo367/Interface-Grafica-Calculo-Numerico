@@ -180,7 +180,6 @@ public class FatoracaoLUController {
     void resolverSistema(ActionEvent event) {
         try{
             verificador.avaliarInt(txtFieldQtdPontos.getText(), "A quantidade de variáveis");
-            System.out.println("Fatoração lu");
             vboxResultados.getChildren().clear();
             MatrizDouble matrizB = new MatrizDouble(ordemMatriz+1, ordemMatriz);
             for(int i=0;i<ordemMatriz;i++){
