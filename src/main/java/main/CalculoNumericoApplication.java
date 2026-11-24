@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CalculoNumericoAplication extends Application {
+public class CalculoNumericoApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CalculoNumericoAplication.class.getResource("/view/geral/menuPrincipal-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CalculoNumericoApplication.class.getResource("/view/geral/menuPrincipal-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Métodos Cálculo Numérico");
         stage.setMinHeight(120);

@@ -29,13 +29,7 @@ public class FuncaoGrafica{
         double xGrafico=0;
         double xTeste=((xGrafico-w/2)*escalaNumerica)/escalaInterface;
         double yTeste=funcao.aplicar(xTeste);
-        if(Double.isInfinite(yTeste)){
-            System.out.println("yTeste é infinito");
-        }
         double yGrafico=(((-yTeste)*escalaInterface)/escalaNumerica)+h/2;
-        if(Double.isInfinite(yGrafico)){
-            System.out.println("yTeste é infinito");
-        }
         linhaGrafico.getElements().add(new MoveTo(xGrafico,yGrafico));
         boolean ultimoTesteNAN = false;
         

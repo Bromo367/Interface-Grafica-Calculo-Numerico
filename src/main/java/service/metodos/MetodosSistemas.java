@@ -128,7 +128,7 @@ public class MetodosSistemas {
         return new RetornoLU(matrizB.criarCopia(), matrizL.criarCopia(), matrizU.criarCopia(), solucaoX, solucaoY);
     }
     
-    public RetornoGaussSeidel gaussSeidel(MatrizDouble matrizB, double precisao, MatrizDouble matrizChutesIniciais){
+    public RetornoGaussSeidel gaussSeidel(MatrizDouble matrizB, double precisao, MatrizDouble matrizChutesIniciais, int it){
         List<IteracaoGaussSeidel> iteracoes = new ArrayList<>();
         int altura = matrizB.getAltura();
         int largura = matrizB.getLargura();
@@ -187,7 +187,7 @@ public class MetodosSistemas {
                 matrizXAtual.set(xAtual,i,0);
             }
             iteracoes.add(new IteracaoGaussSeidel(matrizXAtual.criarCopia(), matrizXAnterior.criarCopia(), precisao));
-        }while(k<100&iteracoes.get(iteracoes.size()-1).getErroRelativo()>=precisao);
+        }while(k<it&iteracoes.get(iteracoes.size()-1).getErroRelativo()>=precisao);
 
 
         return new RetornoGaussSeidel(matrizB.criarCopia(), iteracoes, matrizXAtual.criarCopia());

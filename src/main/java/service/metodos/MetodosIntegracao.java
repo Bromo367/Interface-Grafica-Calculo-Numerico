@@ -19,7 +19,7 @@ public class MetodosIntegracao {
         if(a>=b){
             throw new ResolucaoException("O intervalo dado não é válido");
         }
-        if(nSubintervalos < 0){
+        if(nSubintervalos <= 0){
             throw new ResolucaoException("O número de subintervalos deve ser positivo");
         }
         List<SubintervaloTrapezio> subintervalos = new ArrayList<>();
@@ -41,7 +41,7 @@ public class MetodosIntegracao {
         if(a>=b){
             throw new ResolucaoException("O intervalo dado não é válido");
         }
-        if(nSubintervalos < 0){
+        if(nSubintervalos <= 0){
             throw new ResolucaoException("O número de subintervalos deve ser positivo");
         }
         if(nSubintervalos%2 !=0){
@@ -65,8 +65,14 @@ public class MetodosIntegracao {
     }
 
     public RetornoCasoDiscreto casoDiscreto(List<Ponto> pontos, int grauPolinomio) throws ResolucaoException{
-        if(grauPolinomio < 0){
+        if(grauPolinomio <= 0){
             throw new ResolucaoException("O grau do polinômio deve ser positivo");
+        }
+        if(pontos.size()<=1){
+            throw new ResolucaoException("O número de pontos deve ser maior que 1");
+        }
+        if(grauPolinomio>=pontos.size()){
+            throw new ResolucaoException("O grau do polinômio deve ser menor que a quantidade de pontos");
         }
         validarPontos(pontos);
 
@@ -120,7 +126,7 @@ public class MetodosIntegracao {
     public void validarPontos(List<Ponto> pontos) throws ResolucaoException{
         for(int i=0;i<pontos.size();i++){
             for(int j=i+1;j<pontos.size();j++){
-                if(pontos.get(i).getX()==pontos.get(j).getX()){
+                if(pontos.get(i).getX().doubleValue()==pontos.get(j).getX().doubleValue()){
                     throw new ResolucaoException("As abscissas dos pontos devem ser diferentes entre si");
                 }
             }

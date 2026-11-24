@@ -14,6 +14,8 @@ import service.geral.TiposTexto;
 import service.geral.VerificadorEntradas;
 import service.metodos.MetodosIntegracao;
 import service.metodos.ResolucaoException;
+
+import javafx.scene.control.Separator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -56,7 +58,7 @@ public class CasoDiscretoController {
     private int larguraAnchor = 480;
     private int alturaAnchor = 400;
 
-    private int numeroCasasDecimais = 4;
+    private int numeroCasasDecimais = 6;
     private DecimalFormat df;
 
     @FXML
@@ -138,6 +140,7 @@ public class CasoDiscretoController {
 
                 vboxResultados.getChildren().add(lblB);
                 vboxResultados.getChildren().add(matrizParaAnchor(resultado.getMatrizB()));
+                vboxResultados.getChildren().add(new Separator());
 
                 List<MatrizDouble> iteracoes = resultado.getResolucaoSistema().getIteracoes();
                 for(int i=0;i<iteracoes.size();i++){
@@ -146,11 +149,13 @@ public class CasoDiscretoController {
                     lblK.setStyle(null);
                     vboxResultados.getChildren().add(lblK);
                     vboxResultados.getChildren().add(matrizParaAnchor(iteracoes.get(i)));
+                    vboxResultados.getChildren().add(new Separator());
                 }
                 Label lblSolucao = new Label();
                 lblSolucao.setText("Matriz solução:");
                 vboxResultados.getChildren().add(lblSolucao);
                 vboxResultados.getChildren().add(matrizParaAnchor(resultado.getResolucaoSistema().getSolucao()));
+                vboxResultados.getChildren().add(new Separator());
                 
                 Label lblPolinomio = new Label();
                 String strPolinomio = "p(x) = " + polinomio;

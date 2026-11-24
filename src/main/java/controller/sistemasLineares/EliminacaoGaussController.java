@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -200,6 +201,7 @@ public class EliminacaoGaussController {
                 lblK.setStyle(null);
                 vboxResultados.getChildren().add(lblK);
                 vboxResultados.getChildren().add(matrizParaAnchor(iteracoes.get(i)));
+                vboxResultados.getChildren().add(new Separator());
             }
             Label lblSolucao = new Label();
             lblSolucao.setText("Matriz solução:");

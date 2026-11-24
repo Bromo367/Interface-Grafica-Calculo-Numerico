@@ -6,7 +6,7 @@ public class MontadorArvore {
     public ArrayList<String> tokenizar(String strFuncao){
         ArrayList<String> tokens = new ArrayList<>();
         ArrayList<String> opcoesTokens = new ArrayList<>();
-        Collections.addAll(opcoesTokens,"e","x","+","-","*","/","^","cos","sen","tan","sec","cossec","cotg","ln","log","(",")");
+        Collections.addAll(opcoesTokens,"pi","e","x","+","-","*","/","^","cos","sen","tan","sec","cossec","cotg","ln","log","(",")");
         int i=0;
         while(i<strFuncao.length()){
             if(strFuncao.charAt(i)==' '){

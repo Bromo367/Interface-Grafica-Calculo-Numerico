@@ -22,6 +22,7 @@ public class VerificadorEntradas {
         }
         return conversor.StringParaInt(entrada);
     }
+
     public double avaliarDouble(String entrada, String nome) throws EntradaException{
         if(entrada.length()==0){
             throw new EntradaException(nome + " deve ser um valor racional!");
@@ -133,13 +134,17 @@ public class VerificadorEntradas {
                                     esperandoOperador=true;
                                     i++;
                                 }
+                                else if(i+1<entrada.length()&&entrada.charAt(i)=='p'&&entrada.charAt(i+1)=='i'){
+                                    esperandoOperador=true;
+                                    i+=2;
+                                }
                                 else if(entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
                                     while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){
                                         i++;
                                     }
                                     if(i<entrada.length()&&(entrada.charAt(i)==','||entrada.charAt(i)=='.')){
                                         i++;
-                                        if(i>=entrada.length()||entrada.charAt(i)<='0'||entrada.charAt(i)>='9'){
+                                        if(i>=entrada.length()||(entrada.charAt(i)<'0'||entrada.charAt(i)>'9')){
                                             valido=false;
                                         }
                                         while(i<entrada.length()&&entrada.charAt(i)>='0'&&entrada.charAt(i)<='9'){

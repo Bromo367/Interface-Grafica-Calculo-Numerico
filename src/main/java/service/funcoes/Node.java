@@ -66,6 +66,9 @@ public class Node {
             if(token=="e"){
                 return Math.E;
             }
+            else if(token=="pi"){
+                return Math.PI;
+            }
             else if(token=="x"){
                 return x;
             }
